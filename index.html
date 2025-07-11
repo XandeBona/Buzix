@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buzix</title>
-    <link rel="shortcut icon" href="IMAGES/logo.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buzix</title>
+  <link rel="stylesheet" href="index.css" />
 </head>
+
 <body>
-    <p>Hello World!</p>
+  <header class="header">
+    <div class="logo">Buzix</div>
+
+    <nav class="nav" id="nav">
+      <ul class="nav-list">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Linhas</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="hamburguer" id="hamburguer">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main>
+    <div class="marca-dagua">
+      <img src="buzix.jpg" alt="Marca d'água Buzix" />
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Buzix. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const hamburguer = document.getElementById('hamburguer');
+    const nav = document.getElementById('nav');
+
+    hamburguer.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      hamburguer.classList.toggle('active');
+    });
+  </script>
 </body>
+
 </html>
