@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+   
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+   
+  main {
+    flex: 1;
+    position: relative;
+  }
+   
+  .header {
+    background-color: #55d49f;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(27, 36, 163);
+  }
+   
+  .logo-img {
+    height: 50px;
+    object-fit: contain;
+  }
+   
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+   
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+   
+  .nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+   
+  .hamburguer {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+   
+  .hamburguer span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    display: block;
+    border-radius: 3px;
+    transition: 0.3s;
+  }
+   
+  @media (max-width: 768px) {
+    .nav {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      width: 200px;
+      background-color: #1e1e1e;
+      display: none;
+      flex-direction: column;
+      align-items: start;
+      padding: 20px;
+    }
+   
+    .nav.active {
+      display: flex;
+    }
+   
+    .hamburguer {
+      display: flex;
+    }
+   
+    .nav-list {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+   
+  .marca-dagua {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.08;
+    z-index: 0;
+    width: 70%;
+    max-width: 600px;
+    pointer-events: none;
+  }
+   
+  .marca-dagua img {
+    width: 100%;
+    height: auto;
+  }
+   
+  .footer {
+    background-color: #48b386;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+  }
