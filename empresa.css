@@ -30,9 +30,10 @@
 
 .box_menu .titulo_menu{
     position: absolute;
-    height: 60px;
+    height: 55px;
     width: 100%;
-    box-shadow: 0px 2px 4px var(--cor-letras);
+    box-shadow: 0px 1px 2px var(--cor-principal-dois);
+
 }
 
 .box_menu .titulo_menu a{
@@ -48,12 +49,12 @@
 
 .icone_menu {
     position: fixed;
-    top: 20px;
+    top: 10px;
     left: 20px;
     font-size: 30px;
     color: var(--cor-secundaria-dois);
     cursor: pointer;
-    z-index: 1000; /* menor que o menu lateral */
+    z-index: 1000; 
 }
 
 .menu_lateral {
@@ -64,7 +65,7 @@
     height: 100vh;
     background: var(--cor-principal);
     transition: left 0.3s ease;
-    z-index: 1001; /* maior que o ícone */
+    z-index: 1001;
 }
 
 /* Mostrar o menu ao passar o mouse sobre o ícone ou o próprio menu */
