@@ -45,37 +45,6 @@
     line-height: 60px;
 }
 
-
-.icone_menu {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 30px;
-    color: var(--cor-secundaria-dois);
-    cursor: pointer;
-    z-index: 1000; /* menor que o menu lateral */
-}
-
-.menu_lateral {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 280px;
-    height: 100vh;
-    background: var(--cor-principal);
-    transition: left 0.3s ease;
-    z-index: 1001; /* maior que o ícone */
-}
-
-/* Mostrar o menu ao passar o mouse sobre o ícone ou o próprio menu */
-.icone_menu:hover + .menu_lateral,
-.menu_lateral:hover {
-    left: 0;
-}
-
-
-
-
 .menu_lateral .menu{
     position: absolute;
     top: 80px;
