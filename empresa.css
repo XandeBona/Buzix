@@ -1,8 +1,11 @@
-*{
+/* Reset geral de margem, padding e configuração da caixa para todos os elementos */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+ 
+    /* Definição de variáveis CSS para facilitar reaproveitamento de cores */
     --cor-principal: #06b4f0;
     --cor-principal-dois: #22789e;
     --cor-secundaria: #9be91b;
@@ -10,33 +13,36 @@
     --cor-letras: #000;
     --cor-fundo: #f5f5f5;
 }
-
-.box_menu{
-    background:var(--cor-fundo);
+ 
+/* Container geral que envolve o menu lateral */
+.box_menu {
+    background: var(--cor-fundo);
     height: 100vh;
     background-size: cover;
     width: 100%;
 }
-
-.box_menu .menu_lateral{
+ 
+/* Menu lateral fechado inicialmente, oculto à esquerda */
+.box_menu .menu_lateral {
     height: 100vh;
     width: 280px;
     background: var(--cor-principal);
     position: fixed;
     overflow: hidden;
-    left: -280px;
+    left: -280px; /* Escondido para fora da tela */
     transition: all 0.3s linear;
 }
-
-.box_menu .titulo_menu{
+ 
+/* Título do menu lateral (ex: Painel de Controle) */
+.box_menu .titulo_menu {
     position: absolute;
     height: 55px;
     width: 100%;
     box-shadow: 0px 1px 2px var(--cor-principal-dois);
-
 }
-
-.box_menu .titulo_menu a{
+ 
+/* Estilo do link dentro do título do menu */
+.box_menu .titulo_menu a {
     color: var(--cor-fundo);
     font-size: 20px;
     font-weight: 500;
@@ -45,8 +51,8 @@
     left: 20px;
     line-height: 60px;
 }
-
-
+ 
+/* Ícone do botão de menu (hambúrguer) */
 .icone_menu {
     position: fixed;
     top: 10px;
@@ -54,59 +60,63 @@
     font-size: 30px;
     color: var(--cor-secundaria-dois);
     cursor: pointer;
-    z-index: 1000; 
+    z-index: 1000; /* Acima dos outros elementos */
 }
-
+ 
+/* Estrutura principal do menu lateral */
 .menu_lateral {
     position: fixed;
     top: 0;
-    left: -280px;
+    left: -280px; /* Oculto por padrão */
     width: 280px;
     height: 100vh;
     background: var(--cor-principal);
     transition: left 0.3s ease;
     z-index: 1001;
 }
-
-/* Mostrar o menu ao passar o mouse sobre o ícone ou o próprio menu */
+ 
+/* Quando o usuário passar o mouse no ícone ou no menu, o menu desliza para a tela */
 .icone_menu:hover + .menu_lateral,
 .menu_lateral:hover {
     left: 0;
 }
-
-
-
-
-.menu_lateral .menu{
+ 
+/* Container da lista de navegação dentro do menu */
+.menu_lateral .menu {
     position: absolute;
     top: 80px;
     width: 100%;
 }
-
-.menu_lateral .menu li{
+ 
+/* Estilo dos itens da lista do menu */
+.menu_lateral .menu li {
     margin: 10 px;
     padding: 14px 20px;
     border-radius: 8px;
     transition: 0.2s;
 }
-
-.menu_lateral .menu li:hover{
+ 
+/* Efeito hover ao passar o mouse sobre os itens da lista */
+.menu_lateral .menu li:hover {
     background-color: var(--cor-secundaria);
 }
-
-.menu_lateral .menu i{
+ 
+/* Ícones ao lado de cada item de menu */
+.menu_lateral .menu i {
     color: var(--cor-fundo);
     font-size: 20px;
     padding-right: 8px;
 }
-
-.menu_lateral .menu a{
+ 
+/* Estilo dos links do menu */
+.menu_lateral .menu a {
     color: var(--cor-fundo);
     text-decoration: none;
     font-size: 20px;
 }
-
-.box_menu .icone_menu{
+ 
+/* Reforço de estilo no botão do menu hambúrguer */
+.box_menu .icone_menu {
     color: var(--cor-secundaria-dois);
     font-size: 30px;
     font-weight: 700;
@@ -115,26 +125,28 @@
     line-height: 60px;
     cursor: pointer;
 }
-
-.menu_lateral .close i{
+ 
+/* Estilo do botão de fechar (ícone "X") dentro do menu lateral */
+.menu_lateral .close i {
     font-size: 25px;
     line-height: 60px;
     position: absolute;
     left: 240px;
     color: var(--cor-fundo);
     cursor: pointer;
-
 }
-
-#check{
+ 
+/* Esconde o checkbox que controla o menu */
+#check {
     display: none;
 }
-
-#check:checked ~ .menu_lateral{
+ 
+/* Quando o checkbox estiver marcado, o menu aparece */
+#check:checked ~ .menu_lateral {
     left: 0;
 }
-
-
+ 
+/* Marca d'água centralizada e com opacidade reduzida */
 .marca-dagua {
     position: absolute;
     top: 50%;
@@ -145,14 +157,16 @@
     width: 70%;
     max-width: 600px;
     pointer-events: none;
-  }
-  
-  .marca-dagua img {
+}
+ 
+/* Garante que a imagem da marca d’água fique responsiva */
+.marca-dagua img {
     width: 100%;
     height: auto;
-  }
-  
-  .footer {
+}
+ 
+/* Rodapé fixado na parte inferior da tela */
+.footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -162,4 +176,4 @@
     padding: 20px 0;
     z-index: 1000;
     font-size: 14px;
-   }
+}
