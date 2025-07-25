@@ -14,6 +14,18 @@
     --cor-fundo: #f5f5f5;
 }
 
+/* Personalização da imagem (lado esquerdo) */
+.img-box {
+    width: 50%;
+    height: 100%;
+    background-color: var(--cor-principal);
+    padding: 20px;
+}
+
+
+
+
+
 
 
 body {
@@ -62,7 +74,7 @@ input:focus, select:focus {
 button {
   width: 100%;
   background-color:var(--cor-secundaria);
-  color: var(--cor-principal);
+  color: var(--cor-fundo);
   border: none;
   padding: 12px;
   font-size: 16px;
