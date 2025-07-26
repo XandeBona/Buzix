@@ -13,7 +13,9 @@ map.addLayer(layer);
 
 let customIcon = {
     iconUrl: 'IMAGES/logo_ico.ico',
-    iconSize: [40, 40]
+    iconSize: [40, 40],
+    popupAnchor: [0, -20]
+
 };
 
 let myIcon = L.icon(customIcon);
@@ -26,6 +28,7 @@ let iconOptions = {
 
 let marker = new L.Marker([-26.823465, -49.274973], iconOptions);
 marker.addTo(map);
+marker.bindPopup("Terminal").openPopup();
 
 let marker2 = new L.Marker([-26.833013, -49.2594779], iconOptions);
 marker2.addTo(map);
