@@ -14,13 +14,7 @@
     --cor-fundo: #f5f5f5;
 }
 
-/* Personalização da imagem (lado esquerdo) */
-.img-box {
-    width: 50%;
-    height: 100%;
-    background-color: var(--cor-principal);
-    padding: 20px;
-}
+
 
 
 
