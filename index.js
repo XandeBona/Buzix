@@ -12,8 +12,8 @@ map.addLayer(layer);
 
 
 let customIcon = {
-    iconUrl: 'IMAGES/logo_ico.ico',
-    iconSize: [40, 40],
+    iconUrl: 'IMAGES/buzix_logo2.png',
+    iconSize: [100, 55],
     popupAnchor: [0, -20]
 
 };
