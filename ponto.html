@@ -7,7 +7,7 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="IMAGES/logo_ico.ico" type="image/x-icon">
-    <title>Cadastro Conta Empresa</title>
+    <title>Cadastro de Ponto</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
     </style>
@@ -17,37 +17,33 @@
     <!-- Div principal -->
     <div class="container-login">
         <div class="img-box">
-            <!-- Imagem grande da tela -->
-            <img src="IMAGES/imagem_tela_cadastro.png" alt="Imagem de Cadastro">
+            <a href="index.html">
+                <!-- Imagem grande da tela -->
+                <img src="IMAGES/imagem_tela_cadastro.png" alt="Imagem de Cadastro">
+            </a>
         </div>
 
         <!-- Div do formulário de cadastro -->
         <div class="content-box">
             <div class="form-box">
-                <h2>Cadastrar Usuário</h2>
+                <h2>Cadastrar Ponto de Ônibus</h2>
                 <form action="#" method="post">
-                    <!-- Nome Completo -->
+                    <!-- Identificação do Ponto de Ônibus -->
                     <div class="input-box">
-                        <span>Nome Completo</span>
-                        <input type="text" name="nome" placeholder="Nome completo" required>
+                        <span>Identificação</span>
+                        <input type="text" name="nome" placeholder="Identificação do ponto" required>
                     </div>
 
-                    <!-- Email -->
+                    <!-- Latitude (Y) -->
                     <div class="input-box">
-                        <span>Email</span>
-                        <input type="email" name="email" placeholder="@mail.com" required>
+                        <span>Latitude (Y)</span>
+                        <input type="text" name="latitude" placeholder="-26.811404" required>
                     </div>
 
-                    <!-- Criar Senha -->
+                    <!-- Longitude (X) -->
                     <div class="input-box">
-                        <span>Criar Senha</span>
-                        <input type="password" name="senha" placeholder="********" required>
-                    </div>
-
-                    <!-- Confirmar Senha -->
-                    <div class="input-box">
-                        <span>Confirmar Senha</span>
-                        <input type="password" name="confirmar_senha" placeholder="********" required>
+                        <span>Longitude (X)</span>
+                        <input type="text" name="latitude" placeholder="-49.279005" required>
                     </div>
 
                     <!-- Botão de cadastro -->
