@@ -116,6 +116,8 @@
     cursor: pointer;
     font-size: 20px;
     transition: 0.3s;
+    margin-top: 12px;
+
 }
 
 .content-box .form-box .input-box input[type=submit]:hover {
@@ -124,7 +126,7 @@
 
 /* Personalização do "Lembrar-me" */
 .content-box .form-box .remember {
-    margin: 8px 0 20px 0;
+    margin-top: 10px;
     color: var(--cor-letras);
     font-weight: 400;
     font-size: 14px;
