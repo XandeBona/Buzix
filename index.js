@@ -28,7 +28,7 @@ let iconOptions = {
 
 let marker = new L.Marker([-26.823465, -49.274973], iconOptions);
 marker.addTo(map);
-marker.bindPopup("Terminal").openPopup();
+marker.bindPopup("Terminal");
 
 let marker2 = new L.Marker([-26.833013, -49.2594779], iconOptions);
 marker2.addTo(map);
