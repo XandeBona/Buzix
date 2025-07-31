@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Veículo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="IMAGES/logo_ico.ico" type="image/x-icon">
+</head>
+
+
+
+<body>
+  <!-- Div principal -->
+  <div class="container-login">
+    <div class="img-box">
+      <a href="index.html">
+        <!-- Imagem grande da tela -->
+        <img src="IMAGES/imagem_tela_cadastro.png" alt="Imagem de Cadastro">
+      </a>
+    </div>
+
+    <!-- Div do formulário de cadastro -->
+    <div class="content-box">
+      <div class="form-box">
+        <h2>Cadastro de Veículo</h2>
+        <form action="#" method="post">
+          <!-- Identificação do Veículo -->
+          <div class="input-box">
+            <span>Identificação</span>
+            <input type="text" name="Identificação" placeholder="Identificação do veículo" required>
+          </div>
+
+          <!-- Placa do Veículo -->
+          <div class="input-box">
+            <span>Placa</span>
+            <input type="text" name="placa" placeholder="Placa do veículo" required>
+          </div>
+
+          <!-- Marca do Veículo -->
+          <div class="input-box">
+            <span>Marca</span>
+            <input type="text" name="marca" placeholder="Marca do veículo" required>
+          </div>
+
+          <!-- Modelo do Veículo -->
+          <div class="input-box">
+            <span>Modelo</span>
+            <input type="text" name="modelo" placeholder="Modelo do veículo" required>
+          </div>
+
+          <!-- Ano de Fabricação do Veículo -->
+          <div class="input-box">
+            <span>Ano de Fabricação</span>
+            <input type="text" name="ano_fabricacao" placeholder="Ano de fabricação" required>
+          </div>
+
+          <!-- Capacidade do Veículo -->
+          <div class="input-box">
+            <span>Capacidade</span>
+            <input type="text" name="capacidade" placeholder="Capacidade do veículo" required>
+          </div>
+
+          <label for="combustivel">Tipo de Combustível:</label>
+          <select id="combustivel" name="combustivel" required>
+            <option value="">Selecione...</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Gasolina">Gasolina</option>
+            <option value="Etanol">Etanol</option>
+            <option value="Elétrico">Elétrico</option>
+          </select>
+
+          <!-- Botão de salvar -->
+          <div class="input-box">
+            <input type="submit" value="Salvar">
+          </div>
+        </form>
+        <!-- Retornar ao menu -->
+        <h3 id="sem_login">
+          <a href="empresa.html">Retornar ao menu</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
