@@ -90,7 +90,6 @@
  
 /* Estilo dos itens da lista do menu */
 .menu_lateral .menu li {
-    margin: 10 px;
     padding: 14px 20px;
     border-radius: 8px;
     transition: 0.2s;
@@ -176,4 +175,27 @@
     padding: 20px 0;
     z-index: 1000;
     font-size: 14px;
+}
+
+.submenu {
+    position: relative;
+}
+
+.submenu .submenu-list {
+    display: none;
+    list-style: none;
+}
+
+.submenu.open .submenu-list {
+    display: block;
+}
+
+.submenu .seta {
+    margin-left: 5px;
+    font-size: 12px;
+    transition: transform 0.2s;
+}
+
+.submenu.open .seta {
+    transform: rotate(180deg);
 }
