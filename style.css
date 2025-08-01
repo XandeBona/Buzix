@@ -80,7 +80,7 @@
 }
 
 /* Personalização input */
-.content-box .form-box .input-box input {
+.content-box .form-box .input-box input, select {
     width: 100%;
     padding: 10px;
     outline: none;

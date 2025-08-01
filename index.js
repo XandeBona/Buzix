@@ -1,3 +1,4 @@
+// Local de abertura do Mapa (ao carregar a página)
 let mapOptions = {
     center: [-26.8255, -49.2726],
     zoom: 15
@@ -10,7 +11,7 @@ map.addLayer(layer);
 
 
 
-
+//Customização do Icon do ponto no mapa
 let customIcon = {
     iconUrl: 'IMAGES/buzix_logo2.png',
     iconSize: [100, 55],
@@ -21,7 +22,6 @@ let customIcon = {
 let myIcon = L.icon(customIcon);
 
 let iconOptions = {
-    title: "ponto 1",
     icon: myIcon
 };
 
@@ -38,4 +38,15 @@ marker3.addTo(map);
 
 let marker4 = new L.Marker([-26.83077, -49.273812], iconOptions);
 marker4.addTo(map);
+
+let marker5 = new L.Marker([-26.80859, -49.257442], iconOptions);
+marker5.addTo(map);
+
+let marker6 = new L.Marker([-26.81171, -49.27033], iconOptions);
+marker6.addTo(map);
+
+let marker7 = new L.Marker([-26.81179, -49.27078], iconOptions);
+marker7.addTo(map);
+
+
 
