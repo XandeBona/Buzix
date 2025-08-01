@@ -59,20 +59,23 @@
             <input type="text" name="ano_fabricacao" placeholder="Ano de fabricação" required>
           </div>
 
+
+          <div class="input-box">
+            <span>Tipo de Combustível</span>
+            <select id="combustivel" name="combustivel" required>
+              <option value="" disabled selected>Selecione um tipo</option>
+              <option value="diesel">Diesel</option>
+              <option value="gasolina">Gasolina</option>
+              <option value="etanol">Etanol</option>
+              <option value="elétrico">Elétrico</option>
+            </select>
+          </div>
+
           <!-- Capacidade do Veículo -->
           <div class="input-box">
             <span>Capacidade</span>
             <input type="text" name="capacidade" placeholder="Capacidade do veículo" required>
           </div>
-
-          <label for="combustivel">Tipo de Combustível:</label>
-          <select id="combustivel" name="combustivel" required>
-            <option value="">Selecione...</option>
-            <option value="Diesel">Diesel</option>
-            <option value="Gasolina">Gasolina</option>
-            <option value="Etanol">Etanol</option>
-            <option value="Elétrico">Elétrico</option>
-          </select>
 
           <!-- Botão de salvar -->
           <div class="input-box">
