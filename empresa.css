@@ -199,3 +199,15 @@
 .submenu.open .seta {
     transform: rotate(180deg);
 }
+
+.menu_lateral .menu li:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.menu_lateral .menu li:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.submenu .submenu-list {
+    background-color: var(--cor-principal);
+}
