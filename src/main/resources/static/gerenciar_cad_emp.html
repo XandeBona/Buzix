@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="IMAGES/logo_ico.ico" type="image/x-icon">
-    <title>Gerenciamento de Ponto</title>
+    <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
+    <title>Cadastro de Usuário</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
     </style>
@@ -19,55 +19,56 @@
         <div class="img-box">
             <a href="index.html">
                 <!-- Imagem grande da tela -->
-                <img src="IMAGES/imagem_tela_cadastro.png" alt="Imagem de Cadastro">
+                <img src="../../../../IMAGES/imagem_tela_cadastro.png" alt="Imagem de Cadastro">
             </a>
         </div>
 
         <!-- Div do formulário de cadastro -->
         <div class="content-box">
             <div class="form-box">
-                <h2>Gerenciamento de Ponto</h2>
+                <h2>Gerenciar Usuário</h2>
                 <form action="#" method="post">
-                    <!-- ID do Ponto de Ônibus -->
+                    
+                    <!-- Campo ID -->
                     <div class="input-box">
-                        <span>ID do Ponto</span>
-                        <input type="text" name="nome" placeholder="ID do ponto" required>
-                    </div>
-                    <!-- Identificação do Ponto de Ônibus -->
-                    <div class="input-box">
-                        <span>Identificação</span>
-                        <input type="text" name="nome" placeholder="Identificação do ponto" required>
+                        <span>ID</span>
+                        <input type="text" name="id" placeholder="ID do usuário" required>
                     </div>
 
-                    <!-- Latitude (Y) -->
+                    <!-- Nome Completo -->
                     <div class="input-box">
-                        <span>Latitude (Y)</span>
-                        <input type="text" name="latitude" placeholder="-26.811404" required>
+                        <span>Nome Completo</span>
+                        <input type="text" name="nome" placeholder="Nome completo" required>
                     </div>
 
-                    <!-- Longitude (X) -->
+                    <!-- Email -->
                     <div class="input-box">
-                        <span>Longitude (X)</span>
-                        <input type="text" name="latitude" placeholder="-49.279005" required>
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="@mail.com" required>
                     </div>
 
-                    <!-- Importar arquivo KMZ -->
+                    <!-- Criar Senha -->
                     <div class="input-box">
-                        <span>Arquivo KMZ</span>
-                        <input type="file" name="kmz">
+                        <span>Criar Senha</span>
+                        <input type="password" name="senha" placeholder="********" required>
                     </div>
 
-                      <!-- Botões de Editar / Excluir -->
-                      <div class="input-box">
+                    <!-- Confirmar Senha -->
+                    <div class="input-box">
+                        <span>Confirmar Senha</span>
+                        <input type="password" name="confirmar_senha" placeholder="********" required>
+                    </div>
+
+                    <!-- Botões de ação -->
+                    <div class="input-box">
                         <input type="submit" value="Editar">
                     </div>
-        
                     <div class="input-box">
                         <input type="submit" value="Excluir">
                     </div>
-
-
+                    
                 </form>
+
                 <!-- Retornar ao menu -->
                 <h3 id="sem_login">
                     <a href="empresa.html">Retornar ao menu</a>
@@ -75,6 +76,3 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>

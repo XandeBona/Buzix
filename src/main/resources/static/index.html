@@ -8,7 +8,7 @@
   <!-- Link para o arquivo CSS principal -->
   <link rel="stylesheet" href="index.css" />
   <!-- Ícone da aba (favicon), localizado na pasta IMAGES -->
-  <link rel="shortcut icon" href="IMAGES/logo_ico.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
   <!-- Biblioteca de ícones Font Awesome (usada no ícone da lupa) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- CSS do Leaflet -->
@@ -29,6 +29,20 @@
       <input type="text" placeholder="Pesquisar no Buzix..." />
     </div>
 
+    <!-- Logo da marca escrita "Buzix" -->
+    <a href="empresa.html">
+      <div class="logo">Buzix</div>
+    </a>
+  </header>
+
+  <!-- Conteúdo principal da página -->
+  <main>
+    <!-- Área do mapa -->
+    <!-- JS do Leaflet -->
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="index.js"></script>
+  </main>
 
   <!-- Rodapé da página -->
   <footer class="footer">
