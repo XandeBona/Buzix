@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buzix</title>
+  <!-- Link para o arquivo CSS principal -->
+  <link rel="stylesheet" href="index.css" />
+  <!-- Ícone da aba (favicon), localizado na pasta IMAGES -->
+  <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
+  <!-- Biblioteca de ícones Font Awesome (usada no ícone da lupa) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS do Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+  </style>
+</head>
+
+<body>
+  <!-- Cabeçalho da página -->
+  <header class="header">
+    <!-- Caixa de pesquisa com ícone de lupa -->
+    <div class="div-pesquisa">
+      <!-- Ícone de lupa (classe do Font Awesome) -->
+      <i class="fa fa-search lupa-icon"></i>
+      <!-- Campo de pesquisa -->
+      <input type="text" placeholder="Pesquisar no Buzix..." />
+    </div>
+
+    <!-- Logo da marca escrita "Buzix" -->
+    <a href="empresa.html">
+      <div class="logo">Buzix</div>
+    </a>
+  </header>
+
+  <!-- Conteúdo principal da página -->
+  <main>
+    <!-- Área do mapa -->
+    <!-- JS do Leaflet -->
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="index.js"></script>
+  </main>
+
+  <!-- Rodapé da página -->
+  <footer class="footer">
+    <p>&copy; 2025 Buzix. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+
+</html>
