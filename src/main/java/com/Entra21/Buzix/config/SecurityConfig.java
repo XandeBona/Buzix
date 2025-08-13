@@ -29,7 +29,14 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/login", "/auth/register").permitAll()  // LIBERA login e register
+                .requestMatchers("/auth/login", "/auth/register", "/cadastro.html",
+                        "/cadastro.js",
+                        "/login.html",
+                        "/login.js",
+                        "/js/**",
+                        "/style.css",
+                        "/IMAGES/**",
+                        "/favicon.ico").permitAll()  // LIBERA login e register
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

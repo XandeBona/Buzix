@@ -1,6 +1,6 @@
 package com.Entra21.Buzix.controllers;
 
-import com.Entra21.Buzix.entities.Usuario;
+import com.Entra21.Buzix.entities.User;
 import com.Entra21.Buzix.repositories.UsuarioRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.security.core.Authentication;
@@ -19,12 +19,12 @@ public class UsuarioController {
     }
 
     @GetMapping()
-    public List<Usuario> listarUsuarios() {
+    public List<User> listarUsuarios() {
         return this.usuarioRepository.findAll();
     }
 
     @GetMapping("/me")
-    public Usuario usuarioLogado(Authentication authentication) {
+    public User usuarioLogado(Authentication authentication) {
         return this.usuarioRepository.findByEmail(authentication.getName()).orElseThrow();
     }
 }

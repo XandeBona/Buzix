@@ -1,84 +1,49 @@
 function confereSenha() {
-  const inputSenha = document.getElementById("input_senha");
-  const inputConfirmaSenha = document.getElementById("input_confirmar_senha");
+  const inputPassword = document.getElementById("input_password");
+  const inputConfirmPassword = document.getElementById("input_confirm_password");
 
-  if(inputConfirmaSenha.value === inputSenha.value) {
-    confirma.setCustomValidity('');
-  } else {
-    alert("As senhas não conferem!")
+  if (inputConfirmPassword.value !== inputPassword.value) {
+    alert("As senhas não conferem!");
+    return;
   }
+
+  registrarUsuario();
 }
 
-function carregarUsuarios() {
-    const token = localStorage.getItem("token");
-  
-    if (!token) {
-      console.log("Usuário não autenticado");
-      return;
-    }
-  
-    fetch("http://localhost:8080/usuarios", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+function registrarUsuario() {
+  const userName = document.getElementById("input_user_name").value;
+  const email = document.getElementById("input_email").value;
+  const password = document.getElementById("input_password").value;
+
+  if (!userName || !email || !password) {
+    alert("Preencha todos os campos");
+    return;
+  }
+
+  fetch("http://localhost:8080/auth/register", {
+    method: "POST",
+    body: JSON.stringify({ userName, email, password }),
+    headers: { "Content-Type": "application/json" }
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Erro no registro");
+      return res.json();
     })
-      .then((data) => data.json())
-      .then((response) => {
-        console.log(response);
-        const lista = document.getElementById("usuarios");
-        for (let usuario of response) {
-          const li = document.createElement("li");
-          li.innerText = usuario.email;
-          lista.appendChild(li);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        localStorage.removeItem("token");
-      });
-  }
-  
-  function realizarLogin() {
-    const inputEmail = document.getElementById("input_email");
-    const inputPassword = document.getElementById("input_password");
-  
-    const email = inputEmail.value;
-    const password = inputPassword.value;
-  
-    console.log(email, password);
-  
-    if (!email || !password) {
-      alert("Digite o email e a senha");
-      return;
-    }
-  
-    fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    .then(response => {
+      window.location.href = "/login.html"; 
     })
-      .then((data) => data.json())
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.token);
-        carregarUsuarios();
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Usuario ou senha incorretos");
-      });
-  }
-  
-  function configurarEventos() {
-    const botaoLogar = document.getElementById("botao_salvar");
-    botaoLogar.addEventListener("click", realizarLogin);
-  
-    carregarUsuarios();
-  }
-  
-  window.addEventListener("load", configurarEventos);
+    .catch(err => {
+      alert("Erro ao registrar usuário.");
+      console.error(err);
+    });
+}
+
+function setupEvents() {
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    confereSenha();
+  });
+}
+
+window.addEventListener("load", setupEvents);

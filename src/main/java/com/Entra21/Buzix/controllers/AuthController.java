@@ -2,7 +2,7 @@ package com.Entra21.Buzix.controllers;
 
 import com.Entra21.Buzix.dtos.LoginRequest;
 import com.Entra21.Buzix.dtos.LoginResponse;
-import com.Entra21.Buzix.entities.Usuario;
+import com.Entra21.Buzix.entities.User;
 import com.Entra21.Buzix.repositories.UsuarioRepository;
 import com.Entra21.Buzix.services.JWTService;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,9 +31,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        return this.usuarioRepository.save(usuario);
+    public User criarUsuario(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return this.usuarioRepository.save(user);
     }
 
     @PostMapping("/login")
