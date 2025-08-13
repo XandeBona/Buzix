@@ -5,12 +5,10 @@ function validarDadosLogin() {
     const email = inputEmail.value;
     const password = inputPassword.value;
 
-    console.log(email, password);
-
     if (!email || !password) {
         alert("Digite o email e a senha");
         return;
-        
+
     }
     realizarLogin(email, password);
 }
@@ -21,15 +19,16 @@ function realizarLogin(email, password) {
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
     })
-        .then((res) => {
-            if (!res.ok) throw new Error("Erro no login");
-            return res.json();
-        })
+        .then((data) => data.json())
         .then((response) => {
+            console.log(response);
             localStorage.setItem("token", response.token);
-            window.location.href = "/index.html";
+            window.location.href = "index.html";
         })
-        .catch(() => alert("Usuário ou senha incorretos"));
+        .catch((error) => {
+            console.log(error);
+            alert("Usuario ou senha incorretos");
+        });
 }
 
 function setupEvents() {
@@ -40,4 +39,4 @@ function setupEvents() {
     });
 }
 
-window.addEventListener("load", configurarEventos);
+window.addEventListener("load", setupEvents);

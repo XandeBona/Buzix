@@ -49,4 +49,25 @@ let marker7 = new L.Marker([-26.81179, -49.27078], iconOptions);
 marker7.addTo(map);
 
 
+function carregarIndex() {
+    const token = localStorage.getItem("token");
+    const saudacaoDiv = document.getElementById("saudacao");
 
+    if (token) {
+        fetch("http://localhost:8080/usuarios/me", {
+            headers: { Authorization: "Bearer " + token }
+        })
+        .then(res => res.json())
+        .then(user => {
+            saudacaoDiv.innerText = `Olá, ${user.userName}!`;
+        })
+        .catch(err => {
+            console.log("Token inválido ou expirado", err);
+            localStorage.removeItem("token");
+        });
+    } else {
+        saudacaoDiv.innerText = "Olá, visitante!";
+    }
+};
+
+window.addEventListener("load", carregarIndex);
