@@ -40,4 +40,4 @@ function setupEvents() {
     });
 }
 
-window.addEventListener("load", setupEvents);
+window.addEventListener("load", configurarEventos);

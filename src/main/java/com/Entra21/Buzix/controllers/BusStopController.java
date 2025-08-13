@@ -1,65 +1,65 @@
-package com.Entra21.Buzix.controllers;
-
-import com.Entra21.Buzix.entities.BusStop;
-import com.Entra21.Buzix.repositories.BusStopRepository;
-import com.Entra21.Buzix.services.BusStopService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/pontos")
-public class BusStopController {
-
-    private final BusStopRepository busStopRepository;
-
-    @Autowired
-    private BusStopService service;
-
-    public BusStopController(BusStopRepository busStopRepository) {
-        this.busStopRepository = busStopRepository;
-    }
-
-    // POST - Criar novo ponto
-    @PostMapping
-    public BusStop salvar(@RequestParam String identificadorBB,
-                          @RequestParam String latitude,
-                          @RequestParam String longitude,
-                          @RequestParam(required = false) String argskmte) {
-
-        BusStop ponto = new BusStop();
-        // ponto.setIdentificadorBB(identificadorBB);
-        ponto.setLatitude(Double.parseDouble(latitude));
-        ponto.setLongitude(Double.parseDouble(longitude));
-        // ponto.setArgskmte(argskmte);
-
-        return service.salvar(ponto);
-    }
-
-    // GET - Listar todos os pontos
-    @GetMapping
-    public List<BusStop> listarTodos() {
-        return busStopRepository.findAll();
-    }
-
-    // GET - Buscar ponto por ID
-    @GetMapping("/{id}")
-    public Optional<BusStop> buscarPorId(@PathVariable Long id) {
-        return busStopRepository.findById(id);
-    }
-
-    // PUT - Atualizar ponto por ID
-    @PutMapping("/{id}")
-    public BusStop atualizar(@PathVariable Long id,
-                             @RequestBody BusStop pontoAtualizado) {
-      //  return service.atualizar(id, pontoAtualizado);
-    }
-
-    // DELETE - Remover ponto por ID
-    @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
-        busStopRepository.deleteById(id);
-    }
-}
+//package com.Entra21.Buzix.controllers;
+//
+//import com.Entra21.Buzix.entities.BusStop;
+//import com.Entra21.Buzix.repositories.BusStopRepository;
+//import com.Entra21.Buzix.services.BusStopService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.util.List;
+//import java.util.Optional;
+//
+//@RestController
+//@RequestMapping("/api/pontos")
+//public class BusStopController {
+//
+//    private final BusStopRepository busStopRepository;
+//
+//    @Autowired
+//    private BusStopService service;
+//
+//    public BusStopController(BusStopRepository busStopRepository) {
+//        this.busStopRepository = busStopRepository;
+//    }
+//
+//    // POST - Criar novo ponto
+//    @PostMapping
+//    public BusStop salvar(@RequestParam String identificadorBB,
+//                          @RequestParam String latitude,
+//                          @RequestParam String longitude,
+//                          @RequestParam(required = false) String argskmte) {
+//
+//        BusStop ponto = new BusStop();
+//        // ponto.setIdentificadorBB(identificadorBB);
+//        ponto.setLatitude(Double.parseDouble(latitude));
+//        ponto.setLongitude(Double.parseDouble(longitude));
+//        // ponto.setArgskmte(argskmte);
+//
+//        return service.salvar(ponto);
+//    }
+//
+//    // GET - Listar todos os pontos
+//    @GetMapping
+//    public List<BusStop> listarTodos() {
+//        return busStopRepository.findAll();
+//    }
+//
+//    // GET - Buscar ponto por ID
+//    @GetMapping("/{id}")
+//    public Optional<BusStop> buscarPorId(@PathVariable Integer id) {
+//        return busStopRepository.findById(id);
+//    }
+//
+////    // PUT - Atualizar ponto por ID
+////    @PutMapping("/{id}")
+////    public BusStop atualizar(@PathVariable Integer id,
+////                             @RequestBody BusStop pontoAtualizado) {
+////      return service.atualizar(id, pontoAtualizado);
+////    }
+//
+//    // DELETE - Remover ponto por ID
+//    @DeleteMapping("/{id}")
+//    public void deletar(@PathVariable Integer id) {
+//        busStopRepository.deleteById(id);
+//    }
+//}
