@@ -1,8 +1,7 @@
 package com.Entra21.Buzix.services;
 
-import com.Entra21.Buzix.entities.Usuario;
+import com.Entra21.Buzix.entities.User;
 import com.Entra21.Buzix.repositories.UsuarioRepository;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,12 +17,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = repository.findByEmail(email)
+        User user = repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
-        return User.builder()
-                .username(usuario.getEmail())
-                .password(usuario.getPassword())
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getEmail())
+                .password(user.getPassword())
                 .authorities("USER") // autoridade padrão, não usada
                 .build();
     }
