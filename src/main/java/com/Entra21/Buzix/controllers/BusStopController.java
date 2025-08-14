@@ -13,13 +13,9 @@ import java.util.List;
 public class BusStopController {
 
     private final BusStopRepository busStopRepository;
-    private final BusStopService busStopService;
-    @Autowired
-    private BusStopService service;
 
-    public BusStopController(BusStopRepository busStopRepository, BusStopService busStopService) {
+    public BusStopController(BusStopRepository busStopRepository) {
         this.busStopRepository = busStopRepository;
-        this.busStopService = busStopService;
     }
 
     @PostMapping("/register")
