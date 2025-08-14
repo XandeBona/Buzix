@@ -1,15 +1,14 @@
 package com.Entra21.Buzix.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "busstops")
 public class BusStop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String identifier;
     private Double latitude;
     private Double longitude;
 
@@ -17,8 +16,9 @@ public class BusStop {
 
     }
 
-    public BusStop(Integer id, Double latitude, Double longitude) {
+    public BusStop(Integer id, String identifier, Double latitude, Double longitude) {
         this.id = id;
+        this.identifier = identifier;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -29,6 +29,14 @@ public class BusStop {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public Double getLatitude() {
@@ -43,6 +51,7 @@ public class BusStop {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) { this.longitude = longitude;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

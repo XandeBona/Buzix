@@ -33,7 +33,7 @@ function registrarUsuario() {
       window.location.href = "/login.html"; 
     })
     .catch(err => {
-      alert("Erro ao registrar usuário.");
+      alert("Erro ao registrar usuário");
       console.error(err);
     });
 }

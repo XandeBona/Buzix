@@ -1,136 +1,29 @@
-<<<<<<< HEAD
-function efetuarLogin() {
-    const token = localStorage.getItem("token");
-  
-    if (!token) {
-      console.log("Usuário não autenticado");
-      return;
-    }
-  
-    fetch("http://localhost:8080/usuarios", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((data) => data.json())
-      .then((response) => {
-        console.log(response);
-        const lista = document.getElementById("usuarios");
-        for (let usuario of response) {
-          const li = document.createElement("li");
-          li.innerText = usuario.email;
-          lista.appendChild(li);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        localStorage.removeItem("token");
-      });
-  }
-  
-  function realizarLogin() {
-    const inputEmail = document.getElementById("input_email");
-    const inputPassword = document.getElementById("input_password");
-  
-    const email = inputEmail.value;
-    const password = inputPassword.value;
-  
-    console.log(email, password);
-  
-    if (!email || !password) {
-      alert("Digite o email e a senha");
-      return;
-    }
-  
-    fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((data) => data.json())
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.token);
-        carregarUsuarios();
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Usuario ou senha incorretos");
-      });
-  }
-  
-  function configurarEventos() {
-    const botaoLogar = document.getElementById("botao_entrar");
-    botaoLogar.addEventListener("click", realizarLogin);
-  
-    carregarUsuarios();
-  }
-  
-  window.addEventListener("load", configurarEventos);
-=======
-function carregarUsuarios() {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-        console.log("Usuário não autenticado");
-        return;
-    }
-
-    fetch("http://localhost:8080/usuarios", {
-        headers: {
-            Authorization: "Bearer " + token,
-        },
-    })
-        .then((data) => data.json())
-        .then((response) => {
-            console.log(response);
-            const lista = document.getElementById("usuarios");
-            for (let usuario of response) {
-                const li = document.createElement("li");
-                li.innerText = usuario.email;
-                lista.appendChild(li);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            localStorage.removeItem("token");
-        });
-}
-
-function realizarLogin() {
+function validarDadosLogin() {
     const inputEmail = document.getElementById("input_email");
     const inputPassword = document.getElementById("input_password");
 
     const email = inputEmail.value;
     const password = inputPassword.value;
-
-    console.log(email, password);
 
     if (!email || !password) {
         alert("Digite o email e a senha");
         return;
-    }
 
+    }
+    realizarLogin(email, password);
+}
+
+function realizarLogin(email, password) {
     fetch("http://localhost:8080/auth/login", {
         method: "POST",
-        body: JSON.stringify({
-            email,
-            password,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-        },
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
     })
         .then((data) => data.json())
         .then((response) => {
             console.log(response);
             localStorage.setItem("token", response.token);
-            carregarUsuarios();
+            window.location.href = "index.html";
         })
         .catch((error) => {
             console.log(error);
@@ -138,12 +31,12 @@ function realizarLogin() {
         });
 }
 
-function configurarEventos() {
-    const botaoLogar = document.getElementById("botao_salvar");
-    botaoLogar.addEventListener("click", realizarLogin, confereSenha);
-
-    carregarUsuarios();
+function setupEvents() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        validarDadosLogin();
+    });
 }
 
-window.addEventListener("load", configurarEventos);
->>>>>>> 695e171e0ff5b845d088413c4107bc9544ec2781
+window.addEventListener("load", setupEvents);

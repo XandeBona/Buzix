@@ -29,10 +29,10 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/login", "/auth/register", "/cadastro.html",
-                        "/cadastro.js",
-                        "/login.html",
-                        "/login.js",
+                .requestMatchers("/auth/login", "/auth/register",
+                        "/cadastro.html", "/cadastro.js",
+                        "/login.html", "/login.js",
+                        "/index.html", "index.js", "index.css",
                         "/js/**",
                         "/style.css",
                         "/IMAGES/**",
