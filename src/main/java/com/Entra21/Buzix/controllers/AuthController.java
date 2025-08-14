@@ -1,7 +1,7 @@
 package com.Entra21.Buzix.controllers;
 
-import com.Entra21.Buzix.dtos.LoginRequest;
-import com.Entra21.Buzix.dtos.LoginResponse;
+import com.Entra21.Buzix.dtos.LoginRequestDTO;
+import com.Entra21.Buzix.dtos.LoginResponseDTO;
 import com.Entra21.Buzix.entities.User;
 import com.Entra21.Buzix.repositories.UserRepository;
 import com.Entra21.Buzix.services.JWTService;
@@ -37,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request) {
+    public LoginResponseDTO login(@RequestBody LoginRequestDTO request) {
         UserDetails user = userDetailsService.loadUserByUsername(request.email);
 
         if (!passwordEncoder.matches(request.password, user.getPassword())) {
@@ -45,6 +45,6 @@ public class AuthController {
         }
 
         String token = jwtService.generateToken(user);
-        return new LoginResponse(token);
+        return new LoginResponseDTO(token);
     }
 }

@@ -1,6 +1,6 @@
 package com.Entra21.Buzix.dtos;
 
-public class LoginRequest {
+public class LoginRequestDTO {
     public String email;
     public String password;
 
