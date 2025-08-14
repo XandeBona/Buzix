@@ -29,14 +29,24 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf().disable()
                 .authorizeHttpRequests()
+
+                //Visitante e usuários logados podem acessar
                 .requestMatchers("/auth/login", "/auth/register",
                         "/cadastro.html", "/cadastro.js",
                         "/login.html", "/login.js",
                         "/index.html", "index.js", "index.css",
+                        "/empresa.html",
                         "/js/**",
                         "/style.css",
                         "/IMAGES/**",
-                        "/favicon.ico").permitAll()  // LIBERA login e register
+                        "/favicon.ico"
+                ).permitAll()
+
+                //Somente admins(empresas) podem acessar
+                .requestMatchers("/empresa.html", "/empresa.js",
+                        "/ponto.html", "/ponto.js"
+                ).hasRole("ADMIN")
+
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

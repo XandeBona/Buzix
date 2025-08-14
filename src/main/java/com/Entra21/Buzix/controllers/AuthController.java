@@ -33,6 +33,7 @@ public class AuthController {
     @PostMapping("/register")
     public User criarUsuario(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("ROLE_USER");
         return this.userRepository.save(user);
     }
 
@@ -45,6 +46,11 @@ public class AuthController {
         }
 
         String token = jwtService.generateToken(user);
-        return new LoginResponseDTO(token);
+        String role = user.getAuthorities().stream()
+                .findFirst()
+                .get()
+                .getAuthority(); // ROLE_USER ou ROLE_ADMIN
+
+        return new LoginResponseDTO(token, role);
     }
 }

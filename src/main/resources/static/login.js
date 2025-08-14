@@ -23,6 +23,7 @@ function realizarLogin(email, password) {
         .then((response) => {
             console.log(response);
             localStorage.setItem("token", response.token);
+            localStorage.setItem("role", response.role);
             window.location.href = "index.html";
         })
         .catch((error) => {
