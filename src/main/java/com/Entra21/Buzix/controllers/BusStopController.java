@@ -6,6 +6,8 @@ import com.Entra21.Buzix.entities.BusStop;
 import com.Entra21.Buzix.repositories.BusStopRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/busstops")
 public class BusStopController {
@@ -25,6 +27,40 @@ public class BusStopController {
         busStop.setLongitude(request.getLongitude());
 
         busStopRepository.save(busStop);
+
+        return new BusStopResponseDTO(busStop);
+    }
+
+    @GetMapping
+    public List<BusStop> listBusStops() {
+        return busStopRepository.findAll();
+    }
+
+    @GetMapping("/{idBusStop}")
+    public BusStopResponseDTO searchBusStopById(@PathVariable Integer idBusStop) {
+        BusStop busStop = busStopRepository.findById(idBusStop).orElseThrow();
+
+        return new BusStopResponseDTO(busStop);
+    }
+
+    @PutMapping("/{idBusStop}")
+    public BusStopResponseDTO editBusStop(@PathVariable Integer idBusStop, @RequestBody BusStopRequestDTO request) {
+        BusStop busStop = busStopRepository.findById(idBusStop).orElseThrow();
+
+        busStop.setIdentifier(request.getIdentifier());
+        busStop.setLatitude(request.getLatitude());
+        busStop.setLongitude(request.getLongitude());
+
+        busStopRepository.save(busStop);
+
+        return new BusStopResponseDTO(busStop);
+    }
+
+    @DeleteMapping("/{idBusStop}")
+    public BusStopResponseDTO removeBusStop(@PathVariable Integer idBusStop) {
+        BusStop busStop = busStopRepository.findById(idBusStop).orElseThrow();
+
+        busStopRepository.delete(busStop);
 
         return new BusStopResponseDTO(busStop);
     }
