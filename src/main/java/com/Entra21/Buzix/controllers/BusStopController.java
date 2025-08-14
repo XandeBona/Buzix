@@ -14,23 +14,24 @@ import java.util.Optional;
 public class BusStopController {
 
     private final BusStopRepository busStopRepository;
-
+    private final BusStopService busStopService;
     @Autowired
     private BusStopService service;
 
-    public BusStopController(BusStopRepository busStopRepository) {
+    public BusStopController(BusStopRepository busStopRepository, BusStopService busStopService) {
         this.busStopRepository = busStopRepository;
+        this.busStopService = busStopService;
     }
 
     // POST - Criar novo ponto
-    @PostMapping
-    public BusStop salvar(@RequestParam String identificadorBB,
+    @PostMapping ("/busstop")
+    public BusStop salvar(@RequestParam String identifierCodeBusStop,
                           @RequestParam String latitude,
                           @RequestParam String longitude,
                           @RequestParam(required = false) String argskmte) {
 
         BusStop ponto = new BusStop();
-        // ponto.setIdentificadorBB(identificadorBB);
+        ponto.setIdentifierCodeBusStop(identifierCodeBusStop);
         ponto.setLatitude(Double.parseDouble(latitude));
         ponto.setLongitude(Double.parseDouble(longitude));
         // ponto.setArgskmte(argskmte);
@@ -55,6 +56,7 @@ public class BusStopController {
     public BusStop atualizar(@PathVariable Long id,
                              @RequestBody BusStop pontoAtualizado) {
       //  return service.atualizar(id, pontoAtualizado);
+        return pontoAtualizado;
     }
 
     // DELETE - Remover ponto por ID
