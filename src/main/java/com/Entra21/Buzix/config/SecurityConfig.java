@@ -37,12 +37,13 @@ public class SecurityConfig {
                         "/index.html", "/index.js", "/index.css",
                         "/js/**",
                         "/style.css",
+                        "/css/**",
                         "/IMAGES/**",
                         "/favicon.ico"
                 ).permitAll()
 
                 //Somente admins(empresas) podem acessar
-                .requestMatchers("/empresa.html", "/empresa.js", "/empresa.css",
+                .requestMatchers("/empresa",
                         "/ponto.html", "/ponto.js"
                 ).hasRole("ADMIN")
 
