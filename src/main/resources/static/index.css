@@ -160,68 +160,90 @@ main {
   font-size: 14px;
 }
 
-#saudacao {
-  cursor: pointer;
-  padding: 12px 16px;
-  background-color: var(--cor-principal);
-  border-radius: 5px;
+/* ========== Card de Logout ========== */
+    /* Card base */
+    #card-logout {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      width: 220px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      font-family: Arial, sans-serif;
+      z-index: 1000;
+      padding: 10px;
+  }
 
+  /* Esconder quando não estiver ativo */
+  .hidden {
+      display: none;
+  }
+
+  /* Cabeçalho do card */
+  .card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  /* Logo */
+  .card-header img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+  }
+
+  /* Nome da empresa */
+  #link-empresa {
+      font-size: 20px; /* aumentado */
+      font-weight: bold;
+      text-decoration: none;
+      color: #003399;
+  }
+
+  #link-empresa:hover {
+      text-decoration: underline;
+  }
+
+  /* Linha divisória */
+  .divider {
+      height: 1px;
+      background: #ddd;
+      margin: 8px 0;
+  }
+
+  /* Links de ação */
+  .logout-link {
+      display: block;
+      padding: 6px;
+      font-size: 14px;
+      color: #003399;  
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+      font-weight: bold;
+  }
+  .logout-link:hover {
+      background: #fce4e4;
+  }
+  .logout-item {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* espaço entre ícone e texto */
+    padding: 6px;
+    font-size: 14px;
+    color: #003399;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+    font-weight: bold;
 }
 
-#card-logout {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  width: 300px;
-  background: var(--cor-fundo);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 12px;
-  z-index: 999;
+.logout-item:hover {
+    background: #fce4e4;
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--cor-secundaria);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.name {
-  margin-left: 10px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.divider {
-  height: 1px;
-  background: var(--cor-principal-dois);
-  margin: 10px 0;
-}
-
-.logout-link {
-  display: flex;
-  text-decoration: none;
-  color: #a30500;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.logout-link:hover {
-  text-decoration: underline;
-}
-
-.hidden {
-  display: none;
+.logout-item i {
+    font-size: 16px;
 }

@@ -19,23 +19,20 @@ let customIcon = {
 let myIcon = L.icon(customIcon);
 let iconOptions = { icon: myIcon };
 
-const saudacao = document.getElementById("saudacao");
-const cardLogout = document.getElementById("card-logout");
-const btnLogout = document.getElementById("btn-logout");
-
-saudacao.addEventListener("click", () => {
-    cardLogout.classList.toggle("hidden");
+// Alternar card ao clicar na saudação
+document.getElementById("saudacao").addEventListener("click", function () {
+    document.getElementById("card-logout").classList.toggle("hidden");
 });
 
-document.addEventListener("click", (e) => {
-    if (!saudacao.contains(e.target) && !cardLogout.contains(e.target)) {
-        cardLogout.classList.add("hidden");
-    }
-});
-
-btnLogout.addEventListener("click", (e) => {
+// Botão Editar (futuro redirecionamento)
+document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
-    alert("Você saiu da conta.");
+    alert("Futuramente será direcionado para a página de edição.");
+});
+
+// Botão Sair (volta para login.html)
+document.getElementById("btn-sair").addEventListener("click", function (e) {
+    e.preventDefault();
     window.location.href = "login.html";
 });
 

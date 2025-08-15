@@ -29,16 +29,25 @@
       <input type="text" placeholder="Pesquisar no Buzix..." />
     </div>
 
-    <!-- Logo da marca escrita "Buzix" -->
-    <a href="/empresa.html" id="link-empresa">Empresa</a>
-    <div id="saudacao"></div>
+    <!-- Saudação -->
+    <div id="saudacao" style="cursor:pointer;">👋 Olá!</div>
+
+    <!-- Card Logout -->
     <div id="card-logout" class="hidden">
       <div class="card-header">
-        <div class="avatar">U</div>
-        <div class="name">Usuário</div>
+          <img src="IMAGES/logo_ico.ico" alt="logo">
+          <a href="/empresa.html" id="link-empresa">Buzix</a>
       </div>
       <div class="divider"></div>
-      <a href="#" id="btn-logout" class="logout-link">Sair</a>
+      <a href="#" class="logout-item" id="btn-editar">
+          <i class="fa-solid fa-user-pen"></i>
+          Editar
+      </a>
+      <div class="divider"></div>
+      <a href="#" class="logout-item" id="btn-sair">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Sair
+      </a>
     </div>
   </header>
 
