@@ -207,6 +207,11 @@
     background-color: var(--cor-secundaria-dois);
 }
 
+#combustivel:hover {
+    border: 1px solid green;
+    color: green;
+  }
+  
 
 @media (max-width: 868px) {
     .container-login .img-box {
