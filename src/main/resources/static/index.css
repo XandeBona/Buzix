@@ -159,3 +159,69 @@ main {
   z-index: 1000;
   font-size: 14px;
 }
+
+#saudacao {
+  cursor: pointer;
+  padding: 12px 16px;
+  background-color: var(--cor-principal);
+  border-radius: 5px;
+
+}
+
+#card-logout {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 300px;
+  background: var(--cor-fundo);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 12px;
+  z-index: 999;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cor-secundaria);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.divider {
+  height: 1px;
+  background: var(--cor-principal-dois);
+  margin: 10px 0;
+}
+
+.logout-link {
+  display: flex;
+  text-decoration: none;
+  color: #a30500;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}

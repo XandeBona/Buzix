@@ -25,6 +25,26 @@ let iconOptions = {
     icon: myIcon
 };
 
+const saudacao = document.getElementById("saudacao");
+const cardLogout = document.getElementById("card-logout");
+const btnLogout = document.getElementById("btn-logout");
+
+saudacao.addEventListener("click", () => {
+  cardLogout.classList.toggle("hidden");
+});
+
+document.addEventListener("click", (e) => {
+  if (!saudacao.contains(e.target) && !cardLogout.contains(e.target)) {
+    cardLogout.classList.add("hidden");
+  }
+});
+
+btnLogout.addEventListener("click", (e) => {
+  e.preventDefault();
+  // Aqui você pode apagar session/localStorage, cookies, etc.
+  alert("Você saiu da conta.");
+  window.location.href = "login.html";
+});
 
 let marker = new L.Marker([-26.823465, -49.274973], iconOptions);
 marker.addTo(map);
