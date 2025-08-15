@@ -34,8 +34,7 @@ public class SecurityConfig {
                 .requestMatchers("/auth/login", "/auth/register",
                         "/cadastro.html", "/cadastro.js",
                         "/login.html", "/login.js",
-                        "/index.html", "index.js", "index.css",
-                        "/empresa.html",
+                        "/index.html", "/index.js", "/index.css",
                         "/js/**",
                         "/style.css",
                         "/IMAGES/**",
@@ -43,7 +42,7 @@ public class SecurityConfig {
                 ).permitAll()
 
                 //Somente admins(empresas) podem acessar
-                .requestMatchers("/empresa.html", "/empresa.js",
+                .requestMatchers("/empresa.html", "/empresa.js", "/empresa.css",
                         "/ponto.html", "/ponto.js"
                 ).hasRole("ADMIN")
 
