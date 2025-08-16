@@ -3,66 +3,66 @@ let mapOptions = {
     center: [-26.8255, -49.2726],
     zoom: 15
 }
-
+ 
 let map = new L.map('map', mapOptions);
-
+ 
 let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 map.addLayer(layer);
-
+ 
 //Customização do Icon do ponto no mapa
 let customIcon = {
     iconUrl: 'IMAGES/buzix_logo2.png',
     iconSize: [100, 55],
     popupAnchor: [0, -20]
 };
-
+ 
 let myIcon = L.icon(customIcon);
 let iconOptions = { icon: myIcon };
-
+ 
 // Alternar card ao clicar na saudação
 document.getElementById("saudacao").addEventListener("click", function () {
     document.getElementById("card-logout").classList.toggle("hidden");
 });
-
+ 
 // Botão Editar (futuro redirecionamento)
 document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
     alert("Futuramente será direcionado para a página de edição.");
 });
-
+ 
 // Botão Sair (volta para login.html)
 document.getElementById("btn-sair").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.href = "login.html";
 });
-
+ 
 let marker = new L.Marker([-26.823465, -49.274973], iconOptions);
 marker.addTo(map);
 marker.bindPopup("Terminal");
-
+ 
 let marker2 = new L.Marker([-26.833013, -49.2594779], iconOptions);
 marker2.addTo(map);
-
+ 
 let marker3 = new L.Marker([-26.8408301, -49.27368], iconOptions);
 marker3.addTo(map);
-
+ 
 let marker4 = new L.Marker([-26.83077, -49.273812], iconOptions);
 marker4.addTo(map);
-
+ 
 let marker5 = new L.Marker([-26.80859, -49.257442], iconOptions);
 marker5.addTo(map);
-
+ 
 let marker6 = new L.Marker([-26.81171, -49.27033], iconOptions);
 marker6.addTo(map);
-
+ 
 let marker7 = new L.Marker([-26.81179, -49.27078], iconOptions);
 marker7.addTo(map);
-
+ 
 function carregarIndex() {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
     const saudacaoDiv = document.getElementById("saudacao");
-
+ 
     if (token) {
         fetch("http://localhost:8080/usuarios/me", {
             headers: { Authorization: "Bearer " + token }
@@ -79,20 +79,20 @@ function carregarIndex() {
         saudacaoDiv.innerText = "Olá, visitante!";
     }
 }
-
+ 
 window.addEventListener("load", carregarIndex);
-
+ 
 // --- LINK PARA EMPRESA ---
 document.getElementById("link-empresa")?.addEventListener("click", function (e) {
     e.preventDefault();
-
+ 
     const token = localStorage.getItem("token");
     if (!token) {
         window.location.href = "/login.html";
         return;
     }
-
-    fetch("/empresa", { 
+ 
+    fetch("/empresa", {
         headers: { "Authorization": "Bearer " + token }
     })
         .then(res => {
