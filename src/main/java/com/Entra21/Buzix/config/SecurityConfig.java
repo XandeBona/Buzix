@@ -31,19 +31,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
 
                 //Visitante e usuários logados podem acessar
-                .requestMatchers("/auth/login", "/auth/register",
+                .requestMatchers("/auth/login", "/auth/register", "/auth/logout", "/alterar_senha.html",
                         "/cadastro.html", "/cadastro.js",
                         "/login.html", "/login.js",
                         "/index.html", "/index.js", "/index.css",
                         "/js/**",
-                        "/style.css",
+                        "/css/**",
                         "/IMAGES/**",
                         "/favicon.ico"
                 ).permitAll()
 
                 //Somente admins(empresas) podem acessar
-                .requestMatchers("/empresa.html", "/empresa.js", "/empresa.css",
-                        "/ponto.html", "/ponto.js"
+                .requestMatchers("/empresa.html",
+                        "/ponto.html", "/veiculo.html", "/linha.html", "/itinerario.html"
                 ).hasRole("ADMIN")
 
                 .anyRequest().authenticated()

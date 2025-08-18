@@ -1,30 +1,19 @@
 function validarDadosLogin() {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-        alert("Você precisa estar logado para cadastrar um ponto!");
-        window.location.href = "login.html";
-        return;
-    }
-
-    fetch("http://localhost:8080/usuarios/me", {
-        headers: { Authorization: "Bearer " + token }
-    })
+    fetch("http://localhost:8080/usuarios/me", { credentials: "include" })
         .then(res => {
-            if (!res.ok) throw new Error("Token inválido ou expirado");
+            if (!res.ok) throw new Error("Usuário não autenticado");
             return res.json();
         })
         .then(() => {
-            cadastrarPonto(token);
+            cadastrarPonto();
         })
         .catch(() => {
-            localStorage.removeItem("token");
             alert("Sessão expirada, faça login novamente.");
             window.location.href = "login.html";
         });
 }
 
-function cadastrarPonto(token) {
+function cadastrarPonto() {
     const inputIdentifier = document.getElementById("input_identifier");
     const inputLatitude = document.getElementById("input_latitude");
     const inputLongitude = document.getElementById("input_longitude");
@@ -40,15 +29,9 @@ function cadastrarPonto(token) {
 
     fetch("http://localhost:8080/busstops/register", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-        },
-        body: JSON.stringify({
-            identifier,
-            latitude,
-            longitude
-        })
+        credentials: "include", // 🔹 envia cookie automaticamente
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, latitude, longitude })
     })
         .then(res => {
             if (!res.ok) throw new Error("Erro ao cadastrar ponto");

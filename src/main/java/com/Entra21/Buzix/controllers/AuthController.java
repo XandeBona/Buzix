@@ -2,9 +2,15 @@ package com.Entra21.Buzix.controllers;
 
 import com.Entra21.Buzix.dtos.LoginRequestDTO;
 import com.Entra21.Buzix.dtos.LoginResponseDTO;
+import com.Entra21.Buzix.dtos.RegisterResponseDTO;
 import com.Entra21.Buzix.entities.User;
 import com.Entra21.Buzix.repositories.UserRepository;
 import com.Entra21.Buzix.services.JWTService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,14 +37,16 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User criarUsuario(@RequestBody User user) {
+    public RegisterResponseDTO createUser (@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
-        return this.userRepository.save(user);
+        User saved = userRepository.save(user);
+        return new RegisterResponseDTO(saved);
     }
 
     @PostMapping("/login")
-    public LoginResponseDTO login(@RequestBody LoginRequestDTO request) {
+    public ResponseEntity<LoginResponseDTO> login (@RequestBody LoginRequestDTO request,
+                                                  HttpServletResponse response) {
         UserDetails user = userDetailsService.loadUserByUsername(request.email);
 
         if (!passwordEncoder.matches(request.password, user.getPassword())) {
@@ -46,11 +54,36 @@ public class AuthController {
         }
 
         String token = jwtService.generateToken(user);
+
+        //cria cookie HttpOnly
+        ResponseCookie cookie = ResponseCookie.from("jwt", token)
+                .httpOnly(true)
+                .secure(false) // true se um dia for usar HTTPS
+                .path("/")
+                .maxAge(60 * 60)
+                .build();
+
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+
         String role = user.getAuthorities().stream()
                 .findFirst()
                 .get()
-                .getAuthority(); // ROLE_USER ou ROLE_ADMIN
+                .getAuthority();
 
-        return new LoginResponseDTO(token, role);
+        //devolve DTO sem expor o token
+        return ResponseEntity.ok(new LoginResponseDTO(user.getUsername(), role));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout (HttpServletResponse response) {
+        Cookie cookie = new Cookie("jwt", null);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false); // true se um dia for usar HTTPS
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+
+        response.addCookie(cookie);
+
+        return ResponseEntity.noContent().build();
     }
 }

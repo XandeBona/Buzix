@@ -1,27 +1,19 @@
 package com.Entra21.Buzix.dtos;
 
 public class LoginResponseDTO {
-    public String token;
+    private String email;
     private String role;
 
-    public LoginResponseDTO(String token, String role) {
-        this.token = token;
+    public LoginResponseDTO(String email, String role) {
+        this.email = email;
         this.role = role;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public String getEmail() {
+        return email;
     }
 
     public String getRole() {
         return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

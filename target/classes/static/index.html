@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buzix</title>
   <!-- Link para o arquivo CSS principal -->
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="/css/index.css">
   <!-- Ícone da aba (favicon), localizado na pasta IMAGES -->
   <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
   <!-- Biblioteca de ícones Font Awesome (usada no ícone da lupa) -->
@@ -29,28 +29,44 @@
       <input type="text" placeholder="Pesquisar no Buzix..." />
     </div>
 
-    <!-- Logo da marca escrita "Buzix" -->
-    <a href="empresa.html">
-      <div class="logo">Buzix</div>
-    </a>
-    <div id="saudacao"></div>
+    <!-- Saudação -->
+    <div id="saudacao" style="cursor:pointer;">👋 Olá!</div>
+
+    <!-- Card Logout -->
     <div id="card-logout" class="hidden">
+      <!-- Link para o Menu da empresa -->
       <div class="card-header">
-        <div class="avatar">U</div>
-        <div class="name">Usuário</div>
+        <img src="IMAGES/logo_ico.ico" alt="logo">
+        <a href="/empresa.html" id="link-empresa">Empresa</a>
       </div>
+      <div class="divider-admin"></div>
+      <!-- Link para edição do perfil -->
+      <a href="#" class="logout-item" id="btn-editar">
+        <i class="fa-solid fa-user-pen"></i>
+        Editar
+      </a>
+      <!-- Desloga o usuário -->
       <div class="divider"></div>
-      <a href="#" id="btn-logout" class="logout-link">Sair</a>
+      <a href="#" class="logout-item" id="btn-sair">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Sair
+      </a>
+    </div>
+    <!-- Desloga o usuário -->
+    <div id="card-login" class="hidden">
+      <a href="#" class="logout-item" id="btn-logar">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Login
+      </a>
     </div>
   </header>
 
   <!-- Conteúdo principal da página -->
   <main>
     <!-- Área do mapa -->
-    <!-- JS do Leaflet -->
     <div id="map"></div>
+    <!-- JS do Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="index.js"></script>
   </main>
 
   <!-- Rodapé da página -->
