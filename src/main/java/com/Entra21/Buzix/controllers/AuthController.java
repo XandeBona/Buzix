@@ -2,6 +2,7 @@ package com.Entra21.Buzix.controllers;
 
 import com.Entra21.Buzix.dtos.LoginRequestDTO;
 import com.Entra21.Buzix.dtos.LoginResponseDTO;
+import com.Entra21.Buzix.dtos.RegisterResponseDTO;
 import com.Entra21.Buzix.entities.User;
 import com.Entra21.Buzix.repositories.UserRepository;
 import com.Entra21.Buzix.services.JWTService;
@@ -36,10 +37,11 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User criarUsuario(@RequestBody User user) {
+    public RegisterResponseDTO createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
-        return this.userRepository.save(user);
+        User saved = userRepository.save(user);
+        return new RegisterResponseDTO(saved);
     }
 
     @PostMapping("/login")
