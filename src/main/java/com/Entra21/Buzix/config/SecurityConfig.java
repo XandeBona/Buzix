@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
 
                 //Visitante e usuários logados podem acessar
-                .requestMatchers("/auth/login", "/auth/register", "/auth/logout",
+                .requestMatchers("/auth/login", "/auth/register", "/auth/logout", "/alterar_senha.html",
                         "/cadastro.html", "/cadastro.js",
                         "/login.html", "/login.js",
                         "/index.html", "/index.js", "/index.css",

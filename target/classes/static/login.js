@@ -8,8 +8,8 @@ function validarDadosLogin() {
     if (!email || !password) {
         alert("Digite o email e a senha");
         return;
-
     }
+
     realizarLogin(email, password);
 }
 
@@ -18,17 +18,18 @@ function realizarLogin(email, password) {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
+        credentials: "include"
     })
-        .then((data) => data.json())
-        .then((response) => {
-            console.log(response);
-            localStorage.setItem("token", response.token);
-            localStorage.setItem("role", response.role);
+        .then(res => {
+            if (!res.ok) throw new Error("Usuário ou senha incorretos");
+            return res.json();
+        })
+        .then(() => {
             window.location.href = "index.html";
         })
-        .catch((error) => {
+        .catch(error => {
             console.log(error);
-            alert("Usuario ou senha incorretos");
+            alert("Usuário ou senha incorretos");
         });
 }
 

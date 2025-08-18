@@ -37,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public RegisterResponseDTO createUser(@RequestBody User user) {
+    public RegisterResponseDTO createUser (@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
         User saved = userRepository.save(user);
@@ -45,7 +45,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO request,
+    public ResponseEntity<LoginResponseDTO> login (@RequestBody LoginRequestDTO request,
                                                   HttpServletResponse response) {
         UserDetails user = userDetailsService.loadUserByUsername(request.email);
 
@@ -75,7 +75,7 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Void> logout(HttpServletResponse response) {
+    public ResponseEntity<Void> logout (HttpServletResponse response) {
         Cookie cookie = new Cookie("jwt", null);
         cookie.setHttpOnly(true);
         cookie.setSecure(false); // true se um dia for usar HTTPS
