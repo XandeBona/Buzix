@@ -80,18 +80,18 @@ let iconOptions = { icon: myIcon };
 // let marker7 = new L.Marker([-26.81179, -49.27078], iconOptions);
 // marker7.addTo(map);
 
-// Alternar card ao clicar na saudação
+//Mostrar menu ao clicar no nome de usuário (quando está logado)
 document.getElementById("saudacao").addEventListener("click", function () {
     document.getElementById("card-logout").classList.toggle("hidden");
 });
 
-// Botão Editar (futuro redirecionamento)
+//Botão Editar (futuro redirecionamento)
 document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.href = "#";
 });
 
-// Botão Sair
+//Botão Sair
 document.getElementById("btn-sair").addEventListener("click", function (e) {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -99,11 +99,12 @@ document.getElementById("btn-sair").addEventListener("click", function (e) {
     window.location.href = "login.html";
 });
 
+//Mostrar menu ao clicar no nome de usuário (visitante)
 document.getElementById("saudacao").addEventListener("click", function () {
     document.getElementById("card-login").classList.toggle("hidden");
 });
 
-// Botão Logar
+//Botão Logar
 document.getElementById("btn-logar").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.href = "login.html";
@@ -124,11 +125,12 @@ function carregarIndex() {
             .then(user => {
                 saudacaoDiv.innerText = `Olá, ${user.userName}!`;
 
-                // Se não for ADMIN, esconde o link
+                //Se não for ADMIN, esconde o link
                 if (user.role !== "ROLE_ADMIN") {
                     cardHeader.style.display = "none";
                     dividerAdmin.style.display = "none";
                 }
+                //Se estiver logado, esconde o botão de Logar
                 if (user.role === "ROLE_USER" || user.role === "ROLE_ADMIN") {
                     cardLogin.style.display = "none";
                 }
@@ -139,6 +141,7 @@ function carregarIndex() {
                 saudacaoDiv.innerText = "Olá, visitante!";
             });
     } else {
+        //Se não estiver logado, não aparece o menu
         saudacaoDiv.innerText = "Olá, visitante!";
         document.getElementById("card-logout").style.display = "none";
     }

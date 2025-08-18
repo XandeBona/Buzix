@@ -36,7 +36,6 @@ public class SecurityConfig {
                         "/login.html", "/login.js",
                         "/index.html", "/index.js", "/index.css",
                         "/js/**",
-                        "/style.css",
                         "/css/**",
                         "/IMAGES/**",
                         "/favicon.ico"
@@ -44,7 +43,7 @@ public class SecurityConfig {
 
                 //Somente admins(empresas) podem acessar
                 .requestMatchers("/empresa",
-                        "/ponto.html", "/ponto.js"
+                        "/ponto", "/ponto.js"
                 ).hasRole("ADMIN")
 
                 .anyRequest().authenticated()

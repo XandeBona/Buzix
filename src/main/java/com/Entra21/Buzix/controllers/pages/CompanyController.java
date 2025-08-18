@@ -1,4 +1,4 @@
-package com.Entra21.Buzix.controllers;
+package com.Entra21.Buzix.controllers.pages;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
