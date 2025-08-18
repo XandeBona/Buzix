@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
 
                 //Visitante e usuários logados podem acessar
-                .requestMatchers("/auth/login", "/auth/register",
+                .requestMatchers("/auth/login", "/auth/register", "/auth/logout",
                         "/cadastro.html", "/cadastro.js",
                         "/login.html", "/login.js",
                         "/index.html", "/index.js", "/index.css",
@@ -42,8 +42,8 @@ public class SecurityConfig {
                 ).permitAll()
 
                 //Somente admins(empresas) podem acessar
-                .requestMatchers("/empresa",
-                        "/ponto", "/ponto.js"
+                .requestMatchers("/empresa.html",
+                        "/ponto.html", "/veiculo.html", "/linha.html", "/itinerario.html"
                 ).hasRole("ADMIN")
 
                 .anyRequest().authenticated()

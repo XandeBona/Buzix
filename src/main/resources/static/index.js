@@ -93,10 +93,12 @@ document.getElementById("btn-editar").addEventListener("click", function (e) {
 
 //Botão Sair
 document.getElementById("btn-sair").addEventListener("click", function (e) {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    window.location.href = "login.html";
+    fetch("/auth/logout", {
+        method: "POST",
+        credentials: "include"
+    }).then(() => {
+        window.location.href = "/login.html";
+    });
 });
 
 //Mostrar menu ao clicar no nome de usuário (visitante)
@@ -111,67 +113,33 @@ document.getElementById("btn-logar").addEventListener("click", function (e) {
 });
 
 function carregarIndex() {
-    const token = localStorage.getItem("token");
     const saudacaoDiv = document.getElementById("saudacao");
     const cardHeader = document.querySelector(".card-header");
     const dividerAdmin = document.querySelector(".divider-admin");
     const cardLogin = document.getElementById("card-login");
 
-    if (token) {
-        fetch("http://localhost:8080/usuarios/me", {
-            headers: { Authorization: "Bearer " + token }
+    fetch("http://localhost:8080/usuarios/me", { credentials: "include" })
+        .then(res => {
+            if (!res.ok) throw new Error("Não autenticado");
+            return res.json();
         })
-            .then(res => res.json())
-            .then(user => {
-                saudacaoDiv.innerText = `Olá, ${user.userName}!`;
+        .then(user => {
+            saudacaoDiv.innerText = `Olá, ${user.userName}!`;
 
-                //Se não for ADMIN, esconde o link
-                if (user.role !== "ROLE_ADMIN") {
-                    cardHeader.style.display = "none";
-                    dividerAdmin.style.display = "none";
-                }
-                //Se estiver logado, esconde o botão de Logar
-                if (user.role === "ROLE_USER" || user.role === "ROLE_ADMIN") {
-                    cardLogin.style.display = "none";
-                }
-            })
-            .catch(err => {
-                console.log("Token inválido ou expirado", err);
-                localStorage.removeItem("token");
-                saudacaoDiv.innerText = "Olá, visitante!";
-            });
-    } else {
-        //Se não estiver logado, não aparece o menu
-        saudacaoDiv.innerText = "Olá, visitante!";
-        document.getElementById("card-logout").style.display = "none";
-    }
+            if (user.role !== "ROLE_ADMIN") {
+                cardHeader.style.display = "none";
+                dividerAdmin.style.display = "none";
+            }
+
+            if (user.role === "ROLE_USER" || user.role === "ROLE_ADMIN") {
+                cardLogin.style.display = "none";
+            }
+        })
+        .catch(err => {
+            console.log("Usuário não autenticado", err);
+            saudacaoDiv.innerText = "Olá, visitante!";
+            document.getElementById("card-logout").style.display = "none";
+        });
 }
 
 window.addEventListener("load", carregarIndex);
-
-// --- LINK PARA EMPRESA ---
-document.getElementById("link-empresa")?.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-        window.location.href = "/login.html";
-        return;
-    }
-
-    fetch("/empresa", {
-        headers: { "Authorization": "Bearer " + token }
-    })
-        .then(res => {
-            if (res.status === 403) {
-                alert("Você não tem permissão para acessar esta página.");
-                window.location.href = "/login.html";
-            } else {
-                return res.text();
-            }
-        })
-        .then(html => {
-            if (html) document.body.innerHTML = html;
-        })
-        .catch(err => console.log("Erro ao carregar empresa", err));
-});

@@ -5,16 +5,19 @@ function toggleSubmenu(event) {
 }
 
 function carregarPagina() {
-    const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role");
-
-    console.log("Token:", token);
-    console.log("Role:", role);
-
-    if (!token || role.trim().toUpperCase() !== "ROLE_ADMIN") {
-        alert("Acesso negado!");
-        window.location.href = "index.html";
-    }
+    fetch("/usuarios/me", { credentials: "include" })
+        .then(res => {
+            if (!res.ok) {
+                alert("Acesso negado!");
+                window.location.href = "index.html";
+            }
+            return res.json();
+        })
+        .catch(err => {
+            console.log("Erro ao verificar usuário:", err);
+            alert("Acesso negado!");
+            window.location.href = "index.html";
+        });
 }
 
 
