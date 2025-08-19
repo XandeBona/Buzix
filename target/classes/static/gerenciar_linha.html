@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Linha</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gerenciar.css">
     <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
@@ -13,90 +13,45 @@
 </head>
 
 <body>
-    <!-- Div principal -->
-    <div class="container-login">
-        <div class="img-box">
-            <a href="index.html">
-                <!-- Imagem grande da tela -->
-                <img src="IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
-            </a>
-        </div>
+    <h2>Gerenciar Linhas</h2>
 
-        <!-- Div do formulário de cadastro -->
-        <div class="content-box">
-            <div class="form-box">
-                <h2>Gerenciar Linha</h2>
-                <form action="#" method="post">
-                    <div class="input-box">
-                        <span>ID da Linha</span>
-                        <input type="number" id="numero" name="numero" required>
-                    </div>
+    <div class="actions">
+        <!-- Botão para pesquisar pelo nome da linha -->
+        <input type="text" id="input-search" placeholder="Digite o nome da linha...">
+        <button onclick="searchVehicle()">🔍 Buscar</button>
 
-                    <div class="input-box">
-                        <span>Nome da Linha</span>
-                        <input type="text" id="nome" name="nome" required>
-                    </div>
-                    
-                    <div class="input-box">
-                        <span>Número da Linha</span>
-                        <input type="number" id="numero" name="numero" required>
-                    </div>
+        <!-- Botão para listar todas -->
+        <button onclick="loadAll()">📋 Listar Todos</button>
 
-                    <div class="input-box">
-                        <span>Ponto Inicial</span>
-                        <input type="text" id="inicio" name="inicio" required>
-                    </div>
+        <!-- Botão de excluir selecionados -->
+        <button onclick="deleteSelected()">🗑️ Excluir Selecionados</button>
 
-                    <div class="input-box">
-                        <span>Ponto Final</span>
-                        <input type="text" id="fim" name="fim" required>
-                    </div>
+        <!-- Botão de editar -->
+        <button onclick="editSelected()">✏️ Editar Selecionado</button>
 
-                    <div class="input-box">
-                        <span>Horário de Início</span>
-                        <input type="time" id="horaInicio" name="horaInicio" required>
-                    </div>
-
-                    <div class="input-box">
-                        <span>Horário de Término</span>
-                        <input type="time" id="horaFim" name="horaFim" required>
-                    </div>
-
-                    <div class="input-box">
-                        <span>Dias de Operação</span>
-                        <select id="dias" name="dias" required>
-                            <option value="" disabled selected>Selecione um dia</option>
-                            <option value="segunda">Segunda</option>
-                            <option value="terca">Terça</option>
-                            <option value="quarta">Quarta</option>
-                            <option value="quinta">Quinta</option>
-                            <option value="sexta">Sexta</option>
-                            <option value="sabado">Sábado</option>
-                            <option value="domingo">Domingo</option>
-                        </select>
-                    </div>
-
-                    <div class="input-box">
-                        <span>Intervalo (minutos)</span>
-                        <input type="number" id="intervalo" name="intervalo">
-                    </div>
-
-                    <div class="input-box">
-                        <input type="submit" value="Editar">
-                    </div>
-                    
-                    <div class="input-box">
-                        <input type="submit" value="Excluir">
-                    </div>
-
-                </form>
-                <!-- Retornar ao menu -->
-                <h3 id="sem_login">
-                    <a href="empresa.html">Retornar ao menu</a>
-                </h3>
-            </div>
-        </div>
+        <!-- Para retornar ao menu -->
+        <button onclick="menuReturn()">📋 Retornar ao menu</button>
     </div>
+
+    <table id="vehiclesTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Número</th>
+                <th>Ponto Inicial</th>
+                <th>Ponto Final</th>
+                <th>Horário de Início</th>
+                <th>Horário de Término</th>
+                <th>Dias de Operação</th>
+                <th>Intervalo</th>
+                <th>Selecionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As linhas aparecem aqui -->
+        </tbody>
+    </table>
+    <script src="js/gerenciar_linha.js"></script>
 </body>
 
 </html>

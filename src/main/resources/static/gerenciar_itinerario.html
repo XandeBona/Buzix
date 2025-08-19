@@ -2,70 +2,54 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerenciar Itinerário</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
-    <script src="gerenciar_itinerario.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciar Itinerário</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/gerenciar.css">
+  <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+  </style>
 </head>
 
 <body>
-    <div class="container-login">
-        <div class="img-box">
-            <a href="index.html">
-                <!-- Imagem grande da tela -->
-                <img src="IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
-            </a>
-        </div>
-        <div class="content-box">
-            <div class="form-box">
-        <h2>Gerenciar Itinerário</h2>
+  <h2>Gerenciar Itinerários</h2>
 
-        <form id="formItinerario" onsubmit="event.preventDefault()">
-          <div class="input-box">
-            <label for="id">ID do Itinerário</label>
-            <input type="text" id="id" name="id" placeholder="ID único" onblur="carregarItinerario()" required />
-          </div>
-          
-          <div class="input-box">
-            <label for="ponto">Nome do Ponto</label>
-            <input type="text" id="ponto" name="ponto" placeholder="Ex: Terminal Central" required />
-          </div>
+  <div class="actions">
+    <!-- Botão para pesquisar pela identificação do itinerário  -->
+    <input type="text" id="input-search" placeholder="Digite o nome do itinerário...">
+    <button onclick="searchVehicle()">🔍 Buscar</button>
 
-          <div class="input-box">
-            <label for="horario">Horário</label>
-            <input type="time" id="horario" name="horario" />
-          </div>
-          
-          <div class="input-box">
-            <input type="submit" value="Editar">
-            </div>
-        
-            <div class="input-box">
-            <input type="submit" value="Excluir">
-            </div>
+    <!-- Botão para listar todos -->
+    <button onclick="loadAll()">📋 Listar Todos</button>
 
-        </form>
+    <!-- Botão de excluir selecionados -->
+    <button onclick="deleteSelected()">🗑️ Excluir Selecionados</button>
 
-        <table id="tabelaHorarios">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Horário</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+    <!-- Botão de editar -->
+    <button onclick="editSelected()">✏️ Editar Selecionado</button>
 
-        <h3><a href="empresa.html">Retornar ao menu</a></h3>
-      </div>
-    </div>
+    <!-- Para retornar ao menu -->
+    <button onclick="menuReturn()">📋 Retornar ao menu</button>
   </div>
+
+  <table id="vehiclesTable">
+    <thead>
+      <tr>
+        <th>identificação</th>
+        <th>Ponto</th>
+        <th>Horário</th>
+        <th>Selecionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Os itinerários aparecem aqui -->
+    </tbody>
+  </table>
+  <script src="js/gerenciar_itinerario.js"></script>
+</body>
+
+</html>
