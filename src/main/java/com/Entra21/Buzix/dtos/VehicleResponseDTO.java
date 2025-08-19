@@ -4,6 +4,7 @@ import com.Entra21.Buzix.entities.Vehicle;
 import org.hibernate.grammars.hql.HqlParser;
 
 public class VehicleResponseDTO {
+    private Integer id;
     private String identifier;
     private String registrationPlate;
     private String make;
@@ -13,6 +14,7 @@ public class VehicleResponseDTO {
     private String fuelType;
 
     public VehicleResponseDTO(Vehicle vehicle) {
+        this.id = vehicle.getId();
         this.identifier = vehicle.getIdentifier();
         this.registrationPlate = vehicle.getRegistrationPlate();
         this.make = vehicle.getMake();
@@ -20,6 +22,10 @@ public class VehicleResponseDTO {
         this.year = vehicle.getYear();
         this.numberOfSeats = vehicle.getNumberOfSeats();
         this.fuelType = vehicle.getFuelType();
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getIdentifier() {

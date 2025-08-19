@@ -44,7 +44,7 @@ public class SecurityConfig {
 
                 //Somente admins(empresas) podem acessar
                 .requestMatchers("/empresa.html",
-                        "/ponto.html", "/veiculo.html", "/linha.html", "/itinerario.html"
+                        "/ponto.html", "/gerenciar_ponto.html", "/gerenciar_veiculo.html", "/veiculo.html", "/linha.html", "/itinerario.html"
                 ).hasRole("ADMIN")
 
                 .anyRequest().authenticated()

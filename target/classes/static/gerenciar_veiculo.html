@@ -8,95 +8,46 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
   </style>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/gerenciar.css">
   <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
 </head>
 
 <body>
-  <!-- Div principal -->
-  <div class="container-login">
-    <div class="img-box">
-      <a href="index.html">
-        <!-- Imagem grande da tela -->
-        <img src="IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
-      </a>
-    </div>
+  <h2>Gerenciar Veículos</h2>
 
-    <!-- Div do formulário de cadastro -->
-    <div class="content-box">
-      <div class="form-box">
-        <h2>Gerenciar Veículo</h2>
-        <form action="#" method="post">
-        <!-- Identificação do Veículo -->
-        <div class="input-box">
-            <span>ID do Veículo</span>
-            <input type="text" name="Identificação" placeholder="" required>
-        </div>
-        <!-- Identificação do Veículo -->
-          <div class="input-box">
-            <span>Identificação</span>
-            <input type="text" name="Identificação" placeholder="" required>
-          </div>
+  <div class="actions">
+    <!-- Botão para pesquisar pela identificação do veículo  -->
+    <input type="text" id="input-search" placeholder="Digite o nome do veículo...">
+    <button onclick="searchVehicle()">🔍 Buscar</button>
 
-          <!-- Placa do Veículo -->
-          <div class="input-box">
-            <span>Placa</span>
-            <input type="text" name="placa" placeholder="" required>
-          </div>
+    <!-- Botão para listar todos os veículos -->
+    <button onclick="loadAll()">📋 Listar Todos</button>
 
-          <!-- Marca do Veículo -->
-          <div class="input-box">
-            <span>Marca</span>
-            <input type="text" name="marca" placeholder="" required>
-          </div>
+    <!-- Botão de excluir selecionados -->
+    <button onclick="deleteSelected()">🗑️ Excluir Selecionados</button>
 
-          <!-- Modelo do Veículo -->
-          <div class="input-box">
-            <span>Modelo</span>
-            <input type="text" name="modelo" placeholder="" required>
-          </div>
-
-          <!-- Ano de Fabricação do Veículo -->
-          <div class="input-box">
-            <span>Ano de Fabricação</span>
-            <input type="text" name="ano_fabricacao" placeholder="" required>
-          </div>
-
-          <!-- Capacidade do Veículo -->
-          <div class="input-box">
-            <span>Capacidade de passageiros</span>
-            <input type="text" name="capacidade" placeholder="" required>
-          </div>
-
-          <!-- Tipo do Combustível do Veículo -->
-          <div class="input-box">
-            <span>Tipo de Combustível</span>
-            <select id="combustivel" name="combustivel" required>
-              <option value="" disabled selected>Selecione um tipo</option>
-              <option value="diesel">Diesel</option>
-              <option value="gasolina">Gasolina</option>
-              <option value="etanol">Etanol</option>
-              <option value="elétrico">Elétrico</option>
-            </select>
-          </div>
-
-          <!-- Botões de Editar / Excluir -->
-          <div class="input-box">
-            <input type="submit" value="Editar">
-        </div>
-        
-        <div class="input-box">
-            <input type="submit" value="Excluir">
-        </div>
-        </form>
-        <!-- Retornar ao menu -->
-        <h3 id="sem_login">
-          <a href="empresa.html">Retornar ao menu</a>
-        </h3>
-      </div>
-    </div>
+    <!-- Botão de editar -->
+    <button onclick="editSelected()">✏️ Editar Selecionado</button>
   </div>
 
+  <table id="vehiclesTable">
+    <thead>
+      <tr>
+        <th>Identificação</th>
+        <th>Placa</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano Fabricação</th>
+        <th>Qtd Passageiros</th>
+        <th>Combustível</th>
+        <th>Selecionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Os veículos aparecem aqui -->
+    </tbody>
+  </table>
+  <script src="js/gerenciar_veiculo.js"></script>
 </body>
 
 </html>
