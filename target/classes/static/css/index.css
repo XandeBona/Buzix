@@ -24,45 +24,34 @@
 /* ========== AJUSTES GERAIS DO BODY ========== */
 body {
   min-height: 100vh;
-  /* Garante que o corpo ocupe toda a altura da tela */
   display: flex;
   flex-direction: column;
-  /* Organiza o conteúdo em coluna */
   margin: 0;
 }
 
 /* ========== MAIN FLEXÍVEL PARA OCUPAR ESPAÇO LIVRE ========== */
 main {
   flex: 1;
-  /* Ocupa o espaço restante entre header e footer */
   position: relative;
-  /* Necessário para posicionar marca-d'água */
 }
 
 /* ========== ESTILO DO HEADER ========== */
 .header {
   background-color: var(--cor-principal);
-  /* Cor principal da marca */
   padding: 20px;
   display: flex;
-  /* Alinha os elementos em linha */
   justify-content: space-between;
-  /* Espaço entre os elementos */
   align-items: center;
-  /* Alinha verticalmente ao centro */
   color: rgb(27, 36, 163);
-  /* Cor do texto */
 }
 
 /* ========== BARRA DE PESQUISA ========== */
 .div-pesquisa {
   width: 100%;
   max-width: 300px;
-  /* Limita o tamanho da barra */
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  /* Sombra sutil */
   display: flex;
   align-items: center;
   padding: 1px 8px;
@@ -70,10 +59,8 @@ main {
 
 .div-pesquisa input {
   flex: 1;
-  /* Ocupa o espaço disponível */
   border: none;
   outline: none;
-  /* Remove borda ao focar */
   padding: 8px 8px;
   font-size: 17px;
   border-radius: 8px;
@@ -125,70 +112,10 @@ main {
   height: 86vh;
 }
 
-/* ========== MENU RESPONSIVO - MOBILE E TABLET ========== */
-@media (max-width: 768px) {
-  .nav {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 200px;
-    background-color: #1e1e1e;
-    display: none;
-    flex-direction: column;
-    align-items: start;
-    padding: 20px;
-  }
-
-  .nav.active {
-    display: flex;
-    /* Mostra o menu quando estiver ativo */
-  }
-
-  .nav-list {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-
-/* ========== MARCA D'ÁGUA CENTRALIZADA ========== */
-.marca-dagua {
-  position: absolute;
-  /* Permite centralizar em relação ao main */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* Centraliza o elemento */
-  opacity: 0.25;
-  /* Deixa o elemento semi-transparente */
-  z-index: 0;
-  /* Fica atrás do conteúdo */
-  width: 70%;
-  max-width: 600px;
-  pointer-events: none;
-  /* Impede cliques ou seleção */
-}
-
-.marca-dagua img {
-  width: 100%;
-  height: auto;
-}
-
-/* Rodapé fixado na parte inferior da tela */
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--cor-principal);
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-  z-index: 1000;
-  font-size: 14px;
-}
-
 /* ========== Card de Logout ========== */
 /* Card base */
-#card-logout, #card-login {
+#card-logout,
+#card-login {
   position: absolute;
   top: 60px;
   right: 20px;
@@ -260,10 +187,79 @@ main {
   font-weight: bold;
 }
 
-.logout-item:hover, .card-header:hover {
+.logout-item:hover,
+.card-header:hover {
   background: #dafda9;
 }
 
 .logout-item i {
   font-size: 16px;
+}
+
+/* Rodapé fixado na parte inferior da tela */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--cor-principal);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  z-index: 1000;
+  font-size: 14px;
+}
+
+/* ========== MENU RESPONSIVO - MOBILE E TABLET ========== */
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    background-color: #1e1e1e;
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .div-pesquisa {
+      max-width: 200px;
+    }
+
+    .div-pesquisa input {
+      font-size: 14px;
+      padding: 6px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .div-pesquisa {
+      width: 180px;
+      padding: 0 6px;
+    }
+
+    .div-pesquisa input {
+      width: 100%;
+      font-size: 13px;
+      padding: 6px 6px;
+      box-sizing: border-box;
+    }
+
+    .lupa-icon {
+      margin-left: 6px;
+      margin-right: 6px;
+      font-size: 16px;
+    }
+  }
 }
