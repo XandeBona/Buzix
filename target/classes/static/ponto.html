@@ -27,37 +27,35 @@
         <div class="content-box">
             <div class="form-box">
                 <h2>Cadastro de Ponto</h2>
-                <form method="post">
+                <form id="formPonto">
                     <!-- Identificação do Ponto de Ônibus -->
                     <div class="input-box">
                         <span>Identificação</span>
-                        <input type="text" name="input_identifier" placeholder="Identificação do ponto" required>
+                        <input type="text" id="input_identifier" placeholder="Identificação do ponto" required>
                     </div>
 
                     <!-- Latitude (Y) -->
                     <div class="input-box">
                         <span>Latitude (Y)</span>
-                        <input type="text" name="input_latitude" placeholder="-26.811404" required>
+                        <input type="text" id="input_latitude" placeholder="-26.811404" required>
                     </div>
 
                     <!-- Longitude (X) -->
                     <div class="input-box">
                         <span>Longitude (X)</span>
-                        <input type="text" name="input_longitude" placeholder="-49.279005" required>
+                        <input type="text" id="input_longitude" placeholder="-49.279005" required>
                     </div>
 
                     <!-- Importar arquivo KMZ -->
                     <div class="input-box">
                         <span>Arquivo KMZ</span>
-                        <input type="file" name="kmz">
+                        <input type="file" id="kmz">
                     </div>
 
                     <!-- Botão de cadastro -->
                     <div class="input-box">
                         <input type="submit" value="Salvar">
                     </div>
-
-
                 </form>
                 <!-- Retornar ao menu -->
                 <h3 id="sem_login">
@@ -66,7 +64,7 @@
             </div>
         </div>
     </div>
-    <script src="/ponto.js"></script>
+    <script src="js/ponto.js"></script>
 </body>
 
 </html>

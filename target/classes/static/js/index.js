@@ -1,4 +1,4 @@
-//Inicializa o mapa genérico (sem as coordenadas do cliente)
+//Inicializa o mapa genérico (sem as coordenadas do usuário)
 let initialLat = -26.8198387;
 let initialLng = -49.2725219;
 
@@ -14,7 +14,7 @@ let marker = L.marker([initialLat, initialLng]).addTo(map)
     .bindPopup("Carregando sua localização...")
     .openPopup();
 
-//Localização real do usuário (em tempo real)
+//Localização do usuário (em tempo real)
 if (navigator.geolocation) {
     navigator.geolocation.watchPosition(function (pos) {
         const lat = pos.coords.latitude;
@@ -42,43 +42,31 @@ if (navigator.geolocation) {
 
         //Opções do watchPosition
     }, null, {
-        enableHighAccuracy: true, // Tenta usar GPS/Wi-Fi para maior precisão
-        maximumAge: 0,             // Não usa posição em cache, sempre tenta pegar a mais recente
-        timeout: 10000             // Aguarda no máximo 10 segundos para obter a posição
+        enableHighAccuracy: true, //Tenta usar GPS/Wi-Fi para maior precisão
+        maximumAge: 0,             //Não usa posição em cache, sempre tenta pegar a mais recente
+        timeout: 10000             //Aguarda no máximo 10 segundos para obter a posição
     });
 }
 
 //Customização do Icon do ponto no mapa
-let customIcon = {
-    iconUrl: 'IMAGES/buzix_logo2.png',
-    iconSize: [100, 55],
-    popupAnchor: [0, -20]
+let iconOptions = {
+    icon: L.icon({
+        iconUrl: 'IMAGES/buzix_logo2.png',
+        iconSize: [100, 55],
+        popupAnchor: [0, -20]
+    })
 };
 
-let myIcon = L.icon(customIcon);
-let iconOptions = { icon: myIcon };
-
-// let marker = new L.Marker([-26.823465, -49.274973], iconOptions);
-// marker.addTo(map);
-// marker.bindPopup("Terminal");
-
-// let marker2 = new L.Marker([-26.833013, -49.2594779], iconOptions);
-// marker2.addTo(map);
-
-// let marker3 = new L.Marker([-26.8408301, -49.27368], iconOptions);
-// marker3.addTo(map);
-
-// let marker4 = new L.Marker([-26.83077, -49.273812], iconOptions);
-// marker4.addTo(map);
-
-// let marker5 = new L.Marker([-26.80859, -49.257442], iconOptions);
-// marker5.addTo(map);
-
-// let marker6 = new L.Marker([-26.81171, -49.27033], iconOptions);
-// marker6.addTo(map);
-
-// let marker7 = new L.Marker([-26.81179, -49.27078], iconOptions);
-// marker7.addTo(map);
+//Busca todos os pontos e adiciona no mapa
+fetch("http://localhost:8080/busstops/all", { credentials: "include" })
+    .then(res => res.json())
+    .then(points => {
+        points.forEach(p => {
+            let marker = L.marker([p.latitude, p.longitude], iconOptions).addTo(map);
+            marker.bindPopup(p.identifier);
+        });
+    })
+    .catch(err => console.error(err));
 
 //Mostrar menu ao clicar no nome de usuário (quando está logado)
 document.getElementById("saudacao").addEventListener("click", function () {

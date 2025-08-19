@@ -7,6 +7,7 @@ import com.Entra21.Buzix.repositories.BusStopRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/busstops")
@@ -31,9 +32,12 @@ public class BusStopController {
         return new BusStopResponseDTO(busStop);
     }
 
-    @GetMapping
-    public List<BusStop> listBusStops() {
-        return busStopRepository.findAll();
+    @GetMapping("/all")
+    public List<BusStopResponseDTO> getAllBusStops() {
+        List<BusStop> busStops = busStopRepository.findAll();
+        return busStops.stream()
+                .map(BusStopResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{idBusStop}")
