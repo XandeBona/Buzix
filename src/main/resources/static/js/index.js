@@ -112,7 +112,8 @@ function carregarIndex() {
             return res.json();
         })
         .then(user => {
-            saudacaoDiv.innerText = `Olá, ${user.userName}!`;
+            const primeiroNome = user.userName.split(" ")[0];
+            saudacaoDiv.innerText = `Olá, ${primeiroNome}!`;
 
             if (user.role !== "ROLE_ADMIN") {
                 cardHeader.style.display = "none";
