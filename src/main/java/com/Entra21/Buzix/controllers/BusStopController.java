@@ -40,11 +40,12 @@ public class BusStopController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{idBusStop}")
-    public BusStopResponseDTO searchBusStopById(@PathVariable Integer idBusStop) {
-        BusStop busStop = busStopRepository.findById(idBusStop).orElseThrow();
-
-        return new BusStopResponseDTO(busStop);
+    @GetMapping("/search")
+    public List<BusStopResponseDTO> searchBusStopsStartingWith(@RequestParam String prefix) {
+        List<BusStop> busStops = busStopRepository.findByIdentifierStartingWithIgnoreCase(prefix);
+        return busStops.stream()
+                .map(BusStopResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{idBusStop}")
