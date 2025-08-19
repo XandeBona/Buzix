@@ -1,3 +1,24 @@
+//Mostrar menu ao clicar no nome de usuário (quando está logado)
+document.getElementById("saudacao").addEventListener("click", function () {
+    document.getElementById("card-logout").classList.toggle("hidden");
+});
+
+//Botão Editar (futuro redirecionamento)
+document.getElementById("btn-editar").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.href = "#";
+});
+
+//Botão Sair
+document.getElementById("btn-sair").addEventListener("click", function (e) {
+    fetch("/auth/logout", {
+        method: "POST",
+        credentials: "include"
+    }).then(() => {
+        window.location.href = "/login.html";
+    });
+});
+
 function toggleSubmenu(event) {
     event.preventDefault();
     const parent = event.target.closest('.submenu');
@@ -5,18 +26,17 @@ function toggleSubmenu(event) {
 }
 
 function carregarPagina() {
-    fetch("/usuarios/me", { credentials: "include" })
+    const saudacaoDiv = document.getElementById("saudacao");
+
+    fetch("http://localhost:8080/usuarios/me", { credentials: "include" })
         .then(res => {
-            if (!res.ok) {
-                alert("Acesso negado!");
-                window.location.href = "index.html";
-            }
+            if (!res.ok) throw new Error("Não autenticado");
             return res.json();
         })
-        .catch(err => {
-            console.log("Erro ao verificar usuário:", err);
-            alert("Acesso negado!");
-            window.location.href = "index.html";
+        .then(user => {
+            const primeiroNome = user.userName.split(" ")[0];
+            saudacaoDiv.innerText = `Olá, ${primeiroNome}!`;
+
         });
 }
 

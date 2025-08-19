@@ -16,6 +16,36 @@
 </head>
 
 <body>
+    <!-- Cabeçalho da página -->
+    <header class="header">
+        <div class="div-pesquisa">
+        </div>
+
+        <!-- Saudação -->
+        <div id="saudacao" style="cursor:pointer;">Olá!</div>
+
+        <!-- Card Logout -->
+        <div id="card-logout" class="hidden">
+            <!-- Link para o Menu da empresa -->
+            <div class="card-header">
+                <img src="IMAGES/logo_ico.ico" alt="logo">
+                <a href="/index.html" id="link-mapa">Mapa</a>
+            </div>
+            <div class="divider"></div>
+            <!-- Link para edição do perfil -->
+            <a href="#" class="logout-item" id="btn-editar">
+                <i class="fa-solid fa-user-pen"></i>
+                Editar
+            </a>
+            <!-- Desloga o usuário -->
+            <div class="divider"></div>
+            <a href="#" class="logout-item" id="btn-sair">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </a>
+        </div>
+    </header>
+
     <div class="marca-dagua">
         <img src="IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
     </div>
@@ -31,11 +61,7 @@
             <div class="titulo_menu">
                 <a href="#">Painel de Controle</a>
             </div>
-            <div class="close">
-                <label for="check">
-                    <i class="fa-solid fa-xmark"></i>
-                </label>
-            </div>
+
             <nav class="menu">
                 <ul>
                     <li>
@@ -70,6 +96,7 @@
             </nav>
         </div>
     </div>
+
 
     <footer class="footer">
         <p>&copy; 2025 Buzix. Todos os direitos reservados.</p>

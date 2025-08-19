@@ -36,7 +36,7 @@
 /* Título do menu lateral (ex: Painel de Controle) */
 .box_menu .titulo_menu {
     position: absolute;
-    height: 55px;
+    height: 77px;
     width: 100%;
     box-shadow: 0px 1px 2px var(--cor-principal-dois);
 }
@@ -48,17 +48,18 @@
     font-weight: 500;
     text-decoration: none;
     position: absolute;
-    left: 20px;
+    left: 30px;
     line-height: 60px;
+    margin-top: 9px;
 }
  
 /* Ícone do botão de menu (hambúrguer) */
 .icone_menu {
     position: fixed;
-    top: 10px;
-    left: 20px;
+    top: 8px;
+    left: 50px;
     font-size: 30px;
-    color: var(--cor-secundaria-dois);
+    color: var(--cor-fundo);
     cursor: pointer;
     z-index: 1000; /* Acima dos outros elementos */
 }
@@ -116,25 +117,15 @@
  
 /* Reforço de estilo no botão do menu hambúrguer */
 .box_menu .icone_menu {
-    color: var(--cor-secundaria-dois);
+    color: var(--cor-fundo);
     font-size: 30px;
     font-weight: 700;
     position: absolute;
-    left: 16px;
+    left: 30px;
     line-height: 60px;
     cursor: pointer;
 }
- 
-/* Estilo do botão de fechar (ícone "X") dentro do menu lateral */
-.menu_lateral .close i {
-    font-size: 25px;
-    line-height: 60px;
-    position: absolute;
-    left: 240px;
-    color: var(--cor-fundo);
-    cursor: pointer;
-}
- 
+
 /* Esconde o checkbox que controla o menu */
 #check {
     display: none;
@@ -163,19 +154,6 @@
     width: 100%;
     height: auto;
 }
- 
-/* Rodapé fixado na parte inferior da tela */
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--cor-principal);
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    z-index: 1000;
-    font-size: 14px;
-}
 
 .submenu {
     position: relative;
@@ -203,4 +181,167 @@
 
 .menu_lateral .menu li.submenu:hover {
     background-color: transparent;
+}
+
+/* ========== ESTILO DO HEADER ========== */
+.header {
+    background-color: var(--cor-principal);
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(27, 36, 163);
+  }
+  
+  /* ========== BARRA DE PESQUISA ========== */
+  .div-pesquisa {
+    width: 100%;
+    max-width: 0px;
+    background: var(--cor-principal);
+  }
+  
+  .div-pesquisa input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px 8px;
+    font-size: 17px;
+    border-radius: 8px;
+  }
+  
+  /* Ícone de lupa */
+  .lupa-icon {
+    color: #777;
+    font-size: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  /* ========== LOGOTIPO EM TEXTO OU IMAGEM ========== */
+  .logo-img {
+    height: 50px;
+    object-fit: contain;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* ========== MENU DE NAVEGAÇÃO ========== */
+  .nav-list {
+    list-style: none;
+    /* Remove marcadores de lista */
+    display: flex;
+    gap: 20px;
+    /* Espaçamento entre itens */
+  }
+  
+  .nav-list li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .nav-list li a:hover {
+    color: var(--cor-secundaria);
+    /* Cor ao passar o mouse */
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  #map {
+    width: 100%;
+    height: 86vh;
+  }
+  
+  /* ========== Card de Logout ========== */
+  /* Card base */
+  #card-logout,
+  #card-login {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 220px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+    padding: 10px;
+  }
+  
+  /* Esconder quando não estiver ativo */
+  .hidden {
+    display: none;
+  }
+  
+  /* Cabeçalho do card */
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Logo */
+  .card-header img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  
+  /* Link para acessar o mapa */
+  #link-mapa {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #003399;
+  }
+  
+  #link-mapa:hover {
+    text-decoration: underline;
+  }
+  
+  /* Linha divisória do menu de login */
+  .divider {
+    height: 1px;
+    background: #ddd;
+    margin: 8px 0;
+  }
+  
+  /* Links de ação */
+  .logout-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* espaço entre ícone e texto */
+    padding: 6px;
+    font-size: 14px;
+    color: #003399;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+    font-weight: bold;
+  }
+  
+  .logout-item:hover,
+  .card-header:hover {
+    background: #dafda9;
+  }
+  
+  .logout-item i {
+    font-size: 16px;
+  }
+
+  /* Rodapé fixado na parte inferior da tela */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--cor-principal);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 1000;
+    font-size: 14px;
 }
