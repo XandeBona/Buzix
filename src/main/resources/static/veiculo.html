@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="shortcut icon" href="../../../../IMAGES/logo_ico.ico" type="image/x-icon">
 </head>
- 
- 
- 
+
 <body>
   <!-- Div principal -->
   <div class="container-login">
@@ -23,52 +21,52 @@
         <img src="IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
       </a>
     </div>
- 
+
     <!-- Div do formulário de cadastro -->
     <div class="content-box">
       <div class="form-box">
         <h2>Cadastro de Veículo</h2>
-        <form action="#" method="post">
+        <form id="form-vehicle">
           <!-- Identificação do Veículo -->
           <div class="input-box">
             <span>Identificação</span>
-            <input type="text" name="Identificação" placeholder="" required>
+            <input type="text" id="input_identifier" placeholder="" required>
           </div>
- 
+
           <!-- Placa do Veículo -->
           <div class="input-box">
             <span>Placa</span>
-            <input type="text" name="placa" placeholder="" required>
+            <input type="text" id="input_registrationPlate" placeholder="" required>
           </div>
- 
+
           <!-- Marca do Veículo -->
           <div class="input-box">
             <span>Marca</span>
-            <input type="text" name="marca" placeholder="" required>
+            <input type="text" id="input_make" placeholder="" required>
           </div>
- 
+
           <!-- Modelo do Veículo -->
           <div class="input-box">
             <span>Modelo</span>
-            <input type="text" name="modelo" placeholder="" required>
+            <input type="text" id="input_model" placeholder="" required>
           </div>
- 
+
           <!-- Ano de Fabricação do Veículo -->
           <div class="input-box">
             <span>Ano de Fabricação</span>
-            <input type="text" name="ano_fabricacao" placeholder="" required>
+            <input type="text" id="input_year" placeholder="" required>
           </div>
- 
+
           <!-- Capacidade do Veículo -->
           <div class="input-box">
             <span>Capacidade de passageiros</span>
-            <input type="text" name="capacidade" placeholder="" required>
+            <input type="text" id="input_numberOfSeats" placeholder="" required>
           </div>
- 
+
           <!-- Tipo do Combustível do Veículo -->
           <div class="input-box">
             <span>Tipo de Combustível</span>
-            <select id="combustivel" name="combustivel" required>
+            <select id="input_fuelType" required>
               <option value="" disabled selected>Selecione um tipo</option>
               <option value="diesel">Diesel</option>
               <option value="gasolina">Gasolina</option>
@@ -76,7 +74,7 @@
               <option value="elétrico">Elétrico</option>
             </select>
           </div>
- 
+
           <!-- Botão de salvar -->
           <div class="input-box">
             <input type="submit" value="Salvar">
@@ -89,7 +87,7 @@
       </div>
     </div>
   </div>
- 
+  <script src="js/veiculo.js"></script>
 </body>
- 
+
 </html>
