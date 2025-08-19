@@ -38,7 +38,8 @@ public class SecurityConfig {
                         "/js/**",
                         "/css/**",
                         "/IMAGES/**",
-                        "/favicon.ico"
+                        "/favicon.ico",
+                        "/busstops/all"
                 ).permitAll()
 
                 //Somente admins(empresas) podem acessar

@@ -196,6 +196,29 @@ main {
   font-size: 16px;
 }
 
+/* Aviso de geolocalização desabilitada */
+#location-warning {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffdddd;
+  padding: 15px;
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+#close-warning {
+  position: absolute;
+  top: 3px;
+  right: 9px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
 /* Rodapé fixado na parte inferior da tela */
 .footer {
   position: fixed;

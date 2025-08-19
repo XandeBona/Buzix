@@ -41,11 +41,32 @@ if (navigator.geolocation) {
             `${lat.toFixed(6)}°, ${lng.toFixed(6)}°`;
 
         //Opções do watchPosition
-    }, null, {
+    }, function (error) {
+        //Trativa de erros de geolocalização
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                console.warn("Usuário negou a solicitação de geolocalização.");
+                document.getElementById("location-warning").style.display = "block";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.warn("Informações de localização indisponíveis.");
+                break;
+            case error.TIMEOUT:
+                console.warn("O tempo para obter a localização expirou.");
+                break;
+            default:
+                console.warn("Ocorreu um erro desconhecido:", error);
+        }
+    }, {
         enableHighAccuracy: true, //Tenta usar GPS/Wi-Fi para maior precisão
         maximumAge: 0,             //Não usa posição em cache, sempre tenta pegar a mais recente
         timeout: 10000             //Aguarda no máximo 10 segundos para obter a posição
     });
+} else {
+    //Se o navegador não suporta geolocalização
+    document.getElementById("location-warning").innerText =
+        "Seu navegador não suporta geolocalização.";
+    document.getElementById("location-warning").style.display = "block";
 }
 
 //Customização do Icon do ponto no mapa
@@ -100,6 +121,18 @@ document.getElementById("btn-logar").addEventListener("click", function (e) {
     window.location.href = "login.html";
 });
 
+//Botão para fechar o aviso de geolocalização desabilitada
+function closeWarning() {
+    const closeBtn = document.getElementById("close-warning");
+    const warningDiv = document.getElementById("location-warning");
+
+    if (closeBtn && warningDiv) {
+        closeBtn.addEventListener("click", function () {
+            warningDiv.style.display = "none";
+        });
+    }
+}
+
 function carregarIndex() {
     const saudacaoDiv = document.getElementById("saudacao");
     const cardHeader = document.querySelector(".card-header");
@@ -131,4 +164,4 @@ function carregarIndex() {
         });
 }
 
-window.addEventListener("load", carregarIndex);
+window.addEventListener("load", carregarIndex, closeWarning);
