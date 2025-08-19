@@ -110,3 +110,7 @@ function editSelected() {
         })
         .catch(err => console.error("Erro ao editar:", err));
 }
+
+function menuReturn() {
+    window.location.href = "empresa.html"
+}
