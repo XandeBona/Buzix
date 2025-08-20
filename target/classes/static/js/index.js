@@ -97,7 +97,7 @@ document.getElementById("saudacao").addEventListener("click", function () {
 //Botão Editar (futuro redirecionamento)
 document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
-    window.location.href = "#";
+    window.location.href = "/editar_usuario.html";
 });
 
 //Botão Sair
