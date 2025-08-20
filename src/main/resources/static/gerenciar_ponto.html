@@ -47,6 +47,31 @@
             <!-- Os pontos aparecem aqui -->
         </tbody>
     </table>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Editar Ponto</h3>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+
+                <label for="editIdentifier">Identificação:</label>
+                <input type="text" id="editIdentifier" required>
+
+                <label for="editLatitude">Latitude:</label>
+                <input type="text" id="editLatitude" required>
+
+                <label for="editLongitude">Longitude:</label>
+                <input type="text" id="editLongitude" required>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()">Cancelar</button>
+                    <button type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="js/gerenciar_ponto.js"></script>
 </body>
 

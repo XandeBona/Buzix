@@ -82,14 +82,36 @@ function editSelected() {
   }
 
   const id = selected[0];
-  const identifier = prompt("Informe o novo identificador:");
-  const latitude = prompt("Informe a nova latitude:");
-  const longitude = prompt("Informe a nova longitude:");
 
-  if (!identifier || !latitude || !longitude) {
-    alert("Todos os campos são obrigatórios!");
-    return;
-  }
+  //Buscar os dados atuais do ponto
+  fetch(`/busstops/${id}`)
+    .then(res => res.json())
+    .then(busStop => {
+      //Preenche os inputs com os dados atuais
+      document.getElementById("editId").value = busStop.id;
+      document.getElementById("editIdentifier").value = busStop.identifier;
+      document.getElementById("editLatitude").value = busStop.latitude;
+      document.getElementById("editLongitude").value = busStop.longitude;
+
+      //Mostra o modal
+      document.getElementById("editModal").classList.remove("hidden");
+    })
+    .catch(err => console.error("Erro ao buscar ponto:", err));
+}
+
+//Fecha modal sem salvar - se clicar em "Cancelar"
+function closeModal() {
+  document.getElementById("editModal").classList.add("hidden");
+}
+
+//Salva a edição do ponto
+document.getElementById("editForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const id = document.getElementById("editId").value;
+  const identifier = document.getElementById("editIdentifier").value;
+  const latitude = document.getElementById("editLatitude").value;
+  const longitude = document.getElementById("editLongitude").value;
 
   fetch(`/busstops/${id}`, {
     method: "PUT",
@@ -98,10 +120,11 @@ function editSelected() {
   })
     .then(() => {
       alert("Ponto atualizado com sucesso!");
+      closeModal();
       loadAll();
     })
     .catch(err => console.error("Erro ao editar:", err));
-}
+});
 
 function menuReturn() {
   window.location.href = "empresa.html"

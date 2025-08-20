@@ -40,6 +40,14 @@ public class BusStopController {
                 .collect(Collectors.toList());
     }
 
+    //Lista ponto de ônibus por id
+    @GetMapping("/{idBusStop}")
+    public BusStopResponseDTO buscarUsuarioPorId(@PathVariable Integer idBusStop) {
+        BusStop busStops = busStopRepository.findById(idBusStop).orElseThrow();
+
+        return new BusStopResponseDTO(busStops);
+    }
+
     @GetMapping("/search")
     public List<BusStopResponseDTO> searchBusStopsStartingWith(@RequestParam String prefix) {
         List<BusStop> busStops = busStopRepository.findByIdentifierStartingWithIgnoreCase(prefix);

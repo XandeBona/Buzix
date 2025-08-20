@@ -44,3 +44,60 @@ td {
 th {
     background: #f0f0f0;
 }
+
+/* -- Parte do Modal -- */
+
+/* Fundo do modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+  
+  /* Escondido */
+  .modal.hidden {
+    display: none;
+  }
+  
+  /* Caixa de edição */
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .modal-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
