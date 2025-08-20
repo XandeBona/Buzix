@@ -1,103 +1,178 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 
-    /* Definição de variáveis CSS para facilitar reaproveitamento de cores */
-    --cor-principal: #06b4f0;
-    --cor-principal-dois: #22789e;
-    --cor-secundaria: #9be91b;
-    --cor-secundaria-dois: #7fc41c;
-    --cor-letras: #000;
-    --cor-fundo: #f5f5f5;
+  /* Definição de variáveis CSS para facilitar reaproveitamento de cores */
+  --cor-principal: #06b4f0;
+  --cor-principal-dois: #22789e;
+  --cor-secundaria: #9be91b;
+  --cor-secundaria-dois: #7fc41c;
+  --cor-letras: #000;
+  --cor-fundo: #f5f5f5;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
 .actions {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-input,
-button {
-    margin-right: 5px;
-    padding: 6px 10px;
+/* Personalização para os botões */
+.botao-personalizado {
+  background-color: var(--cor-principal-dois);
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-items: center;
+  text-align: center;
 }
+
+/* Hover para os botões */
+.botao-personalizado:hover {
+  background-color: var(--cor-principal);
+}
+
+/* Personalização para o botão cancelar */
+.botao-personalizado-cancelar {
+  background-color: rgb(168, 8, 8);
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-items: center;
+  text-align: center;
+}
+
+/* Hover para o botão cancelar */
+.botao-personalizado-cancelar:hover {
+  background-color: rgb(236, 38, 38);
+}
+
+/* Personalização da barra de pesquisa */
+.barra-pesquisa {
+  background-color: #cecece;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-items: center;
+  text-align: center;
+}
+
+/* Hover para a barra de pesquisa */
+.botao-personalizado:hover {
+  background-color: var(#e4e3e3);
+}
+
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th,
 td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
 }
 
 th {
-    background: #f0f0f0;
+  background: #f0f0f0;
 }
 
 /* -- Parte do Modal -- */
 
 /* Fundo do modal */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-  }
-  
-  /* Escondido */
-  .modal.hidden {
-    display: none;
-  }
-  
-  /* Caixa de edição */
-  .modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  }
-  
-  .modal-content h3 {
-    margin-bottom: 15px;
-    font-size: 20px;
-    text-align: center;
-  }
-  
-  .modal-content label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .modal-content input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .modal-actions {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Escondido */
+.modal.hidden {
+  display: none;
+}
+
+/* Caixa de edição */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* -- Marca d'água -- */
+.marca-dagua {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.marca-dagua img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+}

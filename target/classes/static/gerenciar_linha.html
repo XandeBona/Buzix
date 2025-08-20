@@ -17,8 +17,8 @@
 
     <div class="actions">
         <!-- Botão para pesquisar pelo nome da linha -->
-        <input type="text" id="input-search" placeholder="Digite o nome da linha...">
-        <button onclick="searchVehicle()">🔍 Buscar</button>
+        <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite o nome da linha...">
+        <button onclick="searchVehicle()" class="botao-personalizado">🔍 Buscar</button>
 
         <!-- Botão para listar todas -->
         <button onclick="loadAll()">📋 Listar Todos</button>
@@ -30,7 +30,7 @@
         <button onclick="editSelected()">✏️ Editar Selecionado</button>
 
         <!-- Para retornar ao menu -->
-        <button onclick="menuReturn()">📋 Retornar ao menu</button>
+        <button onclick="menuReturn()">⬅️ Retornar ao menu</button>
     </div>
 
     <table id="vehiclesTable">
