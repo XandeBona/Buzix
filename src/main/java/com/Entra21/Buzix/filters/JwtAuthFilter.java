@@ -35,7 +35,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = null;
         String username = null;
 
-        // 🔹 Procura apenas no cookie
+        //Procura apenas no cookie
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if ("jwt".equals(cookie.getName())) {
@@ -45,7 +45,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        // 🔹 Se encontrou o token, valida
+        //Vai validar se encontrar o token
         if (token != null) {
             try {
                 username = jwtUtil.extractUsername(token);
