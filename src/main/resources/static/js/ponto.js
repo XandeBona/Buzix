@@ -37,7 +37,7 @@ function cadastrarPonto() {
 }
 
 function setupEvents() {
-    document.getElementById("formPonto").addEventListener("submit", function (event) {
+    document.getElementById("form-busStop").addEventListener("submit", function (event) {
         event.preventDefault();
         cadastrarPonto();
     });

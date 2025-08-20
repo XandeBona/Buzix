@@ -229,6 +229,10 @@ select {
     background-color: var(--cor-secundaria-dois);
 }
 
+#file-title {
+    margin-top: 55px;
+}
+
 
 @media (max-width: 868px) {
     .container-login .img-box {
