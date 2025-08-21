@@ -26,6 +26,10 @@ public class Route {
 
     }
 
+    public Route(Integer id) {
+        this.id = id;
+    }
+
     public Route(Integer id, String code, String name, String description, RouteColor color, List<Trip> trips) {
         this.id = id;
         this.code = code;

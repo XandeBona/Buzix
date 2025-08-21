@@ -24,4 +24,36 @@ public class StopTimeResponseDTO {
         this.departureTime = stopTime.getDepartureTime();
         this.stopSequence = stopTime.getStopSequence();
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getBusStopId() {
+        return busStopId;
+    }
+
+    public String getBusStopName() {
+        return busStopName;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public LocalTime getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public LocalTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public Integer getStopSequence() {
+        return stopSequence;
+    }
 }

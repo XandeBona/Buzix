@@ -2,8 +2,10 @@ package com.Entra21.Buzix.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "busstops")
+@Table(name = "bus_stops")
 public class BusStop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,10 @@ public class BusStop {
 
     public BusStop() {
 
+    }
+
+    public BusStop(Integer id) {
+        this.id = id;
     }
 
     public BusStop(Integer id, String identifier, Double latitude, Double longitude) {

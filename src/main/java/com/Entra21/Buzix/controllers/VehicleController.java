@@ -1,9 +1,7 @@
 package com.Entra21.Buzix.controllers;
 
-import com.Entra21.Buzix.dtos.BusStopResponseDTO;
 import com.Entra21.Buzix.dtos.VehicleRequestDTO;
 import com.Entra21.Buzix.dtos.VehicleResponseDTO;
-import com.Entra21.Buzix.entities.BusStop;
 import com.Entra21.Buzix.entities.Vehicle;
 import com.Entra21.Buzix.repositories.VehicleRepository;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +53,7 @@ public class VehicleController {
 
     @GetMapping("/search")
     public List<VehicleResponseDTO> searchVehiclesStartingWith(@RequestParam String prefix) {
-        List<Vehicle> vehicles = vehicleRepository.findByIdentifierStartingWithIgnoreCase(prefix);
+        List<Vehicle> vehicles = vehicleRepository.findByRegistrationPlateStartingWithIgnoreCase(prefix);
         return vehicles.stream()
                 .map(VehicleResponseDTO::new)
                 .collect(Collectors.toList());

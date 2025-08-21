@@ -9,7 +9,7 @@ import java.time.LocalTime;
 //Itinerário <> Ponto
 
 @Entity
-@Table(name = "stopTimes")
+@Table(name = "stop_times")
 public class StopTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,10 @@ public class StopTime {
 
     public StopTime() {
 
+    }
+
+    public StopTime(Integer id) {
+        this.id = id;
     }
 
     public StopTime(Integer id, Trip trip, BusStop busStop, LocalTime arrivalTime, LocalTime departureTime, Integer stopSequence) {

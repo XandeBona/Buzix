@@ -29,6 +29,10 @@ public class Trip {
     public Trip() {
     }
 
+    public Trip(Integer id) {
+        this.id = id;
+    }
+
     public Trip(Integer id, Route route, Vehicle vehicle, LocalTime departureTime, LocalTime arrivalTime, List<StopTime> stopTimes) {
         this.id = id;
         this.route = route;

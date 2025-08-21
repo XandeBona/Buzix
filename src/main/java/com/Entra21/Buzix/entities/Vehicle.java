@@ -20,6 +20,10 @@ public class Vehicle {
 
     }
 
+    public Vehicle(Integer id) {
+        this.id = id;
+    }
+
     public Vehicle(Integer id, String identifier, String registrationPlate, String make, String model, String year, String numberOfSeats, String fuelType) {
         this.id = id;
         this.identifier = identifier;
