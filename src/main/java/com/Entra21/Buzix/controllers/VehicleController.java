@@ -1,7 +1,9 @@
 package com.Entra21.Buzix.controllers;
 
+import com.Entra21.Buzix.dtos.BusStopResponseDTO;
 import com.Entra21.Buzix.dtos.VehicleRequestDTO;
 import com.Entra21.Buzix.dtos.VehicleResponseDTO;
+import com.Entra21.Buzix.entities.BusStop;
 import com.Entra21.Buzix.entities.Vehicle;
 import com.Entra21.Buzix.repositories.VehicleRepository;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +43,14 @@ public class VehicleController {
         return vehicles.stream()
                 .map(VehicleResponseDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    //Lista veículo por id
+    @GetMapping("/{idVehicle}")
+    public VehicleResponseDTO searchVehicleById(@PathVariable Integer idVehicle) {
+        Vehicle vehicles = vehicleRepository.findById(idVehicle).orElseThrow();
+
+        return new VehicleResponseDTO(vehicles);
     }
 
     @GetMapping("/search")

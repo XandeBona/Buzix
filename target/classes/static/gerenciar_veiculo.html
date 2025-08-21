@@ -54,18 +54,37 @@
   <!-- Modal de Edição -->
   <div id="editModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Editar Ponto</h3>
-      <form id="editForm">
-        <input type="hidden" id="editId">
+      <h3>Editar Veículo</h3>
+      <form id="form-edit">
+        <input type="hidden" id="input_edit_id">
 
-        <label for="editIdentifier">Identificação:</label>
-        <input type="text" id="editIdentifier" required>
+        <!-- Identificação do Veículo -->
+        <label for="input_edit_identifier">Identificação</label>
+        <input type="text" id="input_edit_identifier" required>
 
-        <label for="editLatitude">Latitude:</label>
-        <input type="text" id="editLatitude" required>
+        <!-- Placa do Veículo -->
+        <label for="input_edit_registrationPlate">Placa</label>
+        <input type="text" id="input_edit_registrationPlate" required>
 
-        <label for="editLongitude">Longitude:</label>
-        <input type="text" id="editLongitude" required>
+        <!-- Marca do Veículo -->
+        <label for="input_edit_make">Marca</label>
+        <input type="text" id="input_edit_make" required>
+
+        <!-- Marca do Veículo -->
+        <label for="input_edit_model">Modelo</label>
+        <input type="text" id="input_edit_model" required>
+
+        <!-- Marca do Veículo -->
+        <label for="input_edit_year">Ano de Fabricação</label>
+        <input type="text" id="input_edit_year" required>
+
+        <!-- Marca do Veículo -->
+        <label for="input_edit_numberOfSeats">Número de assentos</label>
+        <input type="text" id="input_edit_numberOfSeats" required>
+
+        <!-- Marca do Veículo -->
+        <label for="input_edit_fuelType">Combustível</label>
+        <input type="text" id="input_edit_fuelType" required>
 
         <div class="modal-actions">
           <button type="button" onclick="closeModal()" class="botao-personalizado-cancelar">Cancelar</button>

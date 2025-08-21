@@ -42,7 +42,7 @@ public class BusStopController {
 
     //Lista ponto de ônibus por id
     @GetMapping("/{idBusStop}")
-    public BusStopResponseDTO buscarUsuarioPorId(@PathVariable Integer idBusStop) {
+    public BusStopResponseDTO searchBusStopById(@PathVariable Integer idBusStop) {
         BusStop busStops = busStopRepository.findById(idBusStop).orElseThrow();
 
         return new BusStopResponseDTO(busStops);

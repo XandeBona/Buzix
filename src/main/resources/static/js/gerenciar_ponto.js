@@ -88,10 +88,10 @@ function editSelected() {
     .then(res => res.json())
     .then(busStop => {
       //Preenche os inputs com os dados atuais
-      document.getElementById("editId").value = busStop.id;
-      document.getElementById("editIdentifier").value = busStop.identifier;
-      document.getElementById("editLatitude").value = busStop.latitude;
-      document.getElementById("editLongitude").value = busStop.longitude;
+      document.getElementById("input_edit_id").value = busStop.id;
+      document.getElementById("input_edit_identifier").value = busStop.identifier;
+      document.getElementById("input_edit_latitude").value = busStop.latitude;
+      document.getElementById("input_edit_longitude").value = busStop.longitude;
 
       //Mostra o modal
       document.getElementById("editModal").classList.remove("hidden");
@@ -105,13 +105,13 @@ function closeModal() {
 }
 
 //Salva a edição do ponto
-document.getElementById("editForm").addEventListener("submit", function (e) {
+document.getElementById("form-edit").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const id = document.getElementById("editId").value;
-  const identifier = document.getElementById("editIdentifier").value;
-  const latitude = document.getElementById("editLatitude").value;
-  const longitude = document.getElementById("editLongitude").value;
+  const id = document.getElementById("input_edit_id").value;
+  const identifier = document.getElementById("input_edit_identifier").value;
+  const latitude = document.getElementById("input_edit_latitude").value;
+  const longitude = document.getElementById("input_edit_longitude").value;
 
   fetch(`/busstops/${id}`, {
     method: "PUT",

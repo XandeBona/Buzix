@@ -86,18 +86,44 @@ function editSelected() {
     }
 
     const id = selected[0];
-    const identifier = prompt("Informe o novo identificador:");
-    const registrationPlate = prompt("Informe a nova placa:");
-    const make = prompt("Informe a nova marca:");
-    const model = prompt("Informe o novo modelo:");
-    const year = prompt("Informe o novo ano de fabricação:");
-    const numberOfSeats = prompt("Informe a nova capacidade de passageiros:");
-    const fuelType = prompt("Informe o novo tipo de combustível:");
 
-    if (!identifier || !registrationPlate || !make || !model || !year || !numberOfSeats || !fuelType) {
-        alert("Preencha todos os campos corretamente!");
-        return;
-    }
+    //Buscar os dados atuais do veículo
+    fetch(`/vehicles/${id}`)
+        .then(res => res.json())
+        .then(vehicle => {
+            //Preenche os inputs com os dados atuais
+            document.getElementById("input_edit_id").value = vehicle.id;
+            document.getElementById("input_edit_identifier").value = vehicle.identifier;
+            document.getElementById("input_edit_registrationPlate").value = vehicle.registrationPlate;
+            document.getElementById("input_edit_make").value = vehicle.make;
+            document.getElementById("input_edit_model").value = vehicle.model;
+            document.getElementById("input_edit_year").value = vehicle.year;
+            document.getElementById("input_edit_numberOfSeats").value = vehicle.numberOfSeats;
+            document.getElementById("input_edit_fuelType").value = vehicle.fuelType;
+
+            //Mostra o modal
+            document.getElementById("editModal").classList.remove("hidden");
+        })
+        .catch(err => console.error("Erro ao buscar veículo:", err));
+}
+
+//Fecha modal sem salvar - se clicar em "Cancelar"
+function closeModal() {
+    document.getElementById("editModal").classList.add("hidden");
+}
+
+//Salva a edição do veículo
+document.getElementById("form-edit").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const id = document.getElementById("input_edit_id").value;
+    const identifier = document.getElementById("input_edit_identifier").value;
+    const registrationPlate = document.getElementById("input_edit_registrationPlate").value;
+    const make = document.getElementById("input_edit_make").value;
+    const model = document.getElementById("input_edit_model").value;
+    const year = document.getElementById("input_edit_year").value;
+    const numberOfSeats = document.getElementById("input_edit_numberOfSeats").value;
+    const fuelType = document.getElementById("input_edit_fuelType").value;
 
     fetch(`/vehicles/${id}`, {
         method: "PUT",
@@ -106,10 +132,11 @@ function editSelected() {
     })
         .then(() => {
             alert("Veículo atualizado com sucesso!");
+            closeModal();
             loadAll();
         })
         .catch(err => console.error("Erro ao editar:", err));
-}
+});
 
 function menuReturn() {
     window.location.href = "empresa.html"
