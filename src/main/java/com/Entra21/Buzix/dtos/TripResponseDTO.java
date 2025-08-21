@@ -1,10 +1,12 @@
 package com.Entra21.Buzix.dtos;
 
 import com.Entra21.Buzix.entities.Trip;
+import com.Entra21.Buzix.repositories.StopTimeRepository;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TripResponseDTO {
     private Integer id;
@@ -27,6 +29,16 @@ public class TripResponseDTO {
 
     public void setStopTimes(List<StopTimeResponseDTO> stopTimes) {
         this.stopTimes = stopTimes;
+    }
+
+    //Construtor para trazer os StopTimes ordenados
+    public TripResponseDTO(Trip trip, StopTimeRepository stopTimeRepository) {
+        this(trip);
+
+        this.stopTimes = stopTimeRepository.findByTripIdOrderByStopSequenceAsc(trip.getId())
+                .stream()
+                .map(StopTimeResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     public Integer getId() {

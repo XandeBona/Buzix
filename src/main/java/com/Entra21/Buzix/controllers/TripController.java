@@ -78,13 +78,25 @@ public class TripController {
         return resp;
     }
 
-    @GetMapping("/route/{routeId}")
-    public List<TripResponseDTO> getTripsByRoute(@PathVariable Integer routeId) {
-        List<Trip> trips = tripRepository.findByRouteId(routeId);
+    //Busca sem os StopTimes (usa o construtor simples do TripResponseDTO)
+    @GetMapping("/route/{idRoute}")
+    public List<TripResponseDTO> getTripsByRoute(@PathVariable Integer idRoute) {
+        List<Trip> trips = tripRepository.findByRouteId(idRoute);
         return trips.stream()
-                .map(TripResponseDTO::new) // idem, sem StopTimes por performance
+                .map(TripResponseDTO::new)
                 .collect(Collectors.toList());
     }
+
+    //Busca com os StopTimes (usa o construtor do TripResponseDTO que busca StopTimes ordenados)
+    @GetMapping("/route/{idRoute}/withStops")
+    public List<TripResponseDTO> getTripsByRouteComplete(@PathVariable Integer idRoute) {
+        List<Trip> trips = tripRepository.findByRouteId(idRoute);
+
+        return trips.stream()
+                .map(trip -> new TripResponseDTO(trip, stopTimeRepository))
+                .collect(Collectors.toList());
+    }
+
 
     @PutMapping("/{idTrip}")
     public TripResponseDTO editTrip(@PathVariable Integer idTrip, @RequestBody TripRequestDTO request) {
@@ -97,7 +109,7 @@ public class TripController {
 
         tripRepository.save(trip);
 
-        // Atualização não mexe nos StopTimes; devolve vazio aqui
+        //Atualização não mexe nos StopTimes - devolve vazio aqui
         TripResponseDTO resp = new TripResponseDTO(trip);
         resp.setStopTimes(Collections.emptyList());
         return resp;
