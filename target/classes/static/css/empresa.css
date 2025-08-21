@@ -17,7 +17,7 @@
 /* Container geral que envolve o menu lateral */
 .box_menu {
   background: var(--cor-fundo);
-  height: 100vh;
+  height: 90vh;
   background-size: cover;
   width: 100%;
 }
@@ -63,7 +63,6 @@
   color: var(--cor-fundo);
   cursor: pointer;
   z-index: 1000;
-  /* Acima dos outros elementos */
 }
 
 /* Estrutura principal do menu lateral */
@@ -71,7 +70,6 @@
   position: fixed;
   top: 0;
   left: -280px;
-  /* Oculto por padrão */
   width: 280px;
   height: 100vh;
   background: var(--cor-principal);
@@ -139,7 +137,7 @@
   left: 0;
 }
 
-/* Marca d'água centralizada e com opacidade reduzida */
+/* Marca d'água centralizada */
 .marca-dagua {
   position: absolute;
   top: 50%;
