@@ -101,3 +101,72 @@ document.addEventListener("click", function (e) {
 
 
 // --- Para cadastrar a parada  --- //
+
+
+function cadastrarParada() {
+    const inputTrip = document.getElementById("input_trip");
+    const inputBusStop = document.getElementById("input_busStop");
+    const inputStopSequence = document.getElementById("input_stopSequence");
+    const inputArrival = document.getElementById("input_arrivalTime");
+    const inputDeparture = document.getElementById("input_departureTime");
+
+    //Garante que o usuário selecionou uma opção da lista
+    if (!inputTrip.dataset.selectedId || !inputBusStop.dataset.selectedId) {
+        alert("Selecione uma opção válida para Itinerário e Ponto de ônibus!");
+        return;
+    }
+
+    if (!inputStopSequence.value || !inputArrival.value || !inputDeparture.value) {
+        alert("Preencha todos os campos corretamente!");
+        return;
+    }
+
+
+    //Monta o objeto para o StopTimeRequestDTO
+    const stopTimeRequest = {
+        tripId: parseInt(inputTrip.dataset.selectedId),
+        busStopId: parseInt(inputBusStop.dataset.selectedId),
+        stopSequence: parseInt(inputStopSequence.value),
+        arrivalTime: inputArrival.value + ":00",   //Formatação para LocalTime (horário)
+        departureTime: inputDeparture.value + ":00"
+    };
+
+    //Envia para o backend
+    fetch("http://localhost:8080/stoptimes/register", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(stopTimeRequest)
+    })
+        .then(res => {
+            if (!res.ok) throw new Error("Erro ao cadastrar parada");
+            return res.json();
+        })
+        .then(data => {
+            alert("Parada cadastrada com sucesso!");
+
+            //Para limpar os campos do formulário
+            inputTrip.value = "";
+            inputBusStop.value = "";
+            inputStopSequence.value = "";
+            inputArrival.value = "";
+            inputDeparture.value = "";
+
+            inputTrip.dataset.selectedId = null;
+            inputBusStop.dataset.selectedId = null;
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Erro ao cadastrar parada");
+        });
+}
+
+// --- Evento submit do formulário ---
+function setupEvents() {
+    document.getElementById("form-stopTime").addEventListener("submit", function (event) {
+        event.preventDefault();
+        cadastrarParada();
+    });
+}
+
+window.addEventListener("load", setupEvents);

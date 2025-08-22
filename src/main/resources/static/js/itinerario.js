@@ -106,7 +106,7 @@ function cadastrarItinerario() {
   const inputDeparture = document.getElementById("input_departureTime");
   const inputArrival = document.getElementById("input_arrivalTime");
 
-  // --- Validação: garantir que o usuário clicou em uma opção da lista ---
+  //Garante que o usuário selecionou uma opção da lista
   if (!inputRoute.dataset.selectedId || !inputVehicle.dataset.selectedId) {
       alert("Selecione uma opção válida para Linha e Veículo!");
       return;
@@ -117,15 +117,15 @@ function cadastrarItinerario() {
       return;
   }
 
-  // --- Monta o objeto TripRequestDTO ---
+  //Monta o objeto para o TripRequestDTO
   const tripRequest = {
       routeId: parseInt(inputRoute.dataset.selectedId),
       vehicleId: parseInt(inputVehicle.dataset.selectedId),
-      departureTime: inputDeparture.value + ":00", //Formatação para LocalTime
+      departureTime: inputDeparture.value + ":00", //Formatação para LocalTime (horário)
       arrivalTime: inputArrival.value + ":00"
   };
 
-  // --- Envia para o backend ---
+  //Envia para o backend
   fetch("http://localhost:8080/trips/register", {
       method: "POST",
       credentials: "include",
@@ -154,12 +154,12 @@ function cadastrarItinerario() {
   });
 }
 
-// --- Evento submit do formulário ---
-function setupTripEvents() {
+//Submit do formulário
+function setupEvents() {
   document.getElementById("form-trip").addEventListener("submit", function(event) {
       event.preventDefault();
       cadastrarItinerario();
   });
 }
 
-window.addEventListener("load", setupTripEvents);
+window.addEventListener("load", setupEvents);
