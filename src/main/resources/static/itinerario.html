@@ -27,43 +27,47 @@
         <div class="content-box">
             <div class="form-box">
                 <h2>Cadastro de Itinerário</h2>
-
-                <form action="#" method="post" onsubmit="event.preventDefault()">
+                <form id="form-trip">
+                    <!-- Selecionar a Linha -->
                     <div class="input-box">
-                        <label for="ponto">Nome do Ponto</label>
-                        <input type="text" id="ponto" name="ponto" placeholder="Ex: Terminal Central">
+                        <span>Linha</span>
+                        <input type="text" id="input_route" autocomplete="off">
+                        <ul id="route-options" class="options-list"></ul>
                     </div>
 
+                    <!-- Selecionar o Veículo -->
                     <div class="input-box">
-                        <label for="horario">Horário</label>
-                        <input type="time" id="horario" name="horario">
+                        <span>Veículo</span>
+                        <input type="text" id="input_vehicle" autocomplete="off">
+                        <ul id="vehicle-options" class="options-list"></ul>
                     </div>
 
+                    <!-- Informar o horário de saída -->
                     <div class="input-box">
-                        <input type="submit" value="Adicionar Horário">
+                        <span>Horário de saída</span>
+                        <input type="time" id="input_departureTime" name="input_departureTime" required>
                     </div>
+
+                    <!-- Informar o horário de retorno -->
+                    <div class="input-box">
+                        <span>Horário de Chegada</span>
+                        <input type="time" id="input_arrivalTime" name="input_arrivalTime" required>
+                    </div>
+
+                    <!-- Botão de salvar -->
                     <div class="input-box">
                         <input type="submit" value="Salvar">
                     </div>
-                    <!-- Tabela com os horários -->
                 </form>
-                <table id="tabelaHorarios">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Horário</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Os horários adicionados aparecerão aqui -->
-                    </tbody>
-                </table>
+
+                <!-- Retornar ao menu -->
                 <h3 id="sem_login">
                     <a href="empresa.html">Retornar ao menu</a>
                 </h3>
             </div>
         </div>
     </div>
+    <script src="/js/itinerario.js"></script>
 </body>
 
 </html>
