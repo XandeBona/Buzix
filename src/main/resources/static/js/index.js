@@ -74,16 +74,17 @@ let iconOptions = {
     icon: L.icon({
         iconUrl: "IMAGES/buzix_logo2.png",
         iconSize: [100, 55],
-        popupAnchor: [0, -20]
+        iconAnchor: [50, 55],
+        popupAnchor: [0, -48], //Altera a altura do POP-UP padrão
     })
 };
 
 let busStopBigIcon = L.icon({
     iconUrl: "IMAGES/buzix_logo2.png",
     iconSize: [130, 75],
-    popupAnchor: [0, -20]
+    iconAnchor: [65, 75],
+    tooltipAnchor: [0, -69] //Altera a altura do POP-UP fixo
 });
-
 
 
 
@@ -120,12 +121,19 @@ fetch("http://localhost:8080/busstops/all", { credentials: "include" })
                             return;
                         }
 
-                        // Monta lista de linhas
-                        let content = "<b>Linhas:</b><ul>";
+                        // Monta conteúdo do popup
+                        let content = `<b>Ponto:</b> ${p.identifier}<br><br>`; // nome do ponto em cima
+
+                        content += "<b>Linhas:</b><ul>";
                         routes.forEach(r => {
-                            content += `<li><a href='#' class='route-link' data-route='${r.id}' data-busstop='${p.id}'>
-                            ${r.name} (${r.code})
-                          </a></li>`;
+                            content += `<li>
+                            <a href='#' class='route-link' data-route='${r.id}' data-busstop='${p.id}'>
+                                ${r.code} - ${r.name} 
+                                <br>
+                                ${r.description}
+                                <br>
+                            </a>
+                        </li>`;
                         });
                         content += "</ul>";
 
