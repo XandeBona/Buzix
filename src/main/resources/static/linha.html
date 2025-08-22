@@ -43,13 +43,15 @@
                     <!-- Informar a descrição da linha -->
                     <div class="input-box">
                         <span>Descrição</span>
-                        <input type="text" id="input_description" name="input_description" required>
+                        <input type="text" id="input_description" name="input_description"
+                            placeholder="Ex: Bairro Centro <> Bairro Imigrantes" required>
                     </div>
 
                     <!-- Selecionar a cor da linha -->
                     <div class="input-box">
                         <span>Cor</span>
                         <select id="input_color" name="input_color" required>
+                            <option value="" disabled selected>Selecione uma cor</option>
                             <option value="BLUE">Azul</option>
                             <option value="RED">Vermelho</option>
                             <option value="GREEN">Verde</option>
