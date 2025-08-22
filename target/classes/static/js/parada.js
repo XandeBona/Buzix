@@ -1,3 +1,5 @@
+// --- Para o campo input que possui pesquisa no formulário --- //
+
 var trips = []; //Array para guardar os itinerários
 var tripInput = document.getElementById("input_trip");
 var tripList = document.getElementById("trip-options");
@@ -95,3 +97,7 @@ document.addEventListener("click", function (e) {
         busStopList.style.display = "none";
     }
 });
+
+
+
+// --- Para cadastrar a parada  --- //
