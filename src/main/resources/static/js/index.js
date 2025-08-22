@@ -194,7 +194,7 @@ function renderTripsPopup(marker, trips) {
     let tripContent = "<b>Itinerários:</b><ul>";
     trips.forEach(t => {
         tripContent += `<li><a href='#' class='trip-link' data-id='${t.id}'>
-            Saída ${t.departureTime} - Chegada ${t.arrivalTime}</a></li>`;
+            Saída ${t.departureTime.slice(0, 5)} - Chegada ${t.arrivalTime.slice(0, 5)}</a></li>`;
     });
     tripContent += "</ul>";
 
@@ -269,7 +269,7 @@ function handleTripSelection(tripId) {
                 let stopMarker = L.marker([s.latitude, s.longitude], { icon: busStopBigIcon })
                     .bindTooltip(
                         `<b>${s.stopSequence}ª parada - ${s.busStopIdentifier}</b><br>
-                        ⏱ Chegada: ${s.arrivalTime}<br>🚌 Saída: ${s.departureTime}`,
+                        ⏱ Chegada: ${s.arrivalTime.slice(0, 5)}<br>🚌 Saída: ${s.departureTime.slice(0, 5)}`,
                         { permanent: true, direction: "top" }
                     );
                 tripLayerGroup.addLayer(stopMarker);
