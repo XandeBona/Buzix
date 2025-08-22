@@ -3,6 +3,7 @@ package com.Entra21.Buzix.config;
 import com.Entra21.Buzix.filters.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -38,9 +39,10 @@ public class SecurityConfig {
                         "/js/**",
                         "/css/**",
                         "/IMAGES/**",
-                        "/favicon.ico",
-                        "/busstops/all"
+                        "/favicon.ico"
                 ).permitAll()
+
+                .requestMatchers(HttpMethod.GET, "/busstops/**", "/routes/**", "/trips/**", "/stoptimes/**", "/vehicles/**").permitAll()
 
                 //Somente admins(empresas) podem acessar
                 .requestMatchers("/empresa.html",

@@ -12,6 +12,7 @@ public class TripResponseDTO {
     private Integer id;
     private Integer routeId;
     private String routeName;
+    private String routeColor;
     private Integer vehicleId;
     private LocalTime departureTime;
     private LocalTime arrivalTime;
@@ -21,6 +22,7 @@ public class TripResponseDTO {
         this.id = trip.getId();
         this.routeId = trip.getRoute().getId();
         this.routeName = trip.getRoute().getName();
+        this.routeColor = trip.getRoute().getColor().getCode(); //getCode é pra pegar o Hexadecimal da cor no Enum
         this.vehicleId = trip.getVehicle() != null ? trip.getVehicle().getId() : null;
         this.departureTime = trip.getDepartureTime();
         this.arrivalTime = trip.getArrivalTime();
@@ -51,6 +53,10 @@ public class TripResponseDTO {
 
     public String getRouteName() {
         return routeName;
+    }
+
+    public String getRouteColor() {
+        return routeColor;
     }
 
     public Integer getVehicleId() {

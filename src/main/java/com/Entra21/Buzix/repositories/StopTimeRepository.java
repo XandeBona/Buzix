@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface StopTimeRepository extends JpaRepository<StopTime, Integer> {
     List<StopTime> findByTripIdOrderByStopSequenceAsc(Integer idTrip);
+
+    List<StopTime> findByBusStopId(Integer idBusStop);
+
+    List<StopTime> findByBusStopIdAndTripRouteId(Integer idBusStop, Integer idRoute);
 }
