@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/css/gerenciar.css">
+    <link rel="shortcut icon" href="/IMAGES/logo_ico.ico" type="image/x-icon">
+    <title>Gerenciamento de Ponto</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
+</head>
+
+<body>
+    <h2>Gerenciar Pontos de Ônibus</h2>
+
+    <div class="actions">
+        <!-- Botão para pesquisar pela identificação do ponto  -->
+        <input type="text" id="searchInput" class="barra-pesquisa" placeholder="Digite o nome do ponto...">
+        <button onclick="searchBusStop()" class="botao-personalizado">🔍 Buscar</button>
+
+        <!-- Botão para listar todos os pontos -->
+        <button onclick="loadAll()" class="botao-personalizado">📋 Listar Todos</button>
+
+        <!-- Botão de excluir selecionados -->
+        <button onclick="deleteSelected()" class="botao-personalizado">🗑️ Excluir Selecionados</button>
+
+        <!-- Botão de editar -->
+        <button onclick="editSelected()" class="botao-personalizado">✏️ Editar Selecionado</button>
+
+        <!-- Botão para retornar ao menu -->
+        <button onclick="menuReturn()" class="botao-personalizado">⬅️ Retornar ao menu</button>
+    </div>
+
+    <table id="busStopsTable">
+        <thead>
+            <tr>
+                <th>Rua do Ponto</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Selecionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os pontos aparecem aqui -->
+        </tbody>
+    </table>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Editar Ponto</h3>
+            <form id="form-edit">
+                <input type="hidden" id="input_edit_id">
+
+                <label for="input_edit_identifier">Rua</label>
+                <input type="text" id="input_edit_identifier" required>
+
+                <label for="input_edit_latitude">Latitude</label>
+                <input type="text" id="input_edit_latitude" required>
+
+                <label for="input_edit_longitude">Longitude</label>
+                <input type="text" id="input_edit_longitude" required>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()" class="botao-personalizado-cancelar">Cancelar</button>
+                    <button type="submit" class="botao-personalizado">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Imagem de fundo da tela -->
+    <div class="marca-dagua">
+        <img src="/IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
+    </div>
+
+    <script src="/js/gerenciar_ponto.js"></script>
+</body>
+
+</html>

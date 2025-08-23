@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Linha</title>
+    <link rel="stylesheet" href="/css/gerenciar.css">
+    <link rel="shortcut icon" href="/IMAGES/logo_ico.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
+</head>
+
+<body>
+    <h2>Gerenciar Linhas</h2>
+
+    <div class="actions">
+        <!-- Botão para pesquisar pelo nome da linha -->
+        <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite o nome da linha...">
+        <button onclick="searchVehicle()" class="botao-personalizado">🔍 Buscar</button>
+
+        <!-- Botão para listar todas -->
+        <button onclick="loadAll()" class="botao-personalizado">📋 Listar Todos</button>
+
+        <!-- Botão de excluir selecionados -->
+        <button onclick="deleteSelected()" class="botao-personalizado">🗑️ Excluir Selecionados</button>
+
+        <!-- Botão de editar -->
+        <button onclick="editSelected()" class="botao-personalizado">✏️ Editar Selecionado</button>
+
+        <!-- Para retornar ao menu -->
+        <button onclick="menuReturn()" class="botao-personalizado">⬅️ Retornar ao menu</button>
+    </div>
+
+    <table id="routesTable">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Ínicio &lt&gt Fim da Linha</th>
+                <th>Cor</th>
+                <th>Selecionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As linhas aparecem aqui -->
+        </tbody>
+    </table>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Editar Linha</h3>
+            <form id="form-edit">
+                <input type="hidden" id="input_edit_id">
+
+                <label for="input_edit_code">Código</label>
+                <input type="text" id="input_edit_code" required>
+
+                <label for="input_edit_name">Nome</label>
+                <input type="text" id="input_edit_name" required>
+
+                <label for="input_edit_description">Ínicio &lt&gt Fim da linha</label>
+                <input type="text" id="input_edit_description" required>
+
+                <label for="input_edit_color">Cor</label>
+                <select id="input_edit_color" required>
+                    <option value="" disabled selected>Selecione uma cor</option>
+                    <option value="BLUE">Azul</option>
+                    <option value="RED">Vermelho</option>
+                    <option value="GREEN">Verde</option>
+                    <option value="YELLOW">Amarelo</option>
+                    <option value="ORANGE">Laranja</option>
+                    <option value="PURPLE">Roxo</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()" class="botao-personalizado-cancelar">Cancelar</button>
+                    <button type="submit" class="botao-personalizado">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Imagem de fundo da tela -->
+    <div class="marca-dagua">
+        <img src="/IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
+    </div>
+
+    <script src="/js/gerenciar_linha.js"></script>
+</body>
+
+</html>

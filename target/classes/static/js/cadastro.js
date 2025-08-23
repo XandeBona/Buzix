@@ -1,10 +1,10 @@
 function validarSenha(senha) {
   if (!senha) return false;
   if (senha.length < 8) return false;
-  if (!/[A-Z]/.test(senha)) return false;        // Tem letra maiúscula?
-  if (!/[a-z]/.test(senha)) return false;        // Tem letra minúscula?
-  if (!/\d/.test(senha)) return false;           // Tem número?
-  if (!/[^a-zA-Z0-9]/.test(senha)) return false; // Tem caractere especial?
+  if (!/[A-Z]/.test(senha)) return false;        //Valida se tem letra maiúscula
+  if (!/[a-z]/.test(senha)) return false;        //Valida se tem letra minúscula
+  if (!/\d/.test(senha)) return false;           //Valida se tem número
+  if (!/[^a-zA-Z0-9]/.test(senha)) return false; //Valida se tem caractere especial
   return true;
 }
 
@@ -47,7 +47,7 @@ function registrarUsuario() {
       return res.json();
     })
     .then(response => {
-      window.location.href = "/login.html"; 
+      window.location.href = "/html/login.html"; 
     })
     .catch(err => {
       alert("Erro ao registrar usuário");

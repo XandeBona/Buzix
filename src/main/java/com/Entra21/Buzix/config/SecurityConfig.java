@@ -32,10 +32,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
 
                 //Visitante e usuários logados podem acessar
-                .requestMatchers("/auth/login", "/auth/register", "/auth/logout", "/alterar_senha.html",
-                        "/cadastro.html", "/cadastro.js",
-                        "/login.html", "/login.js",
-                        "/index.html", "/index.js", "/index.css",
+                .requestMatchers("/auth/login", "/auth/register", "/auth/logout",
+                        "/html/alterar_senha.html",
+                        "/html/cadastro.html", "/html/cadastro.js",
+                        "/html/login.html", "/html/login.js",
+                        "/html/index.html", "/html/index.js", "/html/index.css",
                         "/js/**",
                         "/css/**",
                         "/IMAGES/**",
@@ -45,9 +46,12 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/busstops/**", "/routes/**", "/trips/**", "/stoptimes/**", "/vehicles/**").permitAll()
 
                 //Somente admins(empresas) podem acessar
-                .requestMatchers("/empresa.html",
-                        "/ponto.html", "/veiculo.html", "/linha.html", "/itinerario.html", "/parada.html",
-                        "/gerenciar_ponto.html", "/gerenciar_veiculo.html", "/gerenciar_linha.html", "/gerenciar_itinerario.html", "/gerenciar_parada.html"
+                .requestMatchers("/html/empresa.html",
+                        "/html/ponto.html", "/html/veiculo.html",
+                        "/html/linha.html", "/html/itinerario.html", "/html/parada.html",
+                        "/html/gerenciar_ponto.html", "/html/gerenciar_veiculo.html",
+                        "/html/gerenciar_linha.html", "/html/gerenciar_itinerario.html",
+                        "/html/gerenciar_parada.html"
                 ).hasRole("ADMIN")
 
                 .anyRequest().authenticated()

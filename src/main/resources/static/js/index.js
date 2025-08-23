@@ -74,7 +74,7 @@ if (navigator.geolocation) {
 //Customização do Icon do ponto no mapa
 let iconOptions = {
     icon: L.icon({
-        iconUrl: "IMAGES/buzix_logo2.png",
+        iconUrl: "/IMAGES/buzix_logo2.png",
         iconSize: [100, 55],
         iconAnchor: [50, 55],
         popupAnchor: [0, -48], //Altera a altura do POP-UP padrão
@@ -82,7 +82,7 @@ let iconOptions = {
 };
 
 let busStopBigIcon = L.icon({
-    iconUrl: "IMAGES/buzix_logo2.png",
+    iconUrl: "/IMAGES/buzix_logo2.png",
     iconSize: [130, 75],
     iconAnchor: [65, 75],
     tooltipAnchor: [0, -69] //Altera a altura do POP-UP fixo
@@ -315,7 +315,7 @@ document.getElementById("saudacao").addEventListener("click", function () {
 //Botão Editar (futuro redirecionamento)
 document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
-    window.location.href = "/editar_usuario.html";
+    window.location.href = "/html/editar_usuario.html";
 });
 
 //Botão Sair
@@ -324,7 +324,7 @@ document.getElementById("btn-sair").addEventListener("click", function (e) {
         method: "POST",
         credentials: "include"
     }).then(() => {
-        window.location.href = "/login.html";
+        window.location.href = "/html/login.html";
     });
 });
 
@@ -336,7 +336,7 @@ document.getElementById("saudacao").addEventListener("click", function () {
 //Botão Logar
 document.getElementById("btn-logar").addEventListener("click", function (e) {
     e.preventDefault();
-    window.location.href = "login.html";
+    window.location.href = "/html/login.html";
 });
 
 //Botão para fechar o aviso de geolocalização desabilitada

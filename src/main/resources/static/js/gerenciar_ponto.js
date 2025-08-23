@@ -127,5 +127,5 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
 });
 
 function menuReturn() {
-  window.location.href = "empresa.html"
+  window.location.href = "/html/empresa.html"
 }

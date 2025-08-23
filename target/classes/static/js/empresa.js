@@ -6,7 +6,7 @@ document.getElementById("saudacao").addEventListener("click", function () {
 //Botão Editar (futuro redirecionamento)
 document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
-    window.location.href = "/editar_usuario.html";
+    window.location.href = "/html/editar_usuario.html";
 });
 
 //Botão Sair
@@ -15,7 +15,7 @@ document.getElementById("btn-sair").addEventListener("click", function (e) {
         method: "POST",
         credentials: "include"
     }).then(() => {
-        window.location.href = "/login.html";
+        window.location.href = "/html/login.html";
     });
 });
 
