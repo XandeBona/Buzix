@@ -16,56 +16,62 @@ let marker = L.marker([initialLat, initialLng]).addTo(map)
     .bindPopup("Carregando sua localização...")
     .openPopup();
 
-//Localização do usuário (em tempo real)
+//Localização do usuário (a cada 1min30s)
 if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(function (pos) {
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
-        const accuracy = pos.coords.accuracy;
 
-        //Atualiza o marcador
-        marker.setLatLng([lat, lng]);
+    function buscarLocalizacao() {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            const accuracy = pos.coords.accuracy;
 
-        //Se a precisão da posição for menor que 50 metros
-        if (accuracy < 50) {
-            //Atualiza o conteúdo do popup do marcador indicando que a posição é precisa
-            marker.setPopupContent("Sua localização :)").openPopup();
-        } else {
-            //Indica que é apenas aproximada
-            marker.setPopupContent("Sua localização :)").openPopup();
-        }
+            //Atualiza o marcador
+            marker.setLatLng([lat, lng]);
 
-        //Centraliza o mapa na posição atual do usuário
-        map.setView([lat, lng], 15);
+            //Se a precisão da posição for menor que 50 metros
+            if (accuracy < 50) {
+                marker.setPopupContent("Sua localização :)").openPopup();
+            } else {
+                marker.setPopupContent("Sua localização :)").openPopup();
+            }
 
-        //Atualiza as coordenadas exibidas na tela
-        document.getElementById('coordinates').textContent =
-            `${lat.toFixed(6)}°, ${lng.toFixed(6)}°`;
+            //Centraliza o mapa na posição atual do usuário
+            map.setView([lat, lng], 15);
 
-        //Opções do watchPosition
-    }, function (error) {
-        //Trativa de erros de geolocalização
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                console.warn("Usuário negou a solicitação de geolocalização.");
-                document.getElementById("location-warning").style.display = "block";
-                break;
-            case error.POSITION_UNAVAILABLE:
-                console.warn("Informações de localização indisponíveis.");
-                break;
-            case error.TIMEOUT:
-                console.warn("O tempo para obter a localização expirou.");
-                break;
-            default:
-                console.warn("Ocorreu um erro desconhecido:", error);
-        }
-    }, {
-        enableHighAccuracy: true, //Tenta usar GPS/Wi-Fi para maior precisão
-        maximumAge: 0,             //Não usa posição em cache, sempre tenta pegar a mais recente
-        timeout: 10000             //Aguarda no máximo 10 segundos para obter a posição
-    });
+            //Atualiza as coordenadas exibidas na tela
+            document.getElementById('coordinates').textContent =
+                `${lat.toFixed(6)}°, ${lng.toFixed(6)}°`;
+
+        }, function (error) {
+            //Tratativa de erros
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    console.warn("Usuário negou a solicitação de geolocalização.");
+                    document.getElementById("location-warning").style.display = "block";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.warn("Informações de localização indisponíveis.");
+                    break;
+                case error.TIMEOUT:
+                    console.warn("O tempo para obter a localização expirou.");
+                    break;
+                default:
+                    console.warn("Ocorreu um erro desconhecido:", error);
+            }
+        }, {
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: 10000
+        });
+    }
+
+    //Executa imediatamente na primeira vez
+    buscarLocalizacao();
+
+    //Depois da primeira vez, busca a localização a cada 90 segundos
+    setInterval(buscarLocalizacao, 90000);
+
 } else {
-    //Se o navegador não suporta geolocalização
     document.getElementById("location-warning").innerText =
         "Seu navegador não suporta geolocalização.";
     document.getElementById("location-warning").style.display = "block";

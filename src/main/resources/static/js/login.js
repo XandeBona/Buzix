@@ -25,7 +25,7 @@ function realizarLogin(email, password) {
             return res.json();
         })
         .then(() => {
-            window.location.href = "/html/index.html";
+            window.location.href = "/index.html";
         })
         .catch(error => {
             console.log(error);

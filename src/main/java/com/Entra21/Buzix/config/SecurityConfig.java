@@ -34,16 +34,16 @@ public class SecurityConfig {
                 //Visitante e usuários logados podem acessar
                 .requestMatchers("/auth/login", "/auth/register", "/auth/logout",
                         "/html/alterar_senha.html",
-                        "/html/cadastro.html", "/html/cadastro.js",
-                        "/html/login.html", "/html/login.js",
-                        "/html/index.html", "/html/index.js", "/html/index.css",
+                        "/html/cadastro.html",
+                        "/html/login.html",
+                        "/index.html",
                         "/js/**",
                         "/css/**",
                         "/IMAGES/**",
                         "/favicon.ico"
                 ).permitAll()
 
-                .requestMatchers(HttpMethod.GET, "/busstops/**", "/routes/**", "/trips/**", "/stoptimes/**", "/vehicles/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/busstops/**", "/routes/**", "/trips/**", "/stoptimes/**", "/vehicles/**", "/api/route").permitAll()
 
                 //Somente admins(empresas) podem acessar
                 .requestMatchers("/html/empresa.html",
