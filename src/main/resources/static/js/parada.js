@@ -132,7 +132,7 @@ function cadastrarParada() {
     };
 
     //Envia para o backend
-    fetch("http://localhost:8080/stoptimes/register", {
+    fetch("/stoptimes/register", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
