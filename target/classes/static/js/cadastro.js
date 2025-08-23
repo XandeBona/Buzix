@@ -37,7 +37,7 @@ function registrarUsuario() {
     return;
   }
 
-  fetch("http://localhost:8080/auth/register", {
+  fetch("/auth/register", {
     method: "POST",
     body: JSON.stringify({ userName, email, password }),
     headers: { "Content-Type": "application/json" }

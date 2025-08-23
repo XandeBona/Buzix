@@ -240,7 +240,7 @@ function attachTripLinkEvents(marker) {
 
 //Busca rotas de um ponto específico
 function fetchRoutes(marker, busStopId) {
-    fetch(`http://localhost:8080/busstops/${busStopId}/routes`, { credentials: "include" })
+    fetch(`/busstops/${busStopId}/routes`, { credentials: "include" })
         .then(res => res.json())
         .then(routes => renderRoutesPopup(marker, { id: busStopId, identifier: marker.options.title }, routes));
 }
@@ -248,7 +248,7 @@ function fetchRoutes(marker, busStopId) {
 
 //Busca itinerários de uma rota em um ponto específico
 function fetchTrips(marker, busStopId, routeId) {
-    fetch(`http://localhost:8080/busstops/${busStopId}/routes/${routeId}/trips`, { credentials: "include" })
+    fetch(`/busstops/${busStopId}/routes/${routeId}/trips`, { credentials: "include" })
         .then(res => res.json())
         .then(trips => renderTripsPopup(marker, trips));
 }
@@ -263,7 +263,7 @@ function handleTripSelection(tripId) {
 
     tripLayerGroup.clearLayers();
 
-    fetch(`http://localhost:8080/trips/${tripId}`, { credentials: "include" })
+    fetch(`/trips/${tripId}`, { credentials: "include" })
         .then(res => res.json())
         .then(trip => {
             if (!trip.stopTimes.length) return;
@@ -291,7 +291,7 @@ function handleTripSelection(tripId) {
 
 // --  Adiciona os pontos de ônibus no mapa -- //
 function loadBusStops() {
-    fetch("http://localhost:8080/busstops/all", { credentials: "include" })
+    fetch("/busstops/all", { credentials: "include" })
         .then(res => res.json())
         .then(points => {
             points.forEach(p => {
@@ -363,7 +363,7 @@ function carregarIndex() {
     const dividerAdmin = document.querySelector(".divider-admin");
     const cardLogin = document.getElementById("card-login");
 
-    fetch("http://localhost:8080/usuarios/me", { credentials: "include" })
+    fetch("/usuarios/me", { credentials: "include" })
         .then(res => {
             if (!res.ok) throw new Error("Não autenticado");
             return res.json();

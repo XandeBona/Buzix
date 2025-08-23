@@ -14,7 +14,7 @@ function validarDadosLogin() {
 }
 
 function realizarLogin(email, password) {
-    fetch("http://localhost:8080/auth/login", {
+    fetch("/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
