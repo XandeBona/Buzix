@@ -140,11 +140,10 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
         if (i > 0) segment.unshift(latlngs[i]);
 
         let urlPoints = segment.map(c => `point=${c[0]},${c[1]}`).join("&");
-        let url = `https://graphhopper.com/api/1/route?${urlPoints}&vehicle=car&points_encoded=false&key=${apiKey}`;
 
-        //Chamada para o backend para buscar a API Key
         try {
-            let res = await fetch(`/api/route?points=${urlPoints}`, { credentials: "include" });
+            // Aqui a chamada vai para o backend, que tem a key segura
+            let res = await fetch(`/api/route?${urlPoints}`, { credentials: "include" });
             let data = await res.json();
 
             if (data.paths && data.paths[0]) {
@@ -152,11 +151,10 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
                 allCoords.push(...coords);
             }
         } catch (err) {
-            console.error("Erro ao buscar a chave da API no Backend:", err);
+            console.error("Erro ao buscar rota do backend:", err);
         }
     }
 
-    //Salva no cache e desenha a linha
     if (allCoords.length > 0) {
         saveRouteToCache(key, allCoords);
         L.polyline(allCoords, { color, weight: 4 }).addTo(tripLayerGroup);
