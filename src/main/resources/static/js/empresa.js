@@ -28,7 +28,7 @@ function toggleSubmenu(event) {
 function carregarPagina() {
     const saudacaoDiv = document.getElementById("saudacao");
 
-    fetch("http://localhost:8080/usuarios/me", { credentials: "include" })
+    fetch("/usuarios/me", { credentials: "include" })
         .then(res => {
             if (!res.ok) throw new Error("Não autenticado");
             return res.json();

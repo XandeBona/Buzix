@@ -5,7 +5,7 @@ var tripInput = document.getElementById("input_trip");
 var tripList = document.getElementById("trip-options");
 
 //Carrega os itinerários
-fetch("http://localhost:8080/trips/all")
+fetch("/trips/all")
     .then(res => res.json())
     .then(data => {
         trips = data;
@@ -54,7 +54,7 @@ var busStopInput = document.getElementById("input_busStop");
 var busStopList = document.getElementById("busStop-options");
 
 //Carrega os pontos de ônibus
-fetch("http://localhost:8080/busstops/all")
+fetch("/busstops/all")
     .then(res => res.json())
     .then(data => {
         busStops = data;

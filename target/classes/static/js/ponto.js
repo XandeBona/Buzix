@@ -12,7 +12,7 @@ function cadastrarPonto() {
         return;
     }
 
-    fetch("http://localhost:8080/busstops/register", {
+    fetch("/busstops/register", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

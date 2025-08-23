@@ -20,7 +20,7 @@ function cadastrarVeiculo() {
         return;
     }
 
-    fetch("http://localhost:8080/vehicles/register", {
+    fetch("/vehicles/register", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

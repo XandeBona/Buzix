@@ -5,7 +5,7 @@ var input = document.getElementById("input_route");
 var list = document.getElementById("route-options");
 
 //Carrega as rotas
-fetch("http://localhost:8080/routes/all")
+fetch("/routes/all")
   .then(res => res.json())
   .then(data => {
     routes = data; showOptions(routes);
@@ -53,7 +53,7 @@ var vehicleInput = document.getElementById("input_vehicle");
 var vehicleList = document.getElementById("vehicle-options");
 
 //Carrega os veículos
-fetch("http://localhost:8080/vehicles/all")
+fetch("/vehicles/all")
   .then(res => res.json())
   .then(data => {
     vehicles = data;
@@ -126,7 +126,7 @@ function cadastrarItinerario() {
   };
 
   //Envia para o backend
-  fetch("http://localhost:8080/trips/register", {
+  fetch("/trips/register", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
