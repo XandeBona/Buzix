@@ -1,8 +1,25 @@
+function validarSenha(senha) {
+  if (!senha) return false;
+  if (senha.length < 8) return false;
+  if (!/[A-Z]/.test(senha)) return false;        // Tem letra maiúscula?
+  if (!/[a-z]/.test(senha)) return false;        // Tem letra minúscula?
+  if (!/\d/.test(senha)) return false;           // Tem número?
+  if (!/[^a-zA-Z0-9]/.test(senha)) return false; // Tem caractere especial?
+  return true;
+}
+
 function confereSenha() {
   const inputPassword = document.getElementById("input_password");
   const inputConfirmPassword = document.getElementById("input_confirm_password");
+  const senha = inputPassword.value;
+  const confirmaSenha = inputConfirmPassword.value;
 
-  if (inputConfirmPassword.value !== inputPassword.value) {
+  if (!validarSenha(senha)) {
+    alert("Senha inválida! A senha precisa ter no mínimo 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.");
+    return;
+  }
+
+  if (confirmaSenha !== senha) {
     alert("As senhas não conferem!");
     return;
   }
