@@ -8,5 +8,6 @@ import java.util.List;
 public interface TripRepository extends JpaRepository<Trip, Integer> {
     List<Trip> findByRouteId(Integer routeId);
 
-    List<Trip> findByRouteNameStartingWithIgnoreCase(String prefix);
+    //Acessa o campo name dentro do objeto route da trip
+    List<Trip> findByRoute_NameStartingWithIgnoreCase(String prefix);
 }

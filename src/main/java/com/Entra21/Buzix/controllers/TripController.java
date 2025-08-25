@@ -96,7 +96,7 @@ public class TripController {
 
     @GetMapping("/search")
     public List<TripResponseDTO> searchByRoutePrefix(@RequestParam String prefix) {
-        List<Trip> trips = tripRepository.findByRouteNameStartingWithIgnoreCase(prefix);
+        List<Trip> trips = tripRepository.findByRoute_NameStartingWithIgnoreCase(prefix);
         return trips.stream()
                 .map(TripResponseDTO::new)
                 .collect(Collectors.toList());
