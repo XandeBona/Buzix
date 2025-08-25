@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Component
 public class JWTService {
-    private final String SECRET = "5v9gBzX97KfLp3n8Rm1sEtWqYaVx0ZdCJhULuOFiPkGTvNMR";
+    private final String SECRET = "5v9gBzX97KfLu0n8Rm1sEtWqYaVx0ZdCJhULuOFiPkGTvNMR";
 
     public String generateToken(UserDetails userDetails) {
         //Pega a role principal do usuário
