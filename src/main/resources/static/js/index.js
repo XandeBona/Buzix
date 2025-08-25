@@ -309,6 +309,70 @@ function loadBusStops() {
 }
 
 
+// -- Parte da Barra de Pesquisa -- //
+
+const searchInput = document.getElementById('input-search');
+const searchResults = document.getElementById('searchResults');
+let searchMarker = null; //Marcador para o resultado da barra de pesquisa
+
+//Função de pesquisa
+function searchStreet() {
+    const query = searchInput.value.trim();
+    if (!query) return;
+
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`; //API Nominatim - limite de 5 para não aparecer resultados excessivos
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => showResults(data))
+        .catch(err => console.error("Erro na busca:", err));
+}
+
+//Exibe resultados
+function showResults(results) {
+    searchResults.innerHTML = "";
+
+    results.forEach(place => {
+        const li = document.createElement("li");
+        li.textContent = place.display_name;
+
+        li.addEventListener("click", () => {
+            //Centraliza o mapa no local
+            map.setView([place.lat, place.lon], 16);
+
+            //Adiciona o marcador
+            if (searchMarker) {
+                searchMarker.setLatLng([place.lat, place.lon]);
+            } else {
+                searchMarker = L.marker([place.lat, place.lon]).addTo(map);
+            }
+
+            searchMarker.unbindPopup();
+
+            //Limpa lista de resultados
+            searchResults.innerHTML = "";
+        });
+
+        searchResults.appendChild(li);
+    });
+}
+
+//Ativa pesquisa ao clicar na lupa
+document.querySelector('.lupa-icon').addEventListener('click', searchStreet);
+
+//Ativa pesquisa ao pressionar Enter no input
+searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') searchStreet();
+});
+
+//Fecha lista se clicar fora
+document.addEventListener('click', function (e) {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.innerHTML = "";
+    }
+});
+
+
 
 // -- Parte do Menu do Usuário -- //
 

@@ -29,7 +29,7 @@ body {
   margin: 0;
 }
 
-/* ========== MAIN FLEXÍVEL PARA OCUPAR ESPAÇO LIVRE ========== */
+/* ========== MAIN FLEXÍVEL ========== */
 main {
   flex: 1;
   position: relative;
@@ -45,7 +45,7 @@ main {
   color: rgb(27, 36, 163);
 }
 
-/* ========== BARRA DE PESQUISA ========== */
+/* -- Personalização da Barra de Pesquisa -- */
 .div-pesquisa {
   width: 100%;
   max-width: 300px;
@@ -55,6 +55,7 @@ main {
   display: flex;
   align-items: center;
   padding: 1px 8px;
+  position: relative;
 }
 
 .div-pesquisa input {
@@ -74,7 +75,37 @@ main {
   cursor: pointer;
 }
 
-/* ========== LOGOTIPO EM TEXTO OU IMAGEM ========== */
+/* -- Dropdown para a Barra de Pesquisa */
+.options-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cada item do dropdown */
+.options-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Hover nos itens */
+.options-list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* ========== LOGOTIPO ========== */
 .logo-img {
   height: 50px;
   object-fit: contain;
@@ -147,7 +178,7 @@ main {
   object-fit: contain;
 }
 
- /* Link para acessar o menu de empresa */
+/* Link para acessar o menu de empresa */
 #link-empresa {
   font-size: 20px;
   font-weight: bold;
