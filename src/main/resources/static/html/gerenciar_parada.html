@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciar Parada</title>
+  <link rel="stylesheet" href="/css/gerenciar.css">
+  <link rel="shortcut icon" href="/IMAGES/logo_ico.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+  </style>
+</head>
+
+<body>
+  <h2>Gerenciar Paradas</h2>
+
+  <div class="actions">
+    <!-- Botão para pesquisar pela identificação da parada  -->
+    <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite a linha...">
+    <button onclick="searchVehicle()" class="botao-personalizado">🔍 Buscar</button>
+
+    <!-- Botão para listar todos -->
+    <button onclick="loadAll()" class="botao-personalizado">📋 Listar Todos</button>
+
+    <!-- Botão de excluir selecionados -->
+    <button onclick="deleteSelected()" class="botao-personalizado">🗑️ Excluir Selecionados</button>
+
+    <!-- Botão de editar -->
+    <button onclick="editSelected()" class="botao-personalizado">✏️ Editar Selecionado</button>
+
+    <!-- Para retornar ao menu -->
+    <button onclick="menuReturn()" class="botao-personalizado">⬅️ Retornar ao menu</button>
+  </div>
+
+  <table id="tripsTable">
+    <thead>
+      <tr>
+        <th>Linha</th>
+        <th>Veículo</th>
+        <th>Horário de Saída</th>
+        <th>Horário de Chegada</th>
+        <th>Selecionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Os itinerários aparecem aqui -->
+    </tbody>
+  </table>
+
+  <!-- Modal de Edição -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Editar Itinerário</h3>
+      <form id="form-edit">
+        <input type="hidden" id="input_edit_id">
+
+        <label for="input_edit_route">Linha</label>
+        <input type="text" id="input_edit_route" readonly>
+        <input type="hidden" id="input_edit_route_id">
+
+        <div>
+          <span>Veículo</span>
+          <input type="text" id="input_edit_vehicle" autocomplete="off">
+          <ul id="vehicle-options" class="options-list"></ul>
+        </div>
+
+        <label for="input_edit_departureTime">Horário de Saída</label>
+        <input type="text" id="input_edit_departureTime" required>
+
+        <label for="input_edit_arrivalTime">Horário de Chegada</label>
+        <input type="text" id="input_edit_arrivalTime" required>
+
+        <div class="modal-actions">
+          <button type="button" onclick="closeModal()" class="botao-personalizado-cancelar">Cancelar</button>
+          <button type="submit" class="botao-personalizado">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Imagem de fundo da tela -->
+  <div class="marca-dagua">
+    <img src="/IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
+  </div>
+
+  <script src="/js/gerenciar_itinerario.js"></script>
+</body>
+
+</html>

@@ -102,8 +102,14 @@ public class TripController {
     public TripResponseDTO editTrip(@PathVariable Integer idTrip, @RequestBody TripRequestDTO request) {
         Trip trip = tripRepository.findById(idTrip).orElseThrow();
 
-        trip.setRoute(new Route(request.getRouteId()));
-        trip.setVehicle(request.getVehicleId() != null ? new Vehicle(request.getVehicleId()) : null);
+        Route route = routeRepository.findById(request.getRouteId()).orElseThrow();
+        trip.setRoute(route);
+        if (request.getVehicleId() != null) {
+            Vehicle vehicle = vehicleRepository.findById(request.getVehicleId()).orElseThrow();
+            trip.setVehicle(vehicle);
+        } else {
+            trip.setVehicle(null);
+        }
         trip.setDepartureTime(request.getDepartureTime());
         trip.setArrivalTime(request.getArrivalTime());
 

@@ -12,8 +12,10 @@ public class TripResponseDTO {
     private Integer id;
     private Integer routeId;
     private String routeName;
+    private String routeCode;
     private String routeColor;
     private Integer vehicleId;
+    private String vehicleRegistrationPlate;
     private LocalTime departureTime;
     private LocalTime arrivalTime;
     private List<StopTimeResponseDTO> stopTimes;
@@ -22,8 +24,15 @@ public class TripResponseDTO {
         this.id = trip.getId();
         this.routeId = trip.getRoute().getId();
         this.routeName = trip.getRoute().getName();
+        this.routeCode = trip.getRoute().getCode();
         this.routeColor = trip.getRoute().getColor().getCode(); //getCode é pra pegar o Hexadecimal da cor no Enum
-        this.vehicleId = trip.getVehicle() != null ? trip.getVehicle().getId() : null;
+        if (trip.getVehicle() != null) {
+            this.vehicleId = trip.getVehicle().getId();
+            this.vehicleRegistrationPlate = trip.getVehicle().getRegistrationPlate();
+        } else {
+            this.vehicleId = null;
+            this.vehicleRegistrationPlate = null;
+        }
         this.departureTime = trip.getDepartureTime();
         this.arrivalTime = trip.getArrivalTime();
         this.stopTimes = new ArrayList<>();
@@ -73,5 +82,13 @@ public class TripResponseDTO {
 
     public List<StopTimeResponseDTO> getStopTimes() {
         return stopTimes;
+    }
+
+    public String getRouteCode() {
+        return routeCode;
+    }
+
+    public String getVehicleRegistrationPlate() {
+        return vehicleRegistrationPlate;
     }
 }

@@ -5,9 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciar Itinerário</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/gerenciar.css">
   <link rel="shortcut icon" href="/IMAGES/logo_ico.ico" type="image/x-icon">
   <style>
@@ -20,20 +17,20 @@
 
   <div class="actions">
     <!-- Botão para pesquisar pela identificação do itinerário  -->
-    <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite o itinerário...">
+    <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite a linha...">
     <button onclick="searchVehicle()" class="botao-personalizado">🔍 Buscar</button>
 
     <!-- Botão para listar todos -->
-    <button onclick="loadAll()" class="barra-pesquisa">📋 Listar Todos</button>
+    <button onclick="loadAll()" class="botao-personalizado">📋 Listar Todos</button>
 
     <!-- Botão de excluir selecionados -->
-    <button onclick="deleteSelected()" class="barra-pesquisa">🗑️ Excluir Selecionados</button>
+    <button onclick="deleteSelected()" class="botao-personalizado">🗑️ Excluir Selecionados</button>
 
     <!-- Botão de editar -->
-    <button onclick="editSelected()" class="barra-pesquisa">✏️ Editar Selecionado</button>
+    <button onclick="editSelected()" class="botao-personalizado">✏️ Editar Selecionado</button>
 
     <!-- Para retornar ao menu -->
-    <button onclick="menuReturn()" class="barra-pesquisa">⬅️ Retornar ao menu</button>
+    <button onclick="menuReturn()" class="botao-personalizado">⬅️ Retornar ao menu</button>
   </div>
 
   <table id="tripsTable">
@@ -43,6 +40,7 @@
         <th>Veículo</th>
         <th>Horário de Saída</th>
         <th>Horário de Chegada</th>
+        <th>Selecionar</th>
       </tr>
     </thead>
     <tbody>
@@ -58,15 +56,19 @@
         <input type="hidden" id="input_edit_id">
 
         <label for="input_edit_route">Linha</label>
-        <input type="text" id="input_edit_route" required>
+        <input type="text" id="input_edit_route" readonly>
+        <input type="hidden" id="input_edit_route_id">
 
-        <label for="input_edit_vehicle">Veículo</label>
-        <input type="text" id="input_edit_vehicle" required>
+        <div>
+          <span>Veículo</span>
+          <input type="text" id="input_edit_vehicle" autocomplete="off">
+          <ul id="vehicle-options" class="options-list"></ul>
+        </div>
 
         <label for="input_edit_departureTime">Horário de Saída</label>
         <input type="text" id="input_edit_departureTime" required>
 
-        <label for="input_edit_arrivalTime">Horário de Saída</label>
+        <label for="input_edit_arrivalTime">Horário de Chegada</label>
         <input type="text" id="input_edit_arrivalTime" required>
 
         <div class="modal-actions">
