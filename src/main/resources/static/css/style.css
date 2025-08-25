@@ -205,7 +205,8 @@ select {
     display: none;
     position: absolute;
     background: white;
-    width: 200px;
+    width: 465px;
+    border-radius: 8px;
 }
 
 .options-list li {
