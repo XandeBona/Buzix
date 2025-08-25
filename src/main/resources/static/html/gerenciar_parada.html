@@ -17,8 +17,8 @@
 
   <div class="actions">
     <!-- Botão para pesquisar pela identificação da parada  -->
-    <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite a linha...">
-    <button onclick="searchVehicle()" class="botao-personalizado">🔍 Buscar</button>
+    <input type="text" id="input-search" class="barra-pesquisa" placeholder="Digite o ponto...">
+    <button onclick="searchStop()" class="botao-personalizado">🔍 Buscar</button>
 
     <!-- Botão para listar todos -->
     <button onclick="loadAll()" class="botao-personalizado">📋 Listar Todos</button>
@@ -33,43 +33,45 @@
     <button onclick="menuReturn()" class="botao-personalizado">⬅️ Retornar ao menu</button>
   </div>
 
-  <table id="tripsTable">
+  <table id="stoptimesTable">
     <thead>
       <tr>
-        <th>Linha</th>
-        <th>Veículo</th>
-        <th>Horário de Saída</th>
+        <th>Itinerário</th>
+        <th>Ponto de Ônibus</th>
+        <th>Ordem da Parada</th>
         <th>Horário de Chegada</th>
+        <th>Horário de Saída</th>
         <th>Selecionar</th>
       </tr>
     </thead>
     <tbody>
-      <!-- Os itinerários aparecem aqui -->
+      <!-- As paradas aparecem aqui -->
     </tbody>
   </table>
 
   <!-- Modal de Edição -->
   <div id="editModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Editar Itinerário</h3>
+      <h3>Editar Parada</h3>
       <form id="form-edit">
         <input type="hidden" id="input_edit_id">
 
-        <label for="input_edit_route">Linha</label>
-        <input type="text" id="input_edit_route" readonly>
-        <input type="hidden" id="input_edit_route_id">
+        <label for="input_edit_trip">Itinerário</label>
+        <input type="text" id="input_edit_trip" readonly>
+        <input type="hidden" id="input_edit_trip_id">
 
-        <div>
-          <span>Veículo</span>
-          <input type="text" id="input_edit_vehicle" autocomplete="off">
-          <ul id="vehicle-options" class="options-list"></ul>
-        </div>
+        <label for="input_edit_busstop">Ponto de Ônibus</label>
+        <input type="text" id="input_edit_busstop" readonly>
+        <input type="hidden" id="input_edit_busstop_id">
 
-        <label for="input_edit_departureTime">Horário de Saída</label>
-        <input type="text" id="input_edit_departureTime" required>
+        <label for="input_edit_stopSequence">Ordem da Parada</label>
+        <input type="text" id="input_edit_stopSequence" required>
 
         <label for="input_edit_arrivalTime">Horário de Chegada</label>
         <input type="text" id="input_edit_arrivalTime" required>
+
+        <label for="input_edit_departureTime">Horário de Saída</label>
+        <input type="text" id="input_edit_departureTime" required>
 
         <div class="modal-actions">
           <button type="button" onclick="closeModal()" class="botao-personalizado-cancelar">Cancelar</button>
@@ -84,7 +86,7 @@
     <img src="/IMAGES/imagem_tela_cadastro.png" alt="Logo Buzix">
   </div>
 
-  <script src="/js/gerenciar_itinerario.js"></script>
+  <script src="/js/gerenciar_parada.js"></script>
 </body>
 
 </html>

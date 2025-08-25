@@ -30,7 +30,7 @@ function loadAll() {
 
 //Busca pelo nome do ponto
 function searchBusStop() {
-  const identifier = document.getElementById("searchInput").value.trim();
+  const identifier = document.getElementById("input-search").value.trim();
   if (!identifier) {
     alert("Digite o nome do ponto!");
     return;

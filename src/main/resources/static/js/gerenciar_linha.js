@@ -31,7 +31,7 @@ function loadAll() {
 
 //Busca pelo nome da linha
 function searchRoutes() {
-    const name = document.getElementById("searchInput").value.trim();
+    const name = document.getElementById("input-search").value.trim();
     if (!name) {
         alert("Digite o nome da linha!");
         return;

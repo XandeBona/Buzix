@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TripRepository extends JpaRepository<Trip, Integer> {
     List<Trip> findByRouteId(Integer routeId);
+
+    List<Trip> findByRouteNameStartingWithIgnoreCase(String prefix);
 }

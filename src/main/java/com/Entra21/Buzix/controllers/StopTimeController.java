@@ -3,7 +3,6 @@ package com.Entra21.Buzix.controllers;
 import com.Entra21.Buzix.dtos.StopTimeRequestDTO;
 import com.Entra21.Buzix.dtos.StopTimeResponseDTO;
 import com.Entra21.Buzix.entities.BusStop;
-import com.Entra21.Buzix.entities.Route;
 import com.Entra21.Buzix.entities.StopTime;
 import com.Entra21.Buzix.entities.Trip;
 import com.Entra21.Buzix.repositories.BusStopRepository;
@@ -56,6 +55,14 @@ public class StopTimeController {
     public StopTimeResponseDTO searchStopTimeById(@PathVariable Integer idStopTime) {
         StopTime stopTime = stopTimeRepository.findById(idStopTime).orElseThrow();
         return new StopTimeResponseDTO(stopTime);
+    }
+
+    @GetMapping("/search")
+    public List<StopTimeResponseDTO> searchByBusStopPrefix(@RequestParam String prefix) {
+        List<StopTime> stops = stopTimeRepository.findByBusStopIdentifierStartingWithIgnoreCase(prefix);
+        return stops.stream()
+                .map(StopTimeResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{idStopTime}")

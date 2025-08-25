@@ -13,6 +13,10 @@ public class StopTimeResponseDTO {
     private LocalTime arrivalTime;
     private LocalTime departureTime;
     private Integer stopSequence;
+    private Integer tripId;
+    private String tripRouteName;
+    private LocalTime tripDepartureTime;
+    private LocalTime tripArrivalTime;
 
     public StopTimeResponseDTO(StopTime stopTime) {
         this.id = stopTime.getId();
@@ -23,6 +27,10 @@ public class StopTimeResponseDTO {
         this.arrivalTime = stopTime.getArrivalTime();
         this.departureTime = stopTime.getDepartureTime();
         this.stopSequence = stopTime.getStopSequence();
+        this.tripId = stopTime.getTrip().getId();
+        this.tripRouteName = stopTime.getTrip().getRoute().getName();
+        this.tripDepartureTime = stopTime.getTrip().getDepartureTime();
+        this.tripArrivalTime = stopTime.getTrip().getArrivalTime();
     }
 
     public Integer getId() {
@@ -55,5 +63,21 @@ public class StopTimeResponseDTO {
 
     public Integer getStopSequence() {
         return stopSequence;
+    }
+
+    public Integer getTripId() {
+        return tripId;
+    }
+
+    public String getTripRouteName() {
+        return tripRouteName;
+    }
+
+    public LocalTime getTripDepartureTime() {
+        return tripDepartureTime;
+    }
+
+    public LocalTime getTripArrivalTime() {
+        return tripArrivalTime;
     }
 }

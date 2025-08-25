@@ -11,4 +11,6 @@ public interface StopTimeRepository extends JpaRepository<StopTime, Integer> {
     List<StopTime> findByBusStopId(Integer idBusStop);
 
     List<StopTime> findByBusStopIdAndTripRouteId(Integer idBusStop, Integer idRoute);
+
+    List<StopTime> findByBusStopIdentifierStartingWithIgnoreCase(String prefix);
 }

@@ -40,7 +40,7 @@ function searchVehicle() {
         return;
     }
 
-    fetch(`/vehicle/search?prefix=${encodeURIComponent(identifier)}`)
+    fetch(`/vehicles/search?prefix=${encodeURIComponent(identifier)}`)
         .then(res => res.json())
         .then(data => renderTable(data))
         .catch(err => console.error("Erro na busca:", err));

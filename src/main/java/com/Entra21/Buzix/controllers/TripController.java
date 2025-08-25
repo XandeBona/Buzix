@@ -3,10 +3,7 @@ package com.Entra21.Buzix.controllers;
 import com.Entra21.Buzix.dtos.StopTimeResponseDTO;
 import com.Entra21.Buzix.dtos.TripRequestDTO;
 import com.Entra21.Buzix.dtos.TripResponseDTO;
-import com.Entra21.Buzix.entities.Route;
-import com.Entra21.Buzix.entities.StopTime;
-import com.Entra21.Buzix.entities.Trip;
-import com.Entra21.Buzix.entities.Vehicle;
+import com.Entra21.Buzix.entities.*;
 import com.Entra21.Buzix.repositories.RouteRepository;
 import com.Entra21.Buzix.repositories.StopTimeRepository;
 import com.Entra21.Buzix.repositories.TripRepository;
@@ -97,6 +94,13 @@ public class TripController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/search")
+    public List<TripResponseDTO> searchByRoutePrefix(@RequestParam String prefix) {
+        List<Trip> trips = tripRepository.findByRouteNameStartingWithIgnoreCase(prefix);
+        return trips.stream()
+                .map(TripResponseDTO::new)
+                .collect(Collectors.toList());
+    }
 
     @PutMapping("/{idTrip}")
     public TripResponseDTO editTrip(@PathVariable Integer idTrip, @RequestBody TripRequestDTO request) {

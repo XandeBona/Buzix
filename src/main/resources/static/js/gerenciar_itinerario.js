@@ -31,7 +31,7 @@ function loadAll() {
 
 //Busca itinerário por rota
 function searchTrip() {
-    const routeName = document.getElementById("searchInput").value.trim();
+    const routeName = document.getElementById("input-search").value.trim();
     if (!routeName) {
         alert("Digite o nome ou código da rota!");
         return;
