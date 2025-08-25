@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.Date;
 
 @Component
@@ -13,7 +14,7 @@ public class JWTService {
     private final String SECRET = "5v9gBzX97KfLu0n8Rm1sEtWqYaVx0ZdCJhULuOFiPkGTvNMR";
 
     public String generateToken(UserDetails userDetails) {
-        //Pega a role principal do usuário
+        //Pega a role do usuário
         String role = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .findFirst()
@@ -23,7 +24,7 @@ public class JWTService {
                 .setSubject(userDetails.getUsername())
                 .claim("role", role) // adiciona a role ao token
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hora
+                .setExpiration(new Date(System.currentTimeMillis() + Duration.ofDays(7).toMillis())) // 7 dias
                 .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }

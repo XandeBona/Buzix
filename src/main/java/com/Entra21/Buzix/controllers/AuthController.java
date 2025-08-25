@@ -17,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -61,7 +63,7 @@ public class AuthController {
                 .httpOnly(true)
                 .secure(false) // true se um dia for usar HTTPS
                 .path("/")
-                .maxAge(60 * 60)
+                .maxAge(Duration.ofDays(7))
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
