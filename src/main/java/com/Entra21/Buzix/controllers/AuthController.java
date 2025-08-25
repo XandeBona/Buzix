@@ -15,10 +15,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -38,6 +35,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public RegisterResponseDTO createUser (@RequestBody User user) {
+        //Valida se o e-mail já está cadastrado no bando de dados
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("E-mail já está cadastrado!");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
         User saved = userRepository.save(user);
@@ -86,4 +87,11 @@ public class AuthController {
 
         return ResponseEntity.noContent().build();
     }
+
+    //Para validar se o e-mail já está sendo utilizado
+    @GetMapping("/check-email")
+    public boolean checkEmail(@RequestParam String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 }

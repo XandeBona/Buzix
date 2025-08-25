@@ -37,17 +37,34 @@ function registrarUsuario() {
     return;
   }
 
-  fetch("/auth/register", {
-    method: "POST",
-    body: JSON.stringify({ userName, email, password }),
-    headers: { "Content-Type": "application/json" }
-  })
+  //Valida se o e-mail já está em uso
+  fetch(`/auth/check-email?email=${encodeURIComponent(email)}`)
     .then(res => {
+      if (!res.ok) throw new Error("Erro ao verificar e-mail");
+      return res.json();
+    })
+    .then(exists => {
+      if (exists) {
+        alert("Esse e-mail já está em uso!");
+        return;
+      }
+
+      //Se e-mail não estiver sendo utilizado
+      return fetch("/auth/register", {
+        method: "POST",
+        body: JSON.stringify({ userName, email, password }),
+        headers: { "Content-Type": "application/json" }
+      });
+    })
+    .then(res => {
+      if (!res) return;
       if (!res.ok) throw new Error("Erro no registro");
       return res.json();
     })
     .then(response => {
-      window.location.href = "/html/login.html"; 
+      if (response) {
+        window.location.href = "/html/login.html";
+      }
     })
     .catch(err => {
       alert("Erro ao registrar usuário");
@@ -56,8 +73,8 @@ function registrarUsuario() {
 }
 
 function setupEvents() {
-  const form = document.querySelector('form');
-  form.addEventListener('submit', function(event) {
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
     confereSenha();
   });
