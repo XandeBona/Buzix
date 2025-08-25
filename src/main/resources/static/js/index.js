@@ -88,12 +88,11 @@ let iconOptions = {
 };
 
 let busStopBigIcon = L.icon({
-    iconUrl: "/IMAGES/buzix_logo2.png",
-    iconSize: [130, 75],
+    iconUrl: "/IMAGES/buzix_logo2_alter.png",
+    iconSize: [132, 77],
     iconAnchor: [65, 75],
-    tooltipAnchor: [0, -69] //Altera a altura do POP-UP fixo
+    tooltipAnchor: [0, -69], //Altera a altura do POP-UP fixo
 });
-
 
 
 // -- Parte de mostrar as rotas no mapa -- //
