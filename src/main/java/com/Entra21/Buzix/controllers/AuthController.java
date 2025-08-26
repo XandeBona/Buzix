@@ -58,12 +58,13 @@ public class AuthController {
 
         String token = jwtService.generateToken(user);
 
-        //cria cookie HttpOnly
+        //Cria cookie HttpOnly
         ResponseCookie cookie = ResponseCookie.from("jwt", token)
                 .httpOnly(true)
-                .secure(false) // true se um dia for usar HTTPS
+                .secure(false) //True se um dia for usar HTTPS
                 .path("/")
                 .maxAge(Duration.ofDays(7))
+                .sameSite("Strict") //Mantém o cookie apenas dentro do site e não o "leva" para site terceiros
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
@@ -78,14 +79,16 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Void> logout (HttpServletResponse response) {
-        Cookie cookie = new Cookie("jwt", null);
-        cookie.setHttpOnly(true);
-        cookie.setSecure(false); // true se um dia for usar HTTPS
-        cookie.setPath("/");
-        cookie.setMaxAge(0);
+    public ResponseEntity<Void> logout(HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from("jwt", "")
+                .httpOnly(true)
+                .secure(false) //True se usar HTTPS
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
 
-        response.addCookie(cookie);
+        response.setHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
         return ResponseEntity.noContent().build();
     }

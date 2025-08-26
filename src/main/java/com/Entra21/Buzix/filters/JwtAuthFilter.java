@@ -55,17 +55,22 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            try {
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-            if (jwtUtil.isTokenValid(token, userDetails)) {
-                String role = jwtUtil.extractRole(token);
-                SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
+                if (jwtUtil.isTokenValid(token, userDetails)) {
+                    String role = jwtUtil.extractRole(token);
+                    SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
 
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, Collections.singleton(authority));
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(userDetails, null, Collections.singleton(authority));
 
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            } catch (Exception e) {
+                //Se o token for inválido, ignora e segue como anônimo (usado para as trocas de email/senha de usuário)
+                logger.warn("JWT presente mas usuário não encontrado ou inválido: " + e.getMessage());
             }
         }
 

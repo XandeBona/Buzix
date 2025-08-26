@@ -9,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,10 +30,11 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .csrf().disable()
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //Desabilita o JSESSIONID
                 .authorizeHttpRequests()
 
                 //Visitante e usuários logados podem acessar
-                .requestMatchers("/auth/login", "/auth/register", "/auth/logout", "/auth/check-email",
+                .requestMatchers("/", "/auth/login", "/auth/register", "/auth/logout", "/auth/check-email",
                         "/html/alterar_senha.html",
                         "/html/cadastro.html",
                         "/html/login.html",
