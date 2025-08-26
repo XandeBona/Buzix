@@ -33,6 +33,17 @@ function realizarLogin(email, password) {
         });
 }
 
+function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+    const icon = button.querySelector('i');
+    const isPassword = input.type === "password";
+  
+    input.type = isPassword ? "text" : "password";
+  
+    icon.classList.toggle('fa-eye', !isPassword);
+    icon.classList.toggle('fa-eye-slash', isPassword);
+  }
+
 function setupEvents() {
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {

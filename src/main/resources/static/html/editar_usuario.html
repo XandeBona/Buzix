@@ -7,6 +7,7 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/IMAGES/logo_ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Editar Dados</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
@@ -41,14 +42,23 @@
                     <div class="input-box">
                         <span>Senha atual</span>
                         <input id="input_current_password" type="password" placeholder="Senha atual">
+                        <button type="button" class="toggle-password" onclick="togglePassword('input_current_password', this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                     <div class="input-box">
                         <span>Nova senha</span>
                         <input id="input_new_password" type="password" placeholder="Nova senha">
+                        <button type="button" class="toggle-password" onclick="togglePassword('input_new_password', this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                     <div class="input-box">
                         <span>Confirmar nova senha</span>
                         <input id="input_confirm_password" type="password" placeholder="Confirmar Nova senha">
+                        <button type="button" class="toggle-password" onclick="togglePassword('input_confirm_password', this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                     <div class="remember">
                         <!-- <label>
