@@ -206,14 +206,13 @@ select {
     font-size: 16px;
 }
 
-
-
 .toggle-password:hover {
     color: #333;
 }
 
 .toggle-password i {
-    pointer-events: none; /* permite clicar no botão mesmo sobre o ícone */
+    pointer-events: none;
+    /* permite clicar no botão mesmo sobre o ícone */
 }
 
 
@@ -236,9 +235,12 @@ select {
     overflow-y: auto;
     display: none;
     position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background: white;
-    width: 465px;
     border-radius: 8px;
+    z-index: 100;
 }
 
 input[type="file"] {
@@ -247,7 +249,8 @@ input[type="file"] {
 
 .custom-file-upload {
     display: inline-block;
-    background-color: #a3f71a; /* Cor dos outros botões */
+    background-color: #a3f71a;
+    /* Cor dos outros botões */
     color: white;
     padding: 10px 15px;
     cursor: pointer;
@@ -256,7 +259,6 @@ input[type="file"] {
     text-align: center;
     margin-right: 10px;
 }
-
 
 .options-list li {
     padding: 5px;
