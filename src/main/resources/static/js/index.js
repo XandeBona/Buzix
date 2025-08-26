@@ -191,11 +191,11 @@ function renderRoutesPopup(marker, p, routes) {
         return;
     }
 
-    let content = `<b>Ponto:</b> ${p.identifier}<br><br><b>Linhas:</b><ul>`;
+    let content = `<b>Ponto:</b> ${p.identifier}<br><br><b>Linhas:</b><ul class="routes-list">`;
     routes.forEach(r => {
-        content += `<li>
+        content += `<li class="routes-li">
             <a href='#' class='route-link' data-route='${r.id}' data-busstop='${p.id}'>
-                ${r.code} - ${r.name}<br>${r.description}<br>
+                ${r.name} | ${r.description}<br>
             </a></li>`;
     });
     content += "</ul>";
@@ -210,9 +210,9 @@ function renderRoutesPopup(marker, p, routes) {
 function renderTripsPopup(marker, trips) {
     if (!trips.length) return;
 
-    let tripContent = "<b>Itinerários:</b><ul>";
+    let tripContent = `<b>Itinerários:</b><ul class="routes-list">`;
     trips.forEach(t => {
-        tripContent += `<li><a href='#' class='trip-link' data-id='${t.id}'>
+        tripContent += `<li class="routes-li"><a href='#' class='trip-link' data-id='${t.id}'>
             Saída ${t.departureTime.slice(0, 5)} - Chegada ${t.arrivalTime.slice(0, 5)}</a></li>`;
     });
     tripContent += "</ul>";

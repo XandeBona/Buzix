@@ -144,6 +144,17 @@ main {
   height: 86vh;
 }
 
+/* Personalização do POP-UP dos markers */
+.routes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.routes-li {
+  margin-bottom: 5px;
+}
+
 /* ========== Card de Logout ========== */
 /* Card base */
 #card-logout,
