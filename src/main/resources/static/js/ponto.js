@@ -43,4 +43,5 @@ function setupEvents() {
     });
 }
 
+
 window.addEventListener("load", setupEvents);
