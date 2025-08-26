@@ -130,7 +130,7 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
 
     const key = "trip_" + tripId;
 
-    // Verifica cache
+    //Verifica cache
     let cached = getRouteFromCache(key);
     if (cached) {
         L.polyline(cached, { color, weight: 4 }).addTo(tripLayerGroup);
@@ -142,17 +142,32 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
     //Divide em segmentos de 5 pontos (GraphHopper não aceita mais que 5 pontos no plano Free)
     for (let i = 0; i < latlngs.length; i += 4) {
         let segment = latlngs.slice(i, i + 5);
-        if (i > 0) segment.unshift(latlngs[i]);
 
         let urlPoints = segment.map(c => `point=${c[0]},${c[1]}`).join("&");
 
         try {
-            // Aqui a chamada vai para o backend, que tem a key segura
+            //Aqui a chamada vai para o backend, que tem a key segura
             let res = await fetch(`/api/route?${urlPoints}`, { credentials: "include" });
             let data = await res.json();
 
             if (data.paths && data.paths[0]) {
                 let coords = data.paths[0].points.coordinates.map(c => [c[1], c[0]]);
+
+                if (allCoords.length > 0) {
+                    //Garante que a junção dos segmentos não fique fora de ordem e sem duplicação
+                    const lastAll = allCoords[allCoords.length - 1];
+                    const firstSeg = coords[0];
+                    const lastSeg = coords[coords.length - 1];
+
+                    if (firstSeg[0] === lastAll[0] && firstSeg[1] === lastAll[1]) {
+                        coords.shift(); // remove ponto duplicado
+                    } else if (lastSeg[0] === lastAll[0] && lastSeg[1] === lastAll[1]) {
+                        //Se o marcador veio invertido, inverte
+                        coords.reverse();
+                        coords.shift(); //Remove duplicado após reversão
+                    }
+                }
+
                 allCoords.push(...coords);
             }
         } catch (err) {
@@ -160,6 +175,7 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
         }
     }
 
+    //Salva no cache e adiciona ao mapa
     if (allCoords.length > 0) {
         saveRouteToCache(key, allCoords);
         L.polyline(allCoords, { color, weight: 4 }).addTo(tripLayerGroup);
