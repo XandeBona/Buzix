@@ -269,7 +269,12 @@ input[type="file"] {
     background: #eee;
 }
 
-@media (max-width: 868px) {
+@media (max-width: 768px) {
+    .container-login {
+        min-height: 100vh;
+        height: auto;
+    }
+
     .container-login .img-box {
         display: none;
     }
@@ -290,7 +295,7 @@ input[type="file"] {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
     .container-login .content-box .form-box .remember {
         flex-wrap: wrap;
     }
