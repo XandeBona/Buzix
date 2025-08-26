@@ -185,6 +185,38 @@ select {
     font-size: 22px;
 }
 
+.senha-box {
+    position: relative;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box .toggle-password {
+    position: absolute;
+    top: 75%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #555;
+    font-size: 16px;
+}
+
+
+
+.toggle-password:hover {
+    color: #333;
+}
+
+.toggle-password i {
+    pointer-events: none; /* permite clicar no botão mesmo sobre o ícone */
+}
+
+
 /* Imagens de login rede sociais */
 .form-box .ul li img {
     width: 40px;
@@ -208,6 +240,23 @@ select {
     width: 465px;
     border-radius: 8px;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background-color: #a3f71a; /* Cor dos outros botões */
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 10px;
+}
+
 
 .options-list li {
     padding: 5px;
