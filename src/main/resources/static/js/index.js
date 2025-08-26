@@ -187,7 +187,7 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
 //Renderiza a lista de linhas (routes) em um popup no ponto de ônibus
 function renderRoutesPopup(marker, p, routes) {
     if (!routes.length) {
-        marker.bindPopup("Nenhuma linha passa aqui.").openPopup();
+        marker.bindPopup(`<b>Ponto:</b> ${p.identifier}<br><br>Nenhuma linha passa aqui.`).openPopup();
         return;
     }
 
