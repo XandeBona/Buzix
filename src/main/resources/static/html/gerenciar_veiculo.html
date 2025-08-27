@@ -29,6 +29,9 @@
     <!-- Botão de editar -->
     <button onclick="editSelected()" class="botao-personalizado">✏️ Editar Selecionado</button>
 
+    <!-- Botão de editar -->
+    <button onclick="chatSelected()" class="botao-personalizado">🔧 Manutenções</button>
+
     <!-- Para retornar ao menu -->
     <button onclick="menuReturn()" class="botao-personalizado">⬅️ Retornar ao menu</button>
   </div>
@@ -89,6 +92,66 @@
         <div class="modal-actions">
           <button type="button" onclick="closeModal()" class="botao-personalizado-cancelar">Cancelar</button>
           <button type="submit" class="botao-personalizado">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal do ChatGPT -->
+  <div id="chatModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Validação de Manutenção</h3>
+      <form id="form-chat">
+        <input type="hidden" id="chat_vehicle_id">
+
+        <!-- Selecionar a pergunta para o ChatGPT -->
+        <label for="chat_type">Tipo de manutenção:</label>
+        <select id="chat_type" name="chat_type" onchange="updateChatFields()" required>
+          <option value="" disabled selected>Selecione uma opção...</option>
+          <option value="troca_oleo">Próxima troca de óleo</option>
+          <option value="pneus">Troca / Revisão de pneus</option>
+          <option value="revisao_geral">Revisão geral</option>
+        </select>
+
+        <!-- Campos dinâmicos (troca de óleo) -->
+        <div id="fields_troca_oleo" class="chat-fields hidden">
+          <label for="input_data_oleo">Data da última troca de óleo</label>
+          <input type="date" id="input_data_oleo">
+
+          <label for="input_km_oleo">Km da última troca</label>
+          <input type="number" id="input_km_oleo">
+
+          <label for="input_km_atual_oleo">Km atual do veículo</label>
+          <input type="number" id="input_km_atual_oleo">
+        </div>
+
+        <!-- Campos dinâmicos (pneus) -->
+        <div id="fields_pneus" class="chat-fields hidden">
+          <label for="input_data_pneu">Data da última troca/revisão de pneus</label>
+          <input type="date" id="input_data_pneu">
+
+          <label for="input_km_pneu">Km da última troca de pneus</label>
+          <input type="number" id="input_km_pneu">
+
+          <label for="input_km_atual_pneus">Km atual do veículo</label>
+          <input type="number" id="input_km_atual_pneus">
+        </div>
+
+        <!-- Campos dinâmicos (revisão geral) -->
+        <div id="fields_revisao_geral" class="chat-fields hidden">
+          <label for="input_data_compra">Data da compra</label>
+          <input type="date" id="input_data_compra">
+
+          <label for="input_km_atual_revisao">Km atual do veículo</label>
+          <input type="number" id="input_km_atual_revisao">
+        </div>
+
+        <!-- Resultado do ChatGPT -->
+        <div id="chatResult" style="margin-top:15px; white-space:pre-line;"></div>
+
+        <div class="modal-actions">
+          <button type="button" onclick="closeChatModal()" class="botao-personalizado-cancelar">Ok</button>
+          <button type="submit" class="botao-personalizado">Consultar</button>
         </div>
       </form>
     </div>

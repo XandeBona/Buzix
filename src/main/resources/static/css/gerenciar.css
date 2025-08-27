@@ -124,6 +124,10 @@ th {
   display: none;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Caixa de edição */
 .modal-content {
   background: #fff;
@@ -147,6 +151,14 @@ th {
 }
 
 .modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;

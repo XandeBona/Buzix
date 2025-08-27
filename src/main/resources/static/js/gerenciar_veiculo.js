@@ -138,6 +138,111 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
         .catch(err => console.error("Erro ao editar:", err));
 });
 
+
+//Valida manutenção do veículo com o ChatGPT (apenas 1 por vez)
+function chatSelected() {
+    const selected = Array.from(document.querySelectorAll("tbody input:checked"))
+        .map(cb => cb.value);
+
+    if (selected.length === 0) {
+        alert("Selecione pelo menos 1 veículo!");
+        return;
+    }
+
+    if (selected.length > 1) {
+        alert("Selecione somente 1 veículo para validar!");
+        return;
+    }
+
+    const id = selected[0];
+
+    fetch(`/vehicles/${id}`)
+        .then(res => res.json())
+        .then(vehicle => {
+            //Salva o ID do veículo no campo hidden
+            document.getElementById("chat_vehicle_id").value = vehicle.id;
+
+            //Abre o modal de manutenção
+            document.getElementById("chatModal").classList.remove("hidden");
+
+            //Sempre reseta o resultado anterior
+            document.getElementById("chatResult").innerText = "";
+        })
+        .catch(err => console.error("Erro ao buscar veículo:", err));
+}
+
+//Fecha modal de manutenção
+function closeChatModal() {
+    document.getElementById("chatModal").classList.add("hidden");
+}
+
+//Mostra/esconde os campos conforme o tipo escolhido
+function updateChatFields() {
+    const type = document.getElementById("chat_type").value;
+
+    //Esconde todos os inputs dinâmicos
+    document.querySelectorAll(".chat-fields").forEach(div => div.classList.add("hidden"));
+    //Mostra apenas os inputs do select escolhido
+    const fields = document.getElementById("fields_" + type);
+    if (fields) fields.classList.remove("hidden");
+}
+
+//Trás o formulário de manutenção
+document.getElementById("form-chat").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const id = document.getElementById("chat_vehicle_id").value;
+    const type = document.getElementById("chat_type").value;
+
+    //Primeiro pega o veículo no backend
+    fetch(`/vehicles/${id}`)
+        .then(res => res.json())
+        .then(vehicle => {
+            let payload = {
+                type,
+                make: vehicle.make,
+                model: vehicle.model,
+                year: vehicle.year,
+                fuelType: vehicle.fuelType
+            };
+
+            if (type === "troca_oleo") {
+                payload.dataOleo = document.getElementById("input_data_oleo").value;
+                payload.kmOleo = document.getElementById("input_km_oleo").value;
+                payload.kmAtual = document.getElementById("input_km_atual_oleo").value;
+            } else if (type === "pneus") {
+                payload.dataPneu = document.getElementById("input_data_pneu").value;
+                payload.kmPneu = document.getElementById("input_km_pneu").value;
+                payload.kmAtual = document.getElementById("input_km_atual_pneus").value;
+            } else if (type === "revisao_geral") {
+                payload.dataCompra = document.getElementById("input_data_compra").value;
+                payload.kmAtual = document.getElementById("input_km_atual_revisao").value;
+            }
+
+            document.getElementById("chatResult").innerText = "⏳ Consultando recomendações...";
+
+            //Faz a chamada pro backend ChatController
+            return fetch(`/api/chat/maintenance`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Erro no backend: " + res.status);
+            }
+            return res.text();
+        })
+        .then(answer => {
+            document.getElementById("chatResult").innerText = answer;
+        })
+        .catch(err => {
+            console.error("Erro ao consultar manutenção:", err);
+            document.getElementById("chatResult").innerText = "Erro ao consultar manutenção";
+        });
+});
+
 function menuReturn() {
-    window.location.href = "/html/empresa.html"
+    window.location.href = "/html/empresa.html";
 }
