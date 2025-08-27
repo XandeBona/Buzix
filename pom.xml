@@ -119,7 +119,7 @@
 		</profile>
 
 		<profile>
-			<id>prod</id>
+			<id>production</id>
 			<properties>
 				<spring.profiles.active>prod</spring.profiles.active>
 			</properties>
