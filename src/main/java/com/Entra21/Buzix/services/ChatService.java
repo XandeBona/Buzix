@@ -15,10 +15,15 @@ public class ChatService {
 
     private final OpenAIClient client;
 
-    public ChatService(@Value("${openai.api.key}") String apiKey) {
-        this.client = OpenAIOkHttpClient.builder()
-                .apiKey(apiKey)
-                .build();
+    public ChatService(@Value("${openai.api.key:}") String apiKey) {
+        if (apiKey == null || apiKey.isBlank()) {
+            System.out.println("OPENAI_API_KEY não configurada, IA desativada.");
+            this.client = null;
+        } else {
+            this.client = OpenAIOkHttpClient.builder()
+                    .apiKey(apiKey)
+                    .build();
+        }
     }
 
     public String askChat(ChatRequestDTO req) {
