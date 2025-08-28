@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/IMAGES/logo_ico.ico" type="image/x-icon">
     <title>Cadastro de Ponto</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> <!-- JSZip para o envio de pontos em massa -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- JSZip para o envio de pontos em massa -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
     </style>
@@ -51,11 +52,14 @@
                         <input type="submit" value="Salvar">
                     </div>
                 </form>
+
+                <!-- Form para cadastrar os pontos em massa (com arquivo KMZ) -->
                 <form>
                     <h2 id="file-title">Cadastrar em Massa</h2>
+
                     <!-- Importar arquivo KMZ -->
                     <div class="input-box">
-                        <span>Arquivo KMZ</span><br/>
+                        <span>Arquivo KMZ</span><br />
                         <label for="file" class="custom-file-upload">Escolher Arquivo</label>
                         <input type="file" id="file" name="kmz" />
                         <span id="file-name">Nenhum arquivo escolhido</span>
@@ -66,6 +70,7 @@
                         <input type="submit" value="Enviar arquivo">
                     </div>
                 </form>
+
                 <!-- Retornar ao menu -->
                 <h3 id="sem_login">
                     <a href="/html/empresa.html">Retornar ao menu</a>
@@ -73,6 +78,7 @@
             </div>
         </div>
     </div>
+
     <script src="/js/ponto.js"></script>
 </body>
 

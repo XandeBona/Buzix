@@ -32,40 +32,52 @@
                         <span>Nome</span>
                         <input id="input_name" type="text" placeholder="Nome completo">
                     </div>
+
                     <!-- Input para email do usuário -->
                     <div class="input-box">
                         <span>E-mail</span>
                         <input id="input_email" type="email" placeholder="@mail.com">
                     </div>
+
                     <!-- Input para senha do usuário-->
                     <div class="input-box">
                         <span>Senha atual</span>
                         <input id="input_current_password" type="password" placeholder="Senha atual">
-                        <button type="button" class="toggle-password" onclick="togglePassword('input_current_password', this)">
+                        <button type="button" class="toggle-password"
+                            onclick="togglePassword('input_current_password', this)">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
+
+                    <!-- Input para a nova senha-->
                     <div class="input-box">
                         <span>Nova senha</span>
                         <input id="input_new_password" type="password" placeholder="Nova senha">
-                        <button type="button" class="toggle-password" onclick="togglePassword('input_new_password', this)">
+                        <button type="button" class="toggle-password"
+                            onclick="togglePassword('input_new_password', this)">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
+
+                    <!-- Input para confirmar a nova senha-->
                     <div class="input-box">
                         <span>Confirmar nova senha</span>
                         <input id="input_confirm_password" type="password" placeholder="Confirmar Nova senha">
-                        <button type="button" class="toggle-password" onclick="togglePassword('input_confirm_password', this)">
+                        <button type="button" class="toggle-password"
+                            onclick="togglePassword('input_confirm_password', this)">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
+
+                    <!-- Espaço para o link "Esqueceu a senha" -->
                     <div class="remember">
                         <!-- <label>
                             <input type="checkbox"> Lembrar-me
                         </label> -->
                         <a href="/html/alterar_senha.html">Esqueceu a senha?</a>
                     </div>
-                    <!-- Botão de entrar -->
+
+                    <!-- Botão para salvar a edição -->
                     <div class="input-box">
                         <input type="submit" id="login_button" value="Salvar edição">
                     </div>
