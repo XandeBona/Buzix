@@ -25,6 +25,7 @@ public class BusStopController {
         this.stopTimeRepository = stopTimeRepository;
     }
 
+    //Para registro
     @PostMapping("/register")
     public BusStopResponseDTO createBusStop(@RequestBody BusStopRequestDTO request) {
         BusStop busStop = new BusStop();
@@ -38,6 +39,7 @@ public class BusStopController {
         return new BusStopResponseDTO(busStop);
     }
 
+    //Para listar todos
     @GetMapping("/all")
     public List<BusStopResponseDTO> getAllBusStops() {
         List<BusStop> busStops = busStopRepository.findAll();
@@ -54,6 +56,7 @@ public class BusStopController {
         return new BusStopResponseDTO(busStops);
     }
 
+    //Para pesquisa por nome
     @GetMapping("/search")
     public List<BusStopResponseDTO> searchBusStopsStartingWith(@RequestParam String prefix) {
         List<BusStop> busStops = busStopRepository.findByIdentifierStartingWithIgnoreCase(prefix);
@@ -62,6 +65,7 @@ public class BusStopController {
                 .collect(Collectors.toList());
     }
 
+    //Para retornar todas as rotas que passam por um ponto de ônibus específico.
     @GetMapping("/{idBusStop}/routes")
     public List<RouteResponseDTO> getRoutesByBusStop(@PathVariable Integer idBusStop) {
         List<StopTime> stopTimes = stopTimeRepository.findByBusStopId(idBusStop);
@@ -75,6 +79,7 @@ public class BusStopController {
                 .collect(Collectors.toList());
     }
 
+    //Para retornar todos os itinerários da linha especificada que passam pelo ponto de ônibus.
     @GetMapping("/{idBusStop}/routes/{idRoute}/trips")
     public List<TripResponseDTO> getTripsByBusStopAndRoute(
             @PathVariable Integer idBusStop,
@@ -91,6 +96,7 @@ public class BusStopController {
                 .collect(Collectors.toList());
     }
 
+    //Para editar o ponto de ônibus
     @PutMapping("/{idBusStop}")
     public BusStopResponseDTO editBusStop(@PathVariable Integer idBusStop, @RequestBody BusStopRequestDTO request) {
         BusStop busStop = busStopRepository.findById(idBusStop).orElseThrow();
@@ -104,6 +110,7 @@ public class BusStopController {
         return new BusStopResponseDTO(busStop);
     }
 
+    //Para deletar o ponto de ônibus
     @DeleteMapping("/{idBusStop}")
     public BusStopResponseDTO removeBusStop(@PathVariable Integer idBusStop) {
         BusStop busStop = busStopRepository.findById(idBusStop).orElseThrow();

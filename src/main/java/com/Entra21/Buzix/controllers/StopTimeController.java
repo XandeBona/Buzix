@@ -26,6 +26,7 @@ public class StopTimeController {
         this.busStopRepository = busStopRepository;
     }
 
+    //Registra uma parada
     @PostMapping("/register")
     public StopTimeResponseDTO createStopTime(@RequestBody StopTimeRequestDTO request) {
         StopTime stopTime = new StopTime();
@@ -43,6 +44,7 @@ public class StopTimeController {
         return new StopTimeResponseDTO(stopTime);
     }
 
+    //Busca todos
     @GetMapping("/all")
     public List<StopTimeResponseDTO> getAllStopTimes() {
         List<StopTime> stopTimes = stopTimeRepository.findAll();
@@ -51,12 +53,14 @@ public class StopTimeController {
                 .collect(Collectors.toList());
     }
 
+    //Pesquisa por id
     @GetMapping("/{idStopTime}")
     public StopTimeResponseDTO searchStopTimeById(@PathVariable Integer idStopTime) {
         StopTime stopTime = stopTimeRepository.findById(idStopTime).orElseThrow();
         return new StopTimeResponseDTO(stopTime);
     }
 
+    //Para pesquisa por nome (ponto de ônibus)
     @GetMapping("/search")
     public List<StopTimeResponseDTO> searchByBusStopPrefix(@RequestParam String prefix) {
         List<StopTime> stops = stopTimeRepository.findByBusStopIdentifierStartingWithIgnoreCase(prefix);
@@ -65,6 +69,7 @@ public class StopTimeController {
                 .collect(Collectors.toList());
     }
 
+    //Edita parada
     @PutMapping("/{idStopTime}")
     public StopTimeResponseDTO editStopTime(@PathVariable Integer idStopTime, @RequestBody StopTimeRequestDTO request) {
         StopTime stopTime = stopTimeRepository.findById(idStopTime).orElseThrow();
@@ -80,6 +85,7 @@ public class StopTimeController {
         return new StopTimeResponseDTO(stopTime);
     }
 
+    //Deleta parada
     @DeleteMapping("/{idStopTime}")
     public StopTimeResponseDTO removeStopTime(@PathVariable Integer idStopTime) {
         StopTime stopTime = stopTimeRepository.findById(idStopTime).orElseThrow();

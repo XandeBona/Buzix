@@ -35,6 +35,7 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    //Endpoint para registro
     @PostMapping("/register")
     public RegisterResponseDTO createUser (@RequestBody User user) {
         //Valida se o e-mail já está cadastrado no bando de dados
@@ -47,6 +48,7 @@ public class AuthController {
         return new RegisterResponseDTO(saved);
     }
 
+    //Endpoint para Login
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login (@RequestBody LoginRequestDTO request,
                                                   HttpServletResponse response) {
@@ -74,10 +76,11 @@ public class AuthController {
                 .get()
                 .getAuthority();
 
-        //devolve DTO sem expor o token
+        //Devolve DTO sem expor o token
         return ResponseEntity.ok(new LoginResponseDTO(user.getUsername(), role));
     }
 
+    //Para logout
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletResponse response) {
         ResponseCookie cookie = ResponseCookie.from("jwt", "")
@@ -93,7 +96,7 @@ public class AuthController {
         return ResponseEntity.noContent().build();
     }
 
-    //Para validar se o e-mail já está sendo utilizado
+    //Valida se o e-mail já está sendo utilizado
     @GetMapping("/check-email")
     public boolean checkEmail(@RequestParam String email) {
         return userRepository.existsByEmail(email);

@@ -23,19 +23,21 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    //Busca todos
     @GetMapping
     public List<User> listarUsuarios() {
         return this.userRepository.findAll();
     }
 
+    //Busca o usuário que está logado
     @GetMapping("/me")
-    public User usuarioLogado(Authentication authentication) {
+    public User currentUser(Authentication authentication) {
         return this.userRepository.findByEmail(authentication.getName()).orElseThrow();
     }
 
-    // Novo endpoint com validação de e-mail
+    //Registra o usuário e valida e-mail
     @PostMapping("/register")
-    public ResponseEntity<?> registrarUsuario(@Valid @RequestBody User user, BindingResult result) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) {
         if (result.hasErrors()) {
             String mensagemErro = result.getFieldErrors().stream()
                     .map(e -> e.getDefaultMessage())
@@ -54,8 +56,9 @@ public class UserController {
         return ResponseEntity.ok(novoUsuario);
     }
 
+    //Edita o usuário que está logado
     @PutMapping("/me")
-    public ResponseEntity<?> atualizarDadosUsuario(@RequestBody UserRequestDTO request, Authentication authentication) {
+    public ResponseEntity<?> updateUserData(@RequestBody UserRequestDTO request, Authentication authentication) {
         User user = userRepository.findByEmail(authentication.getName()).orElseThrow();
 
         //Valida o novo e-mail informado pelo usuário
@@ -80,7 +83,7 @@ public class UserController {
 
         userRepository.save(user);
 
-        //Sempre pede para relogar
+        //Sempre pede para relogar após as mudanças
         return ResponseEntity.ok("Dados atualizados. Faça login novamente.");
     }
 }

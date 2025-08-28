@@ -15,6 +15,7 @@ public class ChatService {
 
     private final OpenAIClient client;
 
+    //Busca a chave da API - se não localizar ele funciona da mesma forma
     public ChatService(@Value("${openai.api.key:}") String apiKey) {
         if (apiKey == null || apiKey.isBlank()) {
             System.out.println("OPENAI_API_KEY não configurada, IA desativada.");
@@ -48,6 +49,7 @@ public class ChatService {
                 .append(" (combustível: ").append(req.getFuelType()).append("). ");
 
         switch (req.getType()) {
+            //Pergunta referente à troca de óleo
             case "troca_oleo":
                 sb.append("A última troca de óleo foi em ")
                         .append(req.getDataOleo())
@@ -58,6 +60,7 @@ public class ChatService {
                         .append("Quando devo fazer a próxima troca de óleo? Responda de forma objetiva, com no máximo 5 linhas. Não mande palavras em negrito ou com itálico ou textos decorativos. Se houver resposta com data, retornar no padrão DD/MM/YY");
                 break;
 
+            //Pergunta referente à troca de pneus
             case "pneus":
                 sb.append("A última troca/revisão de pneus foi em ")
                         .append(req.getDataPneu())
@@ -68,6 +71,7 @@ public class ChatService {
                         .append("Preciso trocar os pneus? Responda de forma objetiva, com no máximo 5 linhas. Não mande palavras em negrito ou com itálico ou textos decorativos. Se houver resposta com data, retornar no padrão DD/MM/YY");
                 break;
 
+            //Pergunta referente à revisão geral
             case "revisao_geral":
                 sb.append("Comprei o carro em ")
                         .append(req.getDataCompra())

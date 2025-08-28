@@ -30,6 +30,7 @@ public class TripController {
         this.vehicleRepository = vehicleRepository;
     }
 
+    //Registra itinerário
     @PostMapping("/register")
     public TripResponseDTO createTrip(@RequestBody TripRequestDTO request) {
         Trip trip = new Trip();
@@ -47,18 +48,20 @@ public class TripController {
         tripRepository.save(trip);
 
         TripResponseDTO resp = new TripResponseDTO(trip);
-        resp.setStopTimes(Collections.emptyList()); // ao criar, ainda não há StopTimes
+        resp.setStopTimes(Collections.emptyList()); //Ao criar, ainda não há StopTimes
         return resp;
     }
 
+    //Busca todos
     @GetMapping("/all")
     public List<TripResponseDTO> getAllTrips() {
         List<Trip> trips = tripRepository.findAll();
         return trips.stream()
-                .map(TripResponseDTO::new) // aqui devolvemos sem StopTimes para evitar N+1
+                .map(TripResponseDTO::new)
                 .collect(Collectors.toList());
     }
 
+    //Busca por id
     @GetMapping("/{idTrip}")
     public TripResponseDTO searchTripById(@PathVariable Integer idTrip) {
         Trip trip = tripRepository.findById(idTrip).orElseThrow();
@@ -94,6 +97,7 @@ public class TripController {
                 .collect(Collectors.toList());
     }
 
+    //Para pesquisa por nome
     @GetMapping("/search")
     public List<TripResponseDTO> searchByRoutePrefix(@RequestParam String prefix) {
         List<Trip> trips = tripRepository.findByRoute_NameStartingWithIgnoreCase(prefix);
@@ -102,12 +106,14 @@ public class TripController {
                 .collect(Collectors.toList());
     }
 
+    //Edita o itinerário
     @PutMapping("/{idTrip}")
     public TripResponseDTO editTrip(@PathVariable Integer idTrip, @RequestBody TripRequestDTO request) {
         Trip trip = tripRepository.findById(idTrip).orElseThrow();
 
         Route route = routeRepository.findById(request.getRouteId()).orElseThrow();
         trip.setRoute(route);
+        //Veículo não é obrigatório
         if (request.getVehicleId() != null) {
             Vehicle vehicle = vehicleRepository.findById(request.getVehicleId()).orElseThrow();
             trip.setVehicle(vehicle);
@@ -119,12 +125,13 @@ public class TripController {
 
         tripRepository.save(trip);
 
-        //Atualização não mexe nos StopTimes - devolve vazio aqui
+        //Atualização não mexe nos StopTimes, vai devolver vazio aqui
         TripResponseDTO resp = new TripResponseDTO(trip);
         resp.setStopTimes(Collections.emptyList());
         return resp;
     }
 
+    //Deleta itinerário
     @DeleteMapping("/{idTrip}")
     public TripResponseDTO removeTrip(@PathVariable Integer idTrip) {
         Trip trip = tripRepository.findById(idTrip).orElseThrow();

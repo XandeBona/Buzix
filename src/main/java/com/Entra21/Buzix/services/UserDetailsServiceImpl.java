@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
-                .roles(user.getRole().replace("ROLE_", "")) //puxa do banco de dados
+                .roles(user.getRole().replace("ROLE_", "")) //Puxa do banco de dados
                 .build();
     }
 }

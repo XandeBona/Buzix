@@ -16,10 +16,11 @@ public class GraphHopperController {
     @Autowired
     private GraphHopperService graphHopperService;
 
+    //Recebe coordenadas geográficas e faz a requisição para API, retorna a rota calculada entre os pontos
     @GetMapping(value = "/route", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getRoute(@RequestParam("point") List<String> points) {
         try {
-            // Remonta a query no formato que o GraphHopper espera
+            //Remonta no formato que o GraphHopper espera
             String pointsQuery = points.stream()
                     .map(p -> "point=" + p) // p é "lat,lng"
                     .collect(Collectors.joining("&"));

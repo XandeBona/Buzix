@@ -18,6 +18,7 @@ public class RouteController {
         this.routeRepository = routeRepository;
     }
 
+    //Cadastro de linha
     @PostMapping("/register")
     public RouteResponseDTO createRoute(@RequestBody RouteRequestDTO request) {
         Route route = new Route();
@@ -32,6 +33,7 @@ public class RouteController {
         return new RouteResponseDTO(route);
     }
 
+    //Para listar todos
     @GetMapping("/all")
     public List<RouteResponseDTO> getAllRoutes() {
         List<Route> routes = routeRepository.findAll();
@@ -40,6 +42,7 @@ public class RouteController {
                 .collect(Collectors.toList());
     }
 
+    //Pesquisa linha por id
     @GetMapping("/{idRoute}")
     public RouteResponseDTO searchRouteById(@PathVariable Integer idRoute) {
         Route routes = routeRepository.findById(idRoute).orElseThrow();
@@ -47,6 +50,7 @@ public class RouteController {
         return new RouteResponseDTO(routes);
     }
 
+    //Para pesquisa por nome
     @GetMapping("/search")
     public List<RouteResponseDTO> searchRoutesStartingWith(@RequestParam String prefix) {
         List<Route> routes = routeRepository.findByNameStartingWithIgnoreCase(prefix);
@@ -55,6 +59,7 @@ public class RouteController {
                 .collect(Collectors.toList());
     }
 
+    //Edita a linha
     @PutMapping("/{idRoute}")
     public RouteResponseDTO editRoute(@PathVariable Integer idRoute, @RequestBody RouteRequestDTO request) {
         Route route = routeRepository.findById(idRoute).orElseThrow();
@@ -69,6 +74,7 @@ public class RouteController {
         return new RouteResponseDTO(route);
     }
 
+    //Deleta a linha
     @DeleteMapping("/{idRoute}")
     public RouteResponseDTO removeRoute(@PathVariable Integer idRoute) {
         Route route = routeRepository.findById(idRoute).orElseThrow();

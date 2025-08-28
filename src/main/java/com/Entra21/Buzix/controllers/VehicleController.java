@@ -18,6 +18,7 @@ public class VehicleController {
         this.vehicleRepository = vehicleRepository;
     }
 
+    //Cria veículo
     @PostMapping("/register")
     public VehicleResponseDTO createVehicle(@RequestBody VehicleRequestDTO request) {
         Vehicle vehicle = new Vehicle();
@@ -35,6 +36,7 @@ public class VehicleController {
         return new VehicleResponseDTO(vehicle);
     }
 
+    //Busca todos
     @GetMapping("/all")
     public List<VehicleResponseDTO> getAllVehicles() {
         List<Vehicle> vehicles = vehicleRepository.findAll();
@@ -51,6 +53,7 @@ public class VehicleController {
         return new VehicleResponseDTO(vehicles);
     }
 
+    //Para pesquisa por nome
     @GetMapping("/search")
     public List<VehicleResponseDTO> searchVehiclesStartingWith(@RequestParam String prefix) {
         List<Vehicle> vehicles = vehicleRepository.findByRegistrationPlateStartingWithIgnoreCase(prefix);
@@ -59,6 +62,7 @@ public class VehicleController {
                 .collect(Collectors.toList());
     }
 
+    //Edita veículo
     @PutMapping("/{idVehicle}")
     public VehicleResponseDTO editVehicle(@PathVariable Integer idVehicle, @RequestBody VehicleRequestDTO request) {
         Vehicle vehicle = vehicleRepository.findById(idVehicle).orElseThrow();
@@ -76,6 +80,7 @@ public class VehicleController {
         return new VehicleResponseDTO(vehicle);
     }
 
+    //Deleta veículo
     @DeleteMapping("/{idVehicle}")
     public VehicleResponseDTO removeVehicle(@PathVariable Integer idVehicle) {
         Vehicle vehicle = vehicleRepository.findById(idVehicle).orElseThrow();

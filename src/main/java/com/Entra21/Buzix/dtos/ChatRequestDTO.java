@@ -1,5 +1,7 @@
 package com.Entra21.Buzix.dtos;
 
+
+//DTO criado para a API do OpenAI
 public class ChatRequestDTO {
     //Opção escolhida no select
     private String type;

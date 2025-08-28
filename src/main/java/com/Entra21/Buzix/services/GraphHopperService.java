@@ -14,6 +14,7 @@ public class GraphHopperService {
     @Value("${graphhopper.api.key}")
     private String graphhopperApiKey;
 
+    //Busca a chave API do GraphHopper
     public String getRoute(String pointsQuery) throws IOException {
         String url = "https://graphhopper.com/api/1/route?" + pointsQuery +
                 "&vehicle=car&points_encoded=false&key=" + graphhopperApiKey;
@@ -28,9 +29,7 @@ public class GraphHopperService {
             var response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return response.body();
         } catch (InterruptedException e) {
-            //Restaura o status de interrupção da thread
             Thread.currentThread().interrupt();
-            //Encapsula como IOException para manter a assinatura do metodo simples
             throw new IOException("Erro de interrupção ao chamar GraphHopper", e);
         }
     }

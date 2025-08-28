@@ -14,6 +14,7 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
+    //Faz a chamada API para OpenAI e retorna a resposta para chatService.askChat(req)
     @PostMapping("/maintenance")
     public String maintenance(@RequestBody ChatRequestDTO req) {
         return chatService.askChat(req);
