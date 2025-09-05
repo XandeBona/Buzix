@@ -27,9 +27,9 @@ O sistema também integra a **OpenAI** para validar a manutenção dos veículos
 ## Tecnologias Utilizadas
 O projeto foi desenvolvido com as seguintes tecnologias:
 
-- **Back-end:** ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white), ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-- **Front-end:** ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white), ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white), ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black), ![Leaflet](https://img.shields.io/badge/Leaflet-1991D4?style=for-the-badge), ![OpenStreetMap](https://img.shields.io/badge/OpenStreetMap-7EB26D?style=for-the-badge)
-- **APIs externas:** ![GraphHopper](https://img.shields.io/badge/GraphHopper-FF6F00?style=for-the-badge), ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white), ![Nominatim](https://img.shields.io/badge/Nominatim-00A86B?style=for-the-badge)
+- **Back-end:** ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+- **Front-end:** ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Leaflet](https://img.shields.io/badge/Leaflet-1991D4?style=for-the-badge) ![OpenStreetMap](https://img.shields.io/badge/OpenStreetMap-7EB26D?style=for-the-badge)
+- **APIs externas:** ![GraphHopper](https://img.shields.io/badge/GraphHopper-FF6F00?style=for-the-badge) ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white) ![Nominatim](https://img.shields.io/badge/Nominatim-00A86B?style=for-the-badge)
 - **Banco de dados:** ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 - **Hospedagem:** ![RailWay](https://img.shields.io/badge/RailWay-0052CC?style=for-the-badge)
 
