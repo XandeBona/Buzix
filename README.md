@@ -1,4 +1,4 @@
-<h1><span style="color:#06b4f0">Buzix</span> - Mobilidade Inteligente</h1>
+# Buzix - Mobilidade Inteligente
 
 ## Descrição
 **Buzix** é um sistema de mobilidade inteligente que auxilia os usuários de transporte público, fornecendo informações sobre linhas, itinerários e pontos de ônibus.  
