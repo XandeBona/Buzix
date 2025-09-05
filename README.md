@@ -1,4 +1,4 @@
-# Buzix - Mobilidade Inteligente
+<h1><span style="color:#06b4f0">Buzix</span> - Mobilidade Inteligente</h1>
 
 ## Descrição
 **Buzix** é um sistema de mobilidade inteligente que auxilia os usuários de transporte público, fornecendo informações sobre linhas, itinerários e pontos de ônibus.  
@@ -10,7 +10,7 @@ Através de um mapa interativo, o usuário pode:
 
 Além disso, o Buzix permite que **empresas de transporte** gerenciem suas linhas, veículos, itinerários e pontos de ônibus. É possível cadastrar, editar, excluir e até importar pontos em massa via arquivos KMZ.  
 
-O sistema também integra a **OpenAI** para validar a manutenção dos veículos: o usuário insere informações do ônibus (modelo, ano e km) e a IA indica se já está na hora de realizar a manutenção ou substituição.
+O sistema também integra a **OpenAI** para validar a manutenção dos veículos: o usuário insere a quilometragem do ônibus e a IA indica se já está na hora de realizar a manutenção ou substituição.
 
 ---
 
@@ -39,8 +39,8 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 1. Certifique-se de ter o **Java** e o **MySQL** configurados na sua máquina.
 2. No arquivo `application.properties`, selecione o **perfil `dev`**.
 3. Inicialize o projeto via Spring Boot.  
-4. O banco de dados precisa conter as tabelas padrão do sistema (linhas, veículos, itinerários, pontos, paradas).  
-5. Acesse a aplicação pelo navegador.  
+4. O banco de dados precisa conter as tabelas padrão do sistema (users, bus_stops, vehicles, routes, trips, stop_times).  
+5. Acesse a aplicação pelo navegador (localhost).  
 
 
 ---
@@ -48,4 +48,4 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 ## Exemplos de Uso
 - Visualizar todos os pontos de ônibus em um bairro.
 - Selecionar uma linha e ver a rota completa no mapa.
-- Cadastrar um novo ônibus e receber validação de manutenção automática via IA.
+- Cadastrar um novo ônibus e validar período de manutenção via IA.
