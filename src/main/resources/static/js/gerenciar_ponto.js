@@ -3,11 +3,13 @@ function renderTable(data) {
   const tbody = document.querySelector("#busStopsTable tbody");
   tbody.innerHTML = "";
 
+  //Se não houver ponto cadastrado
   if (!data || data.length === 0) {
     tbody.innerHTML = "<tr><td colspan='4'>Nenhum ponto encontrado</td></tr>";
     return;
   }
 
+  //Cria uma linha na tabela para cada ponto
   data.forEach(busStop => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -38,7 +40,7 @@ function searchBusStop() {
 
   fetch(`/busstops/search?prefix=${encodeURIComponent(identifier)}`)
     .then(res => res.json())
-    .then(data => renderTable(data))
+    .then(data => renderTable(data)) //Mostra os resultados filtrados
     .catch(err => console.error("Erro na busca:", err));
 }
 
@@ -54,6 +56,7 @@ function deleteSelected() {
 
   if (!confirm(`Deseja excluir ${selected.length} ponto(s)?`)) return;
 
+  //Faz delete em cada linha selecionada
   Promise.all(
     selected.map(id =>
       fetch(`/busstops/${id}`, { method: "DELETE" })
@@ -113,6 +116,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
   const latitude = document.getElementById("input_edit_latitude").value;
   const longitude = document.getElementById("input_edit_longitude").value;
 
+  //Envia os dados atualizados para o backend
   fetch(`/busstops/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -126,6 +130,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
     .catch(err => console.error("Erro ao editar:", err));
 });
 
+//Botão para voltar ao menu da empresa
 function menuReturn() {
   window.location.href = "/html/empresa.html"
 }

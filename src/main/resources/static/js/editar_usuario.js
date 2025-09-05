@@ -1,3 +1,4 @@
+//Valida se a senha atende os requisitos
 function validarSenha(senha) {
     if (!senha) return false;
     if (senha.length < 8) return false;
@@ -8,6 +9,7 @@ function validarSenha(senha) {
     return true;
 }
 
+//Para deslogar o usuário após a alteração dos dados
 function forcarLogout() {
     fetch("/auth/logout", {
         method: "POST",
@@ -20,6 +22,7 @@ function forcarLogout() {
         });
 }
 
+//Atualiza os dados do usuário
 function atualizarUsuario() {
     const name = document.getElementById("input_name").value.trim();
     const email = document.getElementById("input_email").value.trim();
@@ -99,7 +102,7 @@ function atualizarUsuario() {
         })
         .then(message => {
             alert(message || "Dados atualizados com sucesso! Faça login novamente.");
-            forcarLogout(); //Força logout
+            forcarLogout(); //Chama a função para forçar o logout do usuário
         })
         .catch(error => {
             console.error(error);
@@ -109,17 +112,20 @@ function atualizarUsuario() {
         });
 }
 
+//Exibe/oculta a senha ao clicar no ícone do olho
 function togglePassword(inputId, button) {
     const input = document.getElementById(inputId);
     const icon = button.querySelector('i');
     const isPassword = input.type === "password";
 
+    //Muda o tipo do input entre "password" e "text"
     input.type = isPassword ? "text" : "password";
 
     icon.classList.toggle('fa-eye', !isPassword);
     icon.classList.toggle('fa-eye-slash', isPassword);
 }
 
+//Configura o evento de submit do formulário
 function setupEvents() {
     const form = document.querySelector("form");
     form.addEventListener("submit", function (event) {
@@ -128,4 +134,5 @@ function setupEvents() {
     });
 }
 
+//Configura os eventos do formulário ao carregar a página
 window.addEventListener("load", setupEvents);

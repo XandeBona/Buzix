@@ -1,4 +1,6 @@
+//Para cadastro de pontos de ônibus em massa (usando KMZ)
 async function cadastrarEmMassa(file) {
+    //Se for anexado algum outro tipo de arquivo
     if (!file) {
         alert("Selecione um arquivo KMZ!");
         return;
@@ -28,6 +30,7 @@ async function cadastrarEmMassa(file) {
                 //Busca Lon e Lat (se Altitude existir será ignorado)
                 const [longitude, latitude] = coordsText.split(",").map(Number);
 
+                //Envia para o backend
                 await fetch("/busstops/register", {
                     method: "POST",
                     credentials: "include",
@@ -45,6 +48,7 @@ async function cadastrarEmMassa(file) {
     }
 }
 
+//Para cadastrar ponto de ônibus
 function cadastrarPonto() {
     const inputIdentifier = document.getElementById("input_identifier");
     const inputLatitude = document.getElementById("input_latitude");
@@ -59,6 +63,7 @@ function cadastrarPonto() {
         return;
     }
 
+    //Envia para o backend
     fetch("/busstops/register", {
         method: "POST",
         credentials: "include",
@@ -83,6 +88,7 @@ function cadastrarPonto() {
     inputLongitude.value = "";
 }
 
+//Configura o evento de submit do formulário
 function setupEvents() {
     document.getElementById("form-busStop").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -104,5 +110,5 @@ function setupEvents() {
     });
 }
 
-
+//Configura os eventos ao carregar a página
 window.addEventListener("load", setupEvents);

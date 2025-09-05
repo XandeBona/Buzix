@@ -3,11 +3,13 @@ function renderTable(data) {
     const tbody = document.querySelector("#vehiclesTable tbody");
     tbody.innerHTML = "";
 
+    //Se não houver veiculo cadastrado
     if (!data || data.length === 0) {
         tbody.innerHTML = "<tr><td colspan='8'>Nenhum veículo encontrado</td></tr>";
         return;
     }
 
+    //Cria uma linha na tabela para cada veiculo
     data.forEach(vehicle => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -42,7 +44,7 @@ function searchVehicle() {
 
     fetch(`/vehicles/search?prefix=${encodeURIComponent(identifier)}`)
         .then(res => res.json())
-        .then(data => renderTable(data))
+        .then(data => renderTable(data)) //Mostra os resultados filtrados
         .catch(err => console.error("Erro na busca:", err));
 }
 
@@ -58,6 +60,7 @@ function deleteSelected() {
 
     if (!confirm(`Deseja excluir ${selected.length} veículo(s)?`)) return;
 
+    //Faz delete em cada veiculo selecionado
     Promise.all(
         selected.map(id =>
             fetch(`/vehicles/${id}`, { method: "DELETE" })
@@ -125,6 +128,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
     const numberOfSeats = document.getElementById("input_edit_numberOfSeats").value;
     const fuelType = document.getElementById("input_edit_fuelType").value;
 
+    //Envia os dados atualizados para o backend
     fetch(`/vehicles/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -243,6 +247,7 @@ document.getElementById("form-chat").addEventListener("submit", function (e) {
         });
 });
 
+//Botão para voltar ao menu da empresa
 function menuReturn() {
     window.location.href = "/html/empresa.html";
 }

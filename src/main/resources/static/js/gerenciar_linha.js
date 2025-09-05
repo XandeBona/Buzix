@@ -3,11 +3,13 @@ function renderTable(data) {
     const tbody = document.querySelector("#routesTable tbody");
     tbody.innerHTML = "";
 
+    //Se não houver linha cadastrada
     if (!data || data.length === 0) {
         tbody.innerHTML = "<tr><td colspan='5'>Nenhuma linha encontrada</td></tr>";
         return;
     }
 
+    //Cria uma linha na tabela para cada linha
     data.forEach(routes => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -39,14 +41,14 @@ function searchRoutes() {
 
     fetch(`/routes/search?prefix=${encodeURIComponent(name)}`)
         .then(res => res.json())
-        .then(data => renderTable(data))
+        .then(data => renderTable(data)) //Mostra os resultados filtrados
         .catch(err => console.error("Erro na busca:", err));
 }
 
 //Exclui as linhas selecionadas
 function deleteSelected() {
     const selected = Array.from(document.querySelectorAll("tbody input:checked"))
-        .map(cb => cb.value);
+        .map(cb => cb.value); //Pega os IDs selecionados
 
     if (selected.length === 0) {
         alert("Selecione pelo menos 1 linha!");
@@ -55,6 +57,7 @@ function deleteSelected() {
 
     if (!confirm(`Deseja excluir ${selected.length} linhas(s)?`)) return;
 
+    //Faz delete em cada linha selecionada
     Promise.all(
         selected.map(id =>
             fetch(`/routes/${id}`, { method: "DELETE" })
@@ -116,6 +119,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
     const description = document.getElementById("input_edit_description").value;
     const color = document.getElementById("input_edit_color").value;
 
+    //Envia os dados atualizados para o backend
     fetch(`/routes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -129,6 +133,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
         .catch(err => console.error("Erro ao editar:", err));
 });
 
+//Botão para voltar ao menu da empresa
 function menuReturn() {
     window.location.href = "/html/empresa.html"
 }

@@ -102,7 +102,7 @@ document.addEventListener("click", function (e) {
 
 // --- Para cadastrar a parada  --- //
 
-
+//Cadastra a parada
 function cadastrarParada() {
     const inputTrip = document.getElementById("input_trip");
     const inputBusStop = document.getElementById("input_busStop");
@@ -161,7 +161,7 @@ function cadastrarParada() {
         });
 }
 
-// --- Evento submit do formulário ---
+//Configura o evento de submit do formulário
 function setupEvents() {
     document.getElementById("form-stopTime").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -169,4 +169,5 @@ function setupEvents() {
     });
 }
 
+//Configura os eventos ao carregar a página
 window.addEventListener("load", setupEvents);

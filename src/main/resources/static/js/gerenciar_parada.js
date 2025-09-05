@@ -1,13 +1,15 @@
-// Renderiza a tabela
+//Renderiza a tabela
 function renderTable(data) {
     const tbody = document.querySelector("#stoptimesTable tbody");
     tbody.innerHTML = "";
 
+    //Se não houver parada cadastrada
     if (!data || data.length === 0) {
         tbody.innerHTML = "<tr><td colspan='6'>Nenhuma parada encontrada</td></tr>";
         return;
     }
 
+    //Cria uma linha na tabela para cada parada
     data.forEach(stop => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -22,7 +24,7 @@ function renderTable(data) {
     });
 }
 
-// Lista todas as paradas
+//Lista todas as paradas
 function loadAll() {
     fetch("/stoptimes/all")
         .then(res => res.json())
@@ -30,7 +32,7 @@ function loadAll() {
         .catch(err => console.error("Erro ao carregar todas as paradas:", err));
 }
 
-// Busca parada pelo nome do ponto de ônibus
+//Busca parada pelo nome do ponto de ônibus
 function searchStop() {
     const busstop = document.getElementById("input-search").value.trim();
     if (!busstop) {
@@ -40,14 +42,14 @@ function searchStop() {
 
     fetch(`/stoptimes/search?prefix=${encodeURIComponent(busstop)}`)
         .then(res => res.json())
-        .then(data => renderTable(data))
+        .then(data => renderTable(data)) //Mostra os resultados filtrados
         .catch(err => console.error("Erro na busca:", err));
 }
 
-// Exclui paradas selecionadas
+//Exclui paradas selecionadas
 function deleteSelected() {
     const selected = Array.from(document.querySelectorAll("tbody input:checked"))
-        .map(cb => cb.value);
+        .map(cb => cb.value); //Pega os IDs selecionados
 
     if (selected.length === 0) {
         alert("Selecione pelo menos 1 parada!");
@@ -56,6 +58,7 @@ function deleteSelected() {
 
     if (!confirm(`Deseja excluir ${selected.length} parada(s)?`)) return;
 
+    //Faz delete em cada parada selecionada
     Promise.all(
         selected.map(id =>
             fetch(`/stoptimes/${id}`, { method: "DELETE" })
@@ -68,7 +71,7 @@ function deleteSelected() {
         .catch(err => console.error("Erro ao excluir parada(s):", err));
 }
 
-// Edita parada selecionada (apenas 1 por vez)
+//Edita parada selecionada (apenas 1 por vez)
 function editSelected() {
     const selected = Array.from(document.querySelectorAll("tbody input:checked"))
         .map(cb => cb.value);
@@ -85,11 +88,11 @@ function editSelected() {
 
     const id = selected[0];
 
-    // Buscar os dados atuais da parada
+    //Busca os dados atuais da parada
     fetch(`/stoptimes/${id}`)
         .then(res => res.json())
         .then(stop => {
-            // Preenche os inputs com os dados atuais
+            //Preenche os inputs com os dados atuais
             document.getElementById("input_edit_id").value = stop.id;
             document.getElementById("input_edit_trip").value = stop.tripRouteName + " | " + stop.tripDepartureTime + " -> " + stop.tripArrivalTime;
             document.getElementById("input_edit_trip_id").value = stop.tripId;
@@ -99,18 +102,18 @@ function editSelected() {
             document.getElementById("input_edit_arrivalTime").value = stop.arrivalTime;
             document.getElementById("input_edit_departureTime").value = stop.departureTime;
 
-            // Mostra o modal
+            //Mostra o modal
             document.getElementById("editModal").classList.remove("hidden");
         })
         .catch(err => console.error("Erro ao buscar parada:", err));
 }
 
-// Fecha modal sem salvar
+//Fecha modal sem salvar
 function closeModal() {
     document.getElementById("editModal").classList.add("hidden");
 }
 
-// Salva a edição da parada
+//Salva a edição da parada
 document.getElementById("form-edit").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -125,7 +128,8 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
         alert("Itinerário e ponto de ônibus são obrigatórios!");
         return;
     }
-
+    
+    //Envia os dados atualizados para o backend
     fetch(`/stoptimes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -145,7 +149,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
         .catch(err => console.error("Erro ao editar parada:", err));
 });
 
-// Retorna ao menu
+//Botão para voltar ao menu da empresa
 function menuReturn() {
     window.location.href = "/html/empresa.html";
 }

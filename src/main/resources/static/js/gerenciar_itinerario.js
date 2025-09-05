@@ -1,13 +1,15 @@
-//Renderiza a tabela
+//Renderiza a tabela de itinerários
 function renderTable(data) {
     const tbody = document.querySelector("#tripsTable tbody");
     tbody.innerHTML = "";
 
+    //Se não houver nenhum cadastrado
     if (!data || data.length === 0) {
         tbody.innerHTML = "<tr><td colspan='5'>Nenhum itinerário encontrado</td></tr>";
         return;
     }
 
+    //Cria linhas na tabela para cada itinerário
     data.forEach(trips => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -29,7 +31,7 @@ function loadAll() {
         .catch(err => console.error("Erro ao carregar todos:", err));
 }
 
-//Busca itinerário por rota
+//Busca itinerário pelo nome da rota
 function searchTrip() {
     const routeName = document.getElementById("input-search").value.trim();
     if (!routeName) {
@@ -39,14 +41,14 @@ function searchTrip() {
 
     fetch(`/trips/search?prefix=${encodeURIComponent(routeName)}`)
         .then(res => res.json())
-        .then(data => renderTable(data))
+        .then(data => renderTable(data)) //Renderiza os dados na tabela
         .catch(err => console.error("Erro na busca:", err));
 }
 
 //Exclui itinerários selecionados
 function deleteSelected() {
     const selected = Array.from(document.querySelectorAll("tbody input:checked"))
-        .map(cb => cb.value);
+        .map(cb => cb.value); //Pega os IDs selecionados
 
     if (selected.length === 0) {
         alert("Selecione pelo menos 1 itinerário!");
@@ -55,6 +57,7 @@ function deleteSelected() {
 
     if (!confirm(`Deseja excluir ${selected.length} itinerário(s)?`)) return;
 
+    //Envia requisição delete para todos os selecionados
     Promise.all(
         selected.map(id =>
             fetch(`/trips/${id}`, { method: "DELETE" })
@@ -62,7 +65,7 @@ function deleteSelected() {
     )
         .then(() => {
             alert("Itinerário(s) excluído(s) com sucesso!");
-            loadAll();
+            loadAll(); //Recarrega a tabela
         })
         .catch(err => console.error("Erro ao excluir:", err));
 }
@@ -95,7 +98,7 @@ function editSelected() {
             document.getElementById("input_edit_departureTime").value = trips.departureTime;
             document.getElementById("input_edit_arrivalTime").value = trips.arrivalTime;
 
-            // --- Preencher veículo ---
+            //Se tiver o veículo associado
             if (trips.vehicle) {
                 document.getElementById("input_edit_vehicle").value = trips.vehicleRegistrationPlate;
                 document.getElementById("input_edit_vehicle").dataset.selectedId = trips.vehicleId;
@@ -107,7 +110,7 @@ function editSelected() {
         .catch(err => console.error("Erro ao buscar itinerário:", err));
 }
 
-//Fecha modal sem salvar
+//Fecha modal de edição sem salvar
 function closeModal() {
     document.getElementById("editModal").classList.add("hidden");
 }
@@ -127,6 +130,7 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
         return;
     }
 
+    //Envia os dados atualizados para o backend
     fetch(`/trips/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -139,12 +143,13 @@ document.getElementById("form-edit").addEventListener("submit", function (e) {
     })
         .then(() => {
             alert("Itinerário atualizado com sucesso!");
-            closeModal();
-            loadAll();
+            closeModal(); //Fecha o modal
+            loadAll(); //Recarrega a tabela
         })
         .catch(err => console.error("Erro ao editar:", err));
 });
 
+//Botão para retornar ao menu de empresa
 function menuReturn() {
     window.location.href = "/html/empresa.html"
 }
@@ -154,18 +159,22 @@ var vehicles = [];
 var vehicleInput = document.getElementById("input_edit_vehicle");
 var vehicleList = document.getElementById("vehicle-options");
 
+//Puxa os veículos do backend
 fetch("/vehicles/all")
   .then(res => res.json())
   .then(data => {
     vehicles = data; showVehicleOptions(vehicles);
   });
 
+  //Renderiza as opções de veículos na lista
 function showVehicleOptions(items) {
   vehicleList.innerHTML = "";
   items.forEach(v => {
     var li = document.createElement("li");
     li.textContent = "Placa " + v.registrationPlate;
     li.dataset.id = v.id;
+
+    //Ao clicar em uma opção vai definir o valor do input
     li.addEventListener("click", function () {
       vehicleInput.value = li.textContent;
       vehicleList.style.display = "none";
@@ -175,10 +184,12 @@ function showVehicleOptions(items) {
   });
 }
 
+//Mostra a lista de veículos
 vehicleInput.addEventListener("focus", function () {
   vehicleList.style.display = "block";
 });
 
+//Filtra opções conforme o usuário digita
 vehicleInput.addEventListener("input", function () {
   var filter = vehicleInput.value.toLowerCase();
   Array.from(vehicleList.children).forEach(li => {
@@ -186,6 +197,7 @@ vehicleInput.addEventListener("input", function () {
   });
 });
 
+//Fecha a lista se clicar fora do input
 document.addEventListener("click", function (e) {
   if (!vehicleInput.contains(e.target) && !vehicleList.contains(e.target)) {
     vehicleList.style.display = "none";

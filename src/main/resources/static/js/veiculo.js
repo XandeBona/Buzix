@@ -1,3 +1,4 @@
+//Cadastro de veículo
 function cadastrarVeiculo() {
     const inputIdentifier = document.getElementById("input_identifier");
     const inputPlate = document.getElementById("input_registrationPlate");
@@ -20,6 +21,7 @@ function cadastrarVeiculo() {
         return;
     }
 
+    //Envia para o backend
     fetch("/vehicles/register", {
         method: "POST",
         credentials: "include",
@@ -48,6 +50,7 @@ function cadastrarVeiculo() {
     inputFuel.value = "";
 }
 
+//Configura o evento de submit do formulário
 function setupEvents() {
     document.getElementById("form-vehicle").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -55,4 +58,5 @@ function setupEvents() {
     });
 }
 
+//Configura os eventos ao carregar a página
 window.addEventListener("load", setupEvents);

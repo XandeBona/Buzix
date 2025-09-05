@@ -99,7 +99,7 @@ document.addEventListener("click", function (e) {
 
 // --- Para cadastrar o itineário --- //
 
-
+//Cadastra o itinerário
 function cadastrarItinerario() {
   const inputRoute = document.getElementById("input_route");
   const inputVehicle = document.getElementById("input_vehicle");
@@ -162,4 +162,5 @@ function setupEvents() {
   });
 }
 
+//Configura os eventos ao carregar a página
 window.addEventListener("load", setupEvents);

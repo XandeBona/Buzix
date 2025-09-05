@@ -6,17 +6,17 @@ let initialLng = -49.2725219;
 
 let map = L.map('map').setView([initialLat, initialLng], 15);
 
-//Camada OpenStreetMap
+//Mapa OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-//Marcador inicial
+//Marcador inicial (quando ainda não pegou a localização do usuário)
 let marker = L.marker([initialLat, initialLng]).addTo(map)
     .bindPopup("Carregando sua localização...")
     .openPopup();
 
-//Localização do usuário (a cada 1min30s)
+//Busca a localização do usuário (a cada 1min30s)
 if (navigator.geolocation) {
 
     function buscarLocalizacao() {
@@ -77,7 +77,7 @@ if (navigator.geolocation) {
     document.getElementById("location-warning").style.display = "block";
 }
 
-//Customização do Icon do ponto no mapa
+//Customização do Marker no mapa
 let iconOptions = {
     icon: L.icon({
         iconUrl: "/IMAGES/buzix_logo2.png",
@@ -87,6 +87,7 @@ let iconOptions = {
     })
 };
 
+//Customização do Marker ao ser selecionado em uma linha
 let busStopBigIcon = L.icon({
     iconUrl: "/IMAGES/buzix_logo2_alter.png",
     iconSize: [132, 77],
@@ -95,7 +96,7 @@ let busStopBigIcon = L.icon({
 });
 
 
-// -- Parte de mostrar as rotas no mapa -- //
+// -- Parte de mostrar as linhas no mapa -- //
 
 //Layers (camadas do Leaflet)
 let busStopLayer = L.layerGroup().addTo(map);    //Markers pequenos (pontos de ônibus) - padrão 
@@ -107,7 +108,8 @@ let activeTripId = null;
 //Para salvar a rota no cache
 let routeCache = {}; // memória local
 
-// -- Funções de Cache e LocalStorage (para não utilizar todas as requisições de rotas do plano Free do GraphHopper) -- //
+
+// -- Funções de Cache e LocalStorage (para não utilizar todas as requisições de linhas do plano Free do GraphHopper) -- //
 
 //Salva a rota no cache (memória e localStorage).
 function saveRouteToCache(key, path) {
@@ -122,7 +124,8 @@ function getRouteFromCache(key) {
     return item ? JSON.parse(item) : null;
 }
 
-// -- Funções de Rotas (GraphHopper) -- //
+
+// -- Funções de Linhas (GraphHopper) -- //
 
 //Divide a Linha em até 5 pontos, busca a rota de cada segmento de 5 pontos no GraphHopper, junta tudo em 1 única rota com cache
 async function fetchGraphHopperRoute(latlngs, color, tripId) {
@@ -146,7 +149,7 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
         let urlPoints = segment.map(c => `point=${c[0]},${c[1]}`).join("&");
 
         try {
-            //Aqui a chamada vai para o backend, que tem a key segura
+            //Busca a key do GraphHopper no backend
             let res = await fetch(`/api/route?${urlPoints}`, { credentials: "include" });
             let data = await res.json();
 
@@ -160,7 +163,7 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
                     const lastSeg = coords[coords.length - 1];
 
                     if (firstSeg[0] === lastAll[0] && firstSeg[1] === lastAll[1]) {
-                        coords.shift(); // remove ponto duplicado
+                        coords.shift(); //Remove ponto duplicado
                     } else if (lastSeg[0] === lastAll[0] && lastSeg[1] === lastAll[1]) {
                         //Se o marcador veio invertido, inverte
                         coords.reverse();
@@ -182,15 +185,18 @@ async function fetchGraphHopperRoute(latlngs, color, tripId) {
     }
 }
 
+
 // -- Funções de Interface -- //
 
 //Renderiza a lista de linhas (routes) em um popup no ponto de ônibus
 function renderRoutesPopup(marker, p, routes) {
     if (!routes.length) {
+        //Se não houver linhas associadas ao ponto, mostra aviso no popup
         marker.bindPopup(`<b>Ponto:</b> ${p.identifier}<br><br>Nenhuma linha passa aqui.`).openPopup();
         return;
     }
 
+    //Monta HTML com a lista de linhas
     let content = `<b>Ponto:</b> ${p.identifier}<br><br><b>Linhas:</b><ul class="routes-list">`;
     routes.forEach(r => {
         content += `<li class="routes-li">
@@ -200,9 +206,10 @@ function renderRoutesPopup(marker, p, routes) {
     });
     content += "</ul>";
 
+    //Adiciona o conteúdo no popup do marcador
     marker.bindPopup(content).openPopup();
 
-    // Após exibir popup, adiciona eventos nos links
+    //Após exibir o popup, adiciona eventos de clique nos links das linhas
     setTimeout(() => attachRouteLinkEvents(marker), 100);
 }
 
@@ -210,6 +217,7 @@ function renderRoutesPopup(marker, p, routes) {
 function renderTripsPopup(marker, trips) {
     if (!trips.length) return;
 
+    //Monta HTML com a lista de itinerários
     let tripContent = `<b>Itinerários:</b><ul class="routes-list">`;
     trips.forEach(t => {
         tripContent += `<li class="routes-li"><a href='#' class='trip-link' data-id='${t.id}'>
@@ -217,9 +225,10 @@ function renderTripsPopup(marker, trips) {
     });
     tripContent += "</ul>";
 
+    //Adiciona o conteúdo no popup do marcador
     marker.bindPopup(tripContent).openPopup();
 
-    //Após exibir popup, adiciona eventos nos links
+    //Após exibir o popup, adiciona eventos de clique nos links das linhas
     setTimeout(() => attachTripLinkEvents(marker), 100);
 }
 
@@ -253,7 +262,7 @@ function attachTripLinkEvents(marker) {
 
 // -- Funções de Fetch -- //
 
-//Busca rotas de um ponto específico
+//Busca linhas de um ponto específico
 function fetchRoutes(marker, busStopId) {
     fetch(`/busstops/${busStopId}/routes`, { credentials: "include" })
         .then(res => res.json())
@@ -261,44 +270,52 @@ function fetchRoutes(marker, busStopId) {
 }
 
 
-//Busca itinerários de uma rota em um ponto específico
+//Busca itinerários de uma linha em um ponto específico
 function fetchTrips(marker, busStopId, routeId) {
     fetch(`/busstops/${busStopId}/routes/${routeId}/trips`, { credentials: "include" })
         .then(res => res.json())
         .then(trips => renderTripsPopup(marker, trips));
 }
 
-//Lida com a seleção de uma trip: exibe markers grandes e rota no mapa
+//Lida com a seleção de um itinerário: exibe markers grandes e linhas no mapa
 function handleTripSelection(tripId) {
+    //Se o mesmo itinerário já estiver ativo, limpa o mapa e desativa
     if (activeTripId === tripId) {
         tripLayerGroup.clearLayers();
         activeTripId = null;
         return;
     }
 
+    //Se for outro itinerário, limpa o anterior antes de carregar o novo
     tripLayerGroup.clearLayers();
 
+    //Busca detalhes do itinerário no backend
     fetch(`/trips/${tripId}`, { credentials: "include" })
         .then(res => res.json())
         .then(trip => {
-            if (!trip.stopTimes.length) return;
+            if (!trip.stopTimes.length) return; //Se não houver paradas, não faz nada
 
-            let latlngs = [];
+            let latlngs = []; //Lista de coordenadas (para o trajeto)
+
+            //Para cada parada do itinerário, adiciona um marker maior com popup fixo
             trip.stopTimes.forEach(s => {
                 let stopMarker = L.marker([s.latitude, s.longitude], { icon: busStopBigIcon })
                     .bindTooltip(
                         `<b>${s.stopSequence}ª parada - ${s.busStopIdentifier}</b><br>
                         ⏱ Chegada: ${s.arrivalTime.slice(0, 5)}<br>🚌 Saída: ${s.departureTime.slice(0, 5)}`,
-                        { permanent: true, direction: "top" }
+                        { permanent: true, direction: "top" } //Popup sempre visível acima do marker
                     );
-                tripLayerGroup.addLayer(stopMarker);
-                latlngs.push([s.latitude, s.longitude]);
+                tripLayerGroup.addLayer(stopMarker); //Adiciona o marker ao grupo
+                latlngs.push([s.latitude, s.longitude]); //Guarda a coordenada para desenhar a rota
             });
 
             //Busca rota no GraphHopper
             fetchGraphHopperRoute(latlngs, trip.routeColor, tripId);
 
+            //Marca o itinerário como ativo
             activeTripId = tripId;
+
+            // Ajusta o mapa para enquadrar todas as paradas
             let bounds = L.latLngBounds(latlngs);
             map.fitBounds(bounds.pad(0.2));
         });
@@ -397,13 +414,13 @@ document.getElementById("saudacao").addEventListener("click", function () {
     document.getElementById("card-logout").classList.toggle("hidden");
 });
 
-//Botão Editar (futuro redirecionamento)
+//Botão para editar o perfil de usuário
 document.getElementById("btn-editar").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.href = "/html/editar_usuario.html";
 });
 
-//Botão Sair
+//Botão de logout do usuário
 document.getElementById("btn-sair").addEventListener("click", function (e) {
     fetch("/auth/logout", {
         method: "POST",
@@ -467,4 +484,5 @@ function carregarIndex() {
         });
 }
 
+//Configura os eventos ao carregar a página
 window.addEventListener("load", carregarIndex, closeWarning, loadBusStops());

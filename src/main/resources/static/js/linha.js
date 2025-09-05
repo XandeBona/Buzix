@@ -1,3 +1,4 @@
+//Cadastra a linha
 function cadastrarLinha() {
     const inputCode = document.getElementById("input_code");
     const inputName = document.getElementById("input_name");
@@ -14,6 +15,7 @@ function cadastrarLinha() {
         return;
     }
 
+    //Envia para o backend
     fetch("/routes/register", {
         method: "POST",
         credentials: "include",
@@ -46,4 +48,5 @@ function setupEvents() {
     });
 }
 
+//Configura os eventos ao carregar a página
 window.addEventListener("load", setupEvents);
